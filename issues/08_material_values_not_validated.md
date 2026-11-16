@@ -5,7 +5,7 @@
 2. The **Custom material dialog** checks each field against its own range only. It accepts physically inconsistent combinations: ultimate strength below yield strength, and a shear modulus that contradicts E and nu.
 
 ### Environment
-Found with my automated suite, which drives the real `InputDock`, Additional Inputs dialog and backend with no source changes (headless, Linux, env from `environment.yml`, Python 3.12), on `dev` @ `d74f56dd7f22925fb8148cabf5740ed8d1e39ff3`. The suite's dict matches the dict the real GUI sent on my Windows 11 machine key for key (576 keys). Windows 11 re-run results will be added below.
+Windows 11 (Python 3.12.16, conda env from `environment.yml`), `dev` @ `d74f56dd7f22925fb8148cabf5740ed8d1e39ff3` (unmodified). Found and reproduced with my automated suite, which drives the real `InputDock`, Additional Inputs dialog and backend without source changes. The dict it builds matches the dict the real GUI sent on the same machine key for key (576 keys). Same results on a second, headless Linux run.
 
 ### Steps to reproduce
 **A. Load Input.** Save any design (File > Save Input). Edit the `.osi` in a text editor and change:
@@ -34,9 +34,9 @@ Load it (File > Load Input): "Loaded OSI Successfully!". Design: it completes, a
 | density 130 / E 50 | rejected | rejected (correct) |
 
 ### Evidence
-* Suite case U6 (14 hand-edited `.osi` files and the loader's verdict): [`U6_osi_validation/`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/tree/main/suite_runs/headless_linux_2026-11-15/U6_osi_validation) (`U6_osi_validation_table.json`, every `.osi` used).
-* Suite case S09 (Design after loading the fy = 5000 file): [`S09_osi_bad_material/`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/tree/main/suite_runs/headless_linux_2026-11-15/S09_osi_bad_material) (`run1_fy5000_input.json`, `run1_fy5000_output.json.gz`: `design_results.fy_MPa = 5000.0`).
-* Suite case U7 (custom dialog, driven through the real `MaterialPropertiesDialog._validate_and_save()`): [`checks.csv`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/suite_runs/headless_linux_2026-11-15/checks.csv) rows U7.
+* Suite case U6 (14 hand-edited `.osi` files and the loader's verdict): [`U6_osi_validation/`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/tree/main/suite_runs/20261116_011421/U6_osi_validation) (`U6_osi_validation_table.json`, every `.osi` used).
+* Suite case S09 (Design after loading the fy = 5000 file): [`S09_osi_bad_material/`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/tree/main/suite_runs/20261116_011421/S09_osi_bad_material) (`run1_fy5000_input.json`, `run1_fy5000_output.json.gz`: `design_results.fy_MPa = 5000.0`).
+* Suite case U7 (custom dialog, driven through the real `MaterialPropertiesDialog._validate_and_save()`): [`checks.csv`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/suite_runs/20261116_011421/checks.csv) rows U7.
 
 ### Root cause
 * [`osi_validator.py#L81-L111`](https://github.com/Nidhikhare12/OsdagBridge/blob/d74f56dd7f22925fb8148cabf5740ed8d1e39ff3/src/osdagbridge/core/utils/osi_validator.py#L81-L111): `_BASIC_KEYS` / `_ADDITIONAL_KEYS` contain no `material.*` key, and `validate()` never calls `BridgeInputValidator.validate_material_inputs()`, although that method exists ([`validator.py#L78`](https://github.com/Nidhikhare12/OsdagBridge/blob/d74f56dd7f22925fb8148cabf5740ed8d1e39ff3/src/osdagbridge/core/bridge_types/plate_girder/validator.py#L78)). The material grade strings are not checked against the database either.

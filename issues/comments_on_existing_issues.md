@@ -18,7 +18,7 @@ Design-level effect: suite case S05. Deck 300 mm reaches the design (slab load 7
 
 Call sites: `template_page.py` [L894-L897](https://github.com/Nidhikhare12/OsdagBridge/blob/d74f56dd7f22925fb8148cabf5740ed8d1e39ff3/src/osdagbridge/desktop/ui/template_page.py#L894-L897) (`update_cad_from_inputs`, runs on every required-field edit), [L648](https://github.com/Nidhikhare12/OsdagBridge/blob/d74f56dd7f22925fb8148cabf5740ed8d1e39ff3/src/osdagbridge/desktop/ui/template_page.py#L648) (Design), [L797](https://github.com/Nidhikhare12/OsdagBridge/blob/d74f56dd7f22925fb8148cabf5740ed8d1e39ff3/src/osdagbridge/desktop/ui/template_page.py#L797) (Save, mutates `self.input_dict` in place before the file dialog, so Cancel also resets the session), [L867](https://github.com/Nidhikhare12/OsdagBridge/blob/d74f56dd7f22925fb8148cabf5740ed8d1e39ff3/src/osdagbridge/desktop/ui/template_page.py#L867) (Load). The "only fill if missing" `_update()` proposed above fixes all four. Derived values (crash-barrier load, layout) still need recomputing, so the fix has to separate *user* keys from *derived* keys.
 
-Evidence (input dicts, the saved/loaded `.osi` files, checks U3a-U3c, A1-A2): [suite_runs/headless_linux_2026-11-15/U3_additional_inputs_reset](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/tree/main/suite_runs/headless_linux_2026-11-15/U3_additional_inputs_reset) and `.../S05_additional_inputs`.
+Evidence (input dicts, the saved/loaded `.osi` files, checks U3a-U3c, A1-A2): [suite_runs/20261116_011421/U3_additional_inputs_reset](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/tree/main/suite_runs/20261116_011421/U3_additional_inputs_reset) and `.../S05_additional_inputs`.
 
 ---
 ## Comment on #19 (custom materials after OSI load)
@@ -30,10 +30,10 @@ One more symptom after a cold load: the custom grade can silently end up with **
 
 I ran the sensitivity check suggested in the comment above. It also shows that the bracing design ignores the **standard** grades, not only custom ones: the bracing members are always designed as `E 250 (Fe 410 W)A` from the `connect.py` templates.
 
-TC00 inputs (30 m / 7.5 m, Optimized), only `material.cross_bracing` changed from **E 350A** (default) to **E 450A**. Every cross-bracing design result is identical: the same sections, and the same tension/compression capacities (`crossbracing_design_results.*.Member.tension_capacity`, `KEY_FCD`) for all 3 pairs x diagonal/chord x tension/compression (suite check M6, case S06 `run3_bracing_E450A` vs `baseline_reference`). So even the default E 350A bracing is designed as E 250. That is conservative for strength but wrong for the report, which prints "Cross Bracing Steel Grade: E 350A". `osdag_core`'s own material table uses names like `E 350 (Fe 490)` and `Cus_fy_fy_fy_fu`, so a mapping from OsdagBridge grade names is needed in the job payload:
+TC00 inputs (30 m / 7.5 m, Optimized), only `material.cross_bracing` changed from **E 350A** (default) to **E 450A**. Every cross-bracing design result is identical: the same sections, and the same tension/compression capacities (`crossbracing_design_results.*.Member.tension_capacity`, `KEY_FCD`) for all 3 pairs x diagonal/chord x tension/compression (suite check M6, case S06 `run3_bracing_E450A` vs S01 `run1`). So even the default E 350A bracing is designed as E 250. That is conservative for strength but wrong for the report, which prints "Cross Bracing Steel Grade: E 350A". `osdag_core`'s own material table uses names like `E 350 (Fe 490)` and `Cus_fy_fy_fy_fu`, so a mapping from OsdagBridge grade names is needed in the job payload:
 ```python
 OSDAG_CORE_GRADE = {"E 250": "E 250 (Fe 410 W)A", "E 300": "E 300 (Fe 440)", "E 350": "E 350 (Fe 490)",
                     "E 410": "E 410 (Fe 540)", "E 450": "E 450 (Fe 570)D"}
 d["Material"] = d["Connector.Material"] = OSDAG_CORE_GRADE.get(base_grade) or f"Cus_{fy}_{fy}_{fy}_{fu}"
 ```
-Evidence: [suite_runs/headless_linux_2026-11-15/S06_girders_and_bracing](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/tree/main/suite_runs/headless_linux_2026-11-15/S06_girders_and_bracing).
+Evidence: [suite_runs/20261116_011421/S06_girders_and_bracing](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/tree/main/suite_runs/20261116_011421/S06_girders_and_bracing).

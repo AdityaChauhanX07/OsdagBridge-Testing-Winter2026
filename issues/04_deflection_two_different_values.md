@@ -19,7 +19,7 @@ The difference appears in every run of the automated suite (check C06). Two exam
 
 ### Evidence
 * TC00 GUI run on Windows: [`gui_runs/TC00_baseline/run01_output.json`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/gui_runs/TC00_baseline/run01_output.json) (keys above) and the generated report [`report/TC00_report.pdf`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/gui_runs/TC00_baseline/report/TC00_report.pdf) (deflection check PASS in the summary, FAIL in the per-girder table).
-* Suite: [`runs.csv`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/suite_runs/headless_linux_2026-11-15/runs.csv) columns `delta_total_check_mm` / `delta_total_output_max_mm` for 30 designs.
+* Suite: [`runs.csv`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/suite_runs/20261116_011421/runs.csv) columns `delta_total_check_mm` / `delta_total_output_max_mm` for 30 designs.
 
 ### Root cause
 * The design check divides the grillage displacement by `stiffness_ratio = I_composite / I_steel` ([`designer.py#L2889`](https://github.com/Nidhikhare12/OsdagBridge/blob/d74f56dd7f22925fb8148cabf5740ed8d1e39ff3/src/osdagbridge/core/bridge_types/plate_girder/designer.py#L2889), applied at [`L2955`](https://github.com/Nidhikhare12/OsdagBridge/blob/d74f56dd7f22925fb8148cabf5740ed8d1e39ff3/src/osdagbridge/core/bridge_types/plate_girder/designer.py#L2955) and [`L2966`](https://github.com/Nidhikhare12/OsdagBridge/blob/d74f56dd7f22925fb8148cabf5740ed8d1e39ff3/src/osdagbridge/core/bridge_types/plate_girder/designer.py#L2966)).

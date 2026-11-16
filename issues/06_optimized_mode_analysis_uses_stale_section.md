@@ -19,10 +19,10 @@ Homepage: span 30 m, carriageway 7.5 m, **Optimized**, defaults (thicknesses "Al
 | Iz | 0.0176543 m⁴ | `Iz_steel_mm4` = 1.882e10 mm⁴ (+6.6%) |
 | Girder self-weight | log: `2741.12 N/m (A=0.03492 m²)` | 38,700 mm² x 78.5 kN/m³ = 3038 N/m |
 
-Expected: one section everywhere. The mismatch appears in every Optimized run of the suite (check C10 in [`checks.csv`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/suite_runs/headless_linux_2026-11-15/checks.csv); every girder count and span tested). Manual mode is not affected, because there the entered thicknesses are used for both.
+Expected: one section everywhere. The mismatch appears in every Optimized run of the suite (check C10 in [`checks.csv`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/suite_runs/20261116_011421/checks.csv); every girder count and span tested). Manual mode is not affected, because there the entered thicknesses are used for both.
 
 ### Evidence
-* GUI run on Windows: [`gui_runs/TC00_baseline/run01_output.json`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/gui_runs/TC00_baseline/run01_output.json) and [`session.log`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/gui_runs/TC00_baseline/session.log) (self-weight line). Suite: [`runs.csv`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/suite_runs/headless_linux_2026-11-15/runs.csv) columns `sw_area_m2` vs `A_steel_check_m2`.
+* GUI run on Windows: [`gui_runs/TC00_baseline/run01_output.json`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/gui_runs/TC00_baseline/run01_output.json) and [`session.log`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/gui_runs/TC00_baseline/session.log) (self-weight line). Suite: [`runs.csv`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/suite_runs/20261116_011421/runs.csv) columns `sw_area_m2` vs `A_steel_check_m2`.
 * The report's bill of materials for the steel girders uses the stale area (32.89 t for 4 x 30 m, against about 36.4 t for the designed plates).
 
 ### Root cause

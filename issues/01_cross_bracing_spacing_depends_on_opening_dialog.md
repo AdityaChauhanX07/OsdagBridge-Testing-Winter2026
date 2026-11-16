@@ -9,7 +9,7 @@ With identical inputs, the girder LTB check, deck design and cross-bracing force
 So in the default path the design report says 15 m, but the LTB check assumed 3 m. That makes the Stage-2 LTB capacity 3x higher than for the spacing shown to the user (unconservative).
 
 ### Environment
-Found with my automated suite, which drives the real `InputDock`, Additional Inputs dialog and backend with no source changes (headless, Linux, env from `environment.yml`, Python 3.12), on `dev` @ `d74f56dd7f22925fb8148cabf5740ed8d1e39ff3`. The suite's dict matches the dict the real GUI sent on my Windows 11 machine key for key (576 keys). Windows 11 re-run results will be added below.
+Windows 11 (Python 3.12.16, conda env from `environment.yml`), `dev` @ `d74f56dd7f22925fb8148cabf5740ed8d1e39ff3` (unmodified). Found and reproduced with my automated suite, which drives the real `InputDock`, Additional Inputs dialog and backend without source changes. The dict it builds matches the dict the real GUI sent on the same machine key for key (576 keys). Same results on a second, headless Linux run.
 
 ### Steps to reproduce (GUI)
 1. Homepage: Mumbai, span 30 m, carriageway 7.5 m, skew 0, no median/footpath, Optimized, default materials. Click **Design**. Note the Stage 2 LTB result (DCR panel / report "Lateral-torsional buckling").
@@ -30,8 +30,8 @@ Found with my automated suite, which drives the real `InputDock`, Additional Inp
 Works correctly only when the user happens to open and save the dialog. Fails (silently uses 3 m) in every session where the dialog is not saved, including after **Load Input** of an `.osi` saved without opening it.
 
 ### Evidence
-* Suite case S11 (two designs, same inputs): [`S11_open_additional_inputs_no_edit/`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/tree/main/suite_runs/headless_linux_2026-11-15/S11_open_additional_inputs_no_edit). `*_input.json` = exact dict sent to `set_input()`; `*_output.json.gz` = full output dict; `input_keys_changed_by_opening_dialog.json` = every key the dialog Save changed.
-* Every baseline run in [`SUMMARY.md`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/suite_runs/headless_linux_2026-11-15/SUMMARY.md) shows the 3 m fallback ([`checks.csv`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/suite_runs/headless_linux_2026-11-15/checks.csv), check C09).
+* Suite case S11 vs the baseline run S01/run1 (same inputs): [`S11_open_additional_inputs_no_edit/`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/tree/main/suite_runs/20261116_011421/S11_open_additional_inputs_no_edit). `*_input.json` = exact dict sent to `set_input()`; `*_output.json.gz` = full output dict; `input_keys_changed_by_opening_dialog.json` = every key the dialog Save changed.
+* Every baseline run in [`SUMMARY.md`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/suite_runs/20261116_011421/SUMMARY.md) shows the 3 m fallback ([`checks.csv`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/suite_runs/20261116_011421/checks.csv), check C09).
 
 ### Root cause
 Every consumer reads only the un-suffixed key `KEY_MP_CB_SPACING` and falls back to 3.0 m when it is empty:

@@ -4,7 +4,7 @@
 The girder layout (number of girders, spacing, overhang) is decided by the **first** carriageway width that triggers a layout solve in the session. It is never re-seeded when the carriageway width changes later. Two users who end up with identical homepage inputs therefore get different bridges and different design results. Typing a value, correcting it, unlocking and changing inputs after a run, or opening a file all lock in the old girder count.
 
 ### Environment
-Found with my automated suite, which drives the real `InputDock`, Additional Inputs dialog and backend with no source changes (headless, Linux, env from `environment.yml`, Python 3.12), on `dev` @ `d74f56dd7f22925fb8148cabf5740ed8d1e39ff3`. The suite's dict matches the dict the real GUI sent on my Windows 11 machine key for key (576 keys). Windows 11 re-run results will be added below.
+Windows 11 (Python 3.12.16, conda env from `environment.yml`), `dev` @ `d74f56dd7f22925fb8148cabf5740ed8d1e39ff3` (unmodified). Found and reproduced with my automated suite, which drives the real `InputDock`, Additional Inputs dialog and backend without source changes. The dict it builds matches the dict the real GUI sent on the same machine key for key (576 keys). Same results on a second, headless Linux run.
 
 ### Steps to reproduce (GUI)
 1. Fresh start of the app. Location Mumbai, span 40, carriageway **11**. Open Additional Inputs > Typical Section: **5 girders @ 2.38 m**.
@@ -23,7 +23,7 @@ Found with my automated suite, which drives the real `InputDock`, Additional Inp
 The layout works correctly only for the very first carriageway value of a session. Any later change keeps the old girder count and only re-spaces the girders.
 
 ### Evidence
-* Suite case U2 (`U2_girder_count_table.json`) and design runs in S02 (`fresh_B`, `typo_B_cw20_then_11`, `run2_B`): [`suite_runs/.../S02_A_B_A`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/tree/main/suite_runs/headless_linux_2026-11-15/S02_A_B_A), with input/output dicts and logs. Summary in [`SUMMARY.md`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/suite_runs/headless_linux_2026-11-15/SUMMARY.md), checks R4-R6.
+* Suite case U2 (`U2_girder_count_table.json`) and design runs in S02 (`fresh_B`, `typo_B_cw20_then_11`, `run2_B`): [`suite_runs/.../S02_A_B_A`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/tree/main/suite_runs/20261116_011421/S02_A_B_A), with input/output dicts and logs. Summary in [`SUMMARY.md`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/suite_runs/20261116_011421/SUMMARY.md), checks R4-R6.
 * The suite drives the real `InputDock` widgets and `TemplatePage.update_cad_from_inputs()` logic, and its dict matches the real GUI dict key for key (check U1).
 
 ### Root cause

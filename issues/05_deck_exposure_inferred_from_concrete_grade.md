@@ -20,7 +20,7 @@ Windows 11, Python 3.12, `dev` @ `d74f56dd7f22925fb8148cabf5740ed8d1e39ff3` (unm
 2. Unlock, change only the deck concrete to **M45**, Design and generate the report: `>= 75 mm (Table 14.2) | Top 50 / Bottom 50 mm | FAIL`. The deck design text says `Concrete grade : M45 -> Exposure: Extreme ... Top cover provided : 50 mm -> BELOW RECOMMENDED`.
 
 ### Evidence
-* Suite case S10 (M45, M50) vs baseline M40: [`S10_deck_grade/`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/tree/main/suite_runs/headless_linux_2026-11-15/S10_deck_grade) (`deck_design_results.deck_exposure`, `min_cover_recommended`, full deck text in the output dict). Check D1 in [`checks.csv`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/suite_runs/headless_linux_2026-11-15/checks.csv).
+* Suite case S10 (M45, M50) vs baseline M40: [`S10_deck_grade/`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/tree/main/suite_runs/20261116_011421/S10_deck_grade) (`deck_design_results.deck_exposure`, `min_cover_recommended`, full deck text in the output dict). Check D1 in [`checks.csv`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/suite_runs/20261116_011421/checks.csv).
 * GUI run with custom fck 45 on Windows: [`gui_runs/TC01_custom_materials/report/TC01_report.tex`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/gui_runs/TC01_custom_materials/report/TC01_report.tex) L1745 (`>= 75 mm ... FAIL`). The M40 run [`TC00_report.tex`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/gui_runs/TC00_baseline/report/TC00_report.tex) L1745 shows `>= 50 mm ... PASS`.
 
 ### Root cause

@@ -19,7 +19,7 @@ The flange-governed capacities (plastic moment, LTB, flange classification epsil
 
 ### Evidence
 * GUI run on Windows: [`gui_runs/TC00_baseline/run01_output.json`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/gui_runs/TC00_baseline/run01_output.json), keys `design_results.fy_MPa`, `tf_top_mm`, `tw_mm`.
-* Suite: [`runs.csv`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/suite_runs/headless_linux_2026-11-15/runs.csv) columns `fy_used_MPa`, `tf_mm` (check C11 "Design fy = girder material fy" is reported as INFO for every run, with flanges of 22 mm and more).
+* Suite: [`runs.csv`](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/suite_runs/20261116_011421/runs.csv) columns `fy_used_MPa`, `tf_mm` (check C11 "Design fy = girder material fy" is reported as INFO for every run, with flanges of 22 mm and more).
 * Note that `osdag_core`, which OsdagBridge already depends on for the bracing member design, stores the three thickness bands in its `Material` table (`E 350 (Fe 490)`: 350 / 330 / 320). OsdagBridge's own `Steel_Grade_Properties` table has a single `Yield Strength` column.
 
 ### Root cause
