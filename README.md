@@ -52,16 +52,16 @@ thermal load case presence, end-diaphragm design, cross-bracing spacing actually
 ## Findings and issues
 
 The full list (pass and fail), with input/output tables, is in the PDF report (`report/report.pdf`).
-Issue texts posted to Nidhikhare12/OsdagBridge are in `issues/`:
+Issues posted to Nidhikhare12/OsdagBridge (texts in `issues/`):
 
-| File | Topic |
-|---|---|
-| `01_cross_bracing_spacing_depends_on_opening_dialog.md` | LTB length 3 m vs 15 m depending on whether Additional Inputs was saved |
-| `02_girder_count_depends_on_typing_history.md` | girder count depends on the first carriageway width typed |
-| `03_deck_edge_lines_modelled_and_checked_as_girders.md` | deck-edge lines modelled and designed as girders |
-| `04_deflection_two_different_values.md` | two different deflections (design check vs report) |
-| `05_deck_exposure_inferred_from_concrete_grade.md` | deck exposure class derived from the concrete grade |
-| `06_optimized_mode_analysis_uses_stale_section.md` | Optimized mode uses the un-rounded section in the analysis |
-| `07_fy_not_reduced_for_plate_thickness.md` | fy not reduced for plates of 20 mm and more |
-| `08_custom_material_dialog_cross_field_checks.md` | custom material dialog accepts fu < fy and an inconsistent G |
-| `comments_on_existing_issues.md` | additional evidence for existing issues #71, #19, #43, #96 |
+| Issue | File | Topic |
+|---|---|---|
+| [#111](https://github.com/Nidhikhare12/OsdagBridge/issues/111) | `01_cross_bracing_spacing_depends_on_opening_dialog.md` | LTB length 3 m vs 15 m depending on whether Additional Inputs was saved |
+| [#112](https://github.com/Nidhikhare12/OsdagBridge/issues/112) | `02_girder_count_depends_on_typing_history.md` | girder count depends on the first carriageway width typed |
+| [#113](https://github.com/Nidhikhare12/OsdagBridge/issues/113) | `03_deck_edge_lines_modelled_and_checked_as_girders.md` | deck-edge lines modelled and designed as girders |
+| [#114](https://github.com/Nidhikhare12/OsdagBridge/issues/114) | `04_deflection_two_different_values.md` | two different deflections (design check vs report) |
+| [#115](https://github.com/Nidhikhare12/OsdagBridge/issues/115) | `05_deck_exposure_inferred_from_concrete_grade.md` | deck exposure class derived from the concrete grade |
+| [#116](https://github.com/Nidhikhare12/OsdagBridge/issues/116) | `06_optimized_mode_analysis_uses_stale_section.md` | Optimized mode uses the un-rounded section in the analysis |
+| [#117](https://github.com/Nidhikhare12/OsdagBridge/issues/117) | `07_fy_not_reduced_for_plate_thickness.md` | fy not reduced for plates of 20 mm and more |
+| [#118](https://github.com/Nidhikhare12/OsdagBridge/issues/118) | `08_custom_material_dialog_cross_field_checks.md` | custom material dialog accepts fu < fy and an inconsistent G |
+| comments on [#71](https://github.com/Nidhikhare12/OsdagBridge/issues/71), [#19](https://github.com/Nidhikhare12/OsdagBridge/issues/19), [#43](https://github.com/Nidhikhare12/OsdagBridge/issues/43), [#96](https://github.com/Nidhikhare12/OsdagBridge/issues/96) | `comments_on_existing_issues.md` | additional evidence for existing issues #71, #19, #43, #96 |
