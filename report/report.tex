@@ -67,7 +67,7 @@ I tested the OsdagBridge Plate Girder module in two complementary ways:
 \begin{itemize}
 \item \textbf{Works well:} homepage hard validation (span, carriageway, skew: every valid and invalid boundary behaved as specified); 3 consecutive identical runs give identical outputs; returning to an earlier input set gives the earlier result; a failed run leaves no stale backend data; custom $f_y$, $E$, $f_{ck}$, $f_{ctm}$, $E_{cm}$ reach the design.
 \item \textbf{8 new defects reported} (Table~\ref{tab:issues}). The most significant: the LTB unbraced length depends on whether the Additional Inputs dialog was ever saved (\issue{01}); the number of girders depends on typing history (\issue{02}); the deck-edge lines are designed as girders, which makes girder self-weight demand $\approx n/(n+2)$ of $wL^2/8$ (\issue{03}); and deflection is reported with two different values and two different verdicts (\issue{04}).
-\item \textbf{3 comments} adding new evidence to existing issues (\gh{71}, \gh{19}, \gh{43}). Defects that other applicants had already reported were \emph{not} re-filed; they are cross-referenced in the result tables.
+\item \textbf{4 comments} adding new evidence to existing issues (\gh{71}, \gh{19}, \gh{43}, \gh{96}). Defects that other applicants had already reported were \emph{not} re-filed; they are cross-referenced in the result tables.
 \end{itemize}
 
 %=====================================================================
@@ -115,7 +115,7 @@ Second platform & Linux (container), same \code{environment.yml}, used to run th
 
 All valid boundary values were also designed end to end in a fresh session (span 20 / 45~m, carriageway 4.25 / 23.6~m, skew $\pm15^\circ$, median with carriageway 15~m, footpaths both sides). Every run completed (Table~\ref{tab:runs}). The design-level failures in these runs are the systematic ones of Table~\ref{tab:checks}, not boundary-specific. Two observations: with skew, the per-girder deflection keys are missing (consistent with \gh{89}), and the end-diaphragm members \emph{are} designed (C08 passes), while for every straight bridge they are not (\gh{72}).
 
-\paragraph{Invalid values outside the homepage.} The backend's own validation only checks span $>0$, girders $\ge 2$ and spacing $>0$ (U8: span 100~m, carriageway 40~m, skew $60^\circ$ and $f_y=5000$~MPa are accepted; already reported for span in \gh{69}). Load Input rejects bad geometry but no material value at all (Table~\ref{tab:osi}, \issue{08}).
+\paragraph{Invalid values outside the homepage.} The backend's own validation only checks span $>0$, girders $\ge 2$ and spacing $>0$ (U8: span 100~m, carriageway 40~m, skew $60^\circ$ and $f_y=5000$~MPa are accepted; already reported for span in \gh{69}). Load Input rejects bad geometry but no material value at all (Table~\ref{tab:osi}; reported by another applicant as \gh{96}, my design-run evidence added as a comment).
 
 \begin{table}[H]\centering\small
 \caption{Load Input validation of hand-edited \code{.osi} files (U6).}\label{tab:osi}
@@ -221,11 +221,12 @@ Issue & Title & Severity\\
 \issue{05} & Deck exposure inferred from concrete grade: better concrete $\Rightarrow$ cover FAIL & medium\\
 \issue{06} & Optimized mode: analysis/self-weight/BOM use the un-rounded section & medium\\
 \issue{07} & $f_y$ not reduced for plate thickness (IS~2062 Table~2) & medium\\
-\issue{08} & Material values not validated on Load Input; dialog accepts $f_u<f_y$ & medium\\
+\issue{08} & Custom material dialog accepts $f_u<f_y$ and a $G$ inconsistent with $E,\nu$ & medium\\
 \midrule
 \gh{71} & comment: same reset on homepage edits and Load Input; Save also resets the live session & \\
 \gh{19} & comment: re-selected custom steel silently keeps another grade's properties & \\
 \gh{43} & comment: sensitivity run, bracing always designed as E\,250 even for standard grades & \\
+\gh{96} & comment: $f_y=5000$~MPa loaded from \code{.osi} reaches the design; unknown grade names load & \\
 \bottomrule
 \end{tabularx}
 \end{table}

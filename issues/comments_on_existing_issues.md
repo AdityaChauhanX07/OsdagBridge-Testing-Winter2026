@@ -37,3 +37,18 @@ OSDAG_CORE_GRADE = {"E 250": "E 250 (Fe 410 W)A", "E 300": "E 300 (Fe 440)", "E 
 d["Material"] = d["Connector.Material"] = OSDAG_CORE_GRADE.get(base_grade) or f"Cus_{fy}_{fy}_{fy}_{fu}"
 ```
 Evidence: [suite_runs/20261116_011421/S06_girders_and_bracing](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/tree/main/suite_runs/20261116_011421/S06_girders_and_bracing).
+
+---
+## Comment on #96 (.osi load skips custom-material validation)
+
+Confirmed on Windows 11 at `d74f56d`, with the effect on the **design** added. Hand-edited `.osi` files were loaded through the real `loadOSI_inputs` path (`validate_osi_inputs` then `populate_from_dict`):
+
+| Value in the .osi | Load Input | Design |
+|---|---|---|
+| `material.girder: custom_steel_5000_6000`, fy 5000, fu 6000 | loaded | **completes with `design_results.fy_MPa = 5000.0`** |
+| custom girder density 999 kN/m³ | loaded | - |
+| custom deck fck 500 MPa | loaded | - |
+| `material.girder: E 999X` (grade not in the database) | loaded | - |
+| span abc / 19.9 / 100, skew 30, girders 1, spacing 0, deck 20 mm, design mode Foo | rejected (correct) | - |
+
+The unknown-grade case is worth including in the fix: the grade string itself is never checked against the material database, not only the numeric sub-keys. Evidence (every `.osi` used, the loader's verdicts, and the fy = 5000 design input/output): [U6_osi_validation](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/tree/main/suite_runs/20261116_011421/U6_osi_validation) and [S09_osi_bad_material](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/tree/main/suite_runs/20261116_011421/S09_osi_bad_material).

@@ -63,5 +63,5 @@ Issue texts posted to Nidhikhare12/OsdagBridge are in `issues/`:
 | `05_deck_exposure_inferred_from_concrete_grade.md` | deck exposure class derived from the concrete grade |
 | `06_optimized_mode_analysis_uses_stale_section.md` | Optimized mode uses the un-rounded section in the analysis |
 | `07_fy_not_reduced_for_plate_thickness.md` | fy not reduced for plates of 20 mm and more |
-| `08_material_values_not_validated.md` | material values not validated on Load Input / in the custom dialog |
-| `comments_on_existing_issues.md` | additional evidence for existing issues #71, #19, #43 |
+| `08_custom_material_dialog_cross_field_checks.md` | custom material dialog accepts fu < fy and an inconsistent G |
+| `comments_on_existing_issues.md` | additional evidence for existing issues #71, #19, #43, #96 |

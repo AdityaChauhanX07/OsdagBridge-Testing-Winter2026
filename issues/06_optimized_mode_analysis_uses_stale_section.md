@@ -56,7 +56,7 @@ for i in range(self._girder_count()):
 (`compute_section_properties()` in [`initial_sizing.py#L424`](https://github.com/Nidhikhare12/OsdagBridge/blob/d74f56dd7f22925fb8148cabf5740ed8d1e39ff3/src/osdagbridge/core/bridge_types/plate_girder/initial_sizing.py#L424) already returns these quantities in metres.) Regression test: Optimized TC00 must give `section_properties.area.G1.M1 * 1e6 == design_results["A_steel_mm2"]`, and a self-weight line load equal to A x density.
 
 ### Duplicate check
-Checked all open/closed issues on 15 Nov 2026. #90 is about Optimized-mode **constraints** (allowed thickness lists and bounds) being ignored. This issue is about the **properties** not following the chosen plates. #20 covers the density value, not the area.
+Checked all open/closed issues on 15 Nov 2026. #90 is about Optimized-mode **constraints** (allowed thickness lists and bounds) being ignored. This issue is about the **properties** not following the chosen plates. #20 covers the density value, not the area. #103 reports the Material Take-off using G1's area for every girder; the stale-area root cause here also explains part of that bill-of-materials mismatch, but the analysis/self-weight inconsistency is not covered there.
 
 ---
 All scripts, inputs, outputs and logs: https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026 (suite: `scripts/run_test_suite.py`, GUI logger: `scripts/run_logged.py`).
