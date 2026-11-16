@@ -43,3 +43,6 @@ Alternatively, give the grillage longitudinal members the composite section for 
 
 ### Duplicate check
 Checked all open/closed issues on 15 Nov 2026. #94 (check-card count) and #89 (skewed per-girder results) are different. No issue on the deflection mismatch.
+
+---
+All scripts, inputs, outputs and logs: https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026 (suite: `scripts/run_test_suite.py`, GUI logger: `scripts/run_logged.py`).

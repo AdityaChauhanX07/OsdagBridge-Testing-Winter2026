@@ -57,3 +57,6 @@ for i in range(self._girder_count()):
 
 ### Duplicate check
 Checked all open/closed issues on 15 Nov 2026. #90 is about Optimized-mode **constraints** (allowed thickness lists and bounds) being ignored. This issue is about the **properties** not following the chosen plates. #20 covers the density value, not the area.
+
+---
+All scripts, inputs, outputs and logs: https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026 (suite: `scripts/run_test_suite.py`, GUI logger: `scripts/run_logged.py`).

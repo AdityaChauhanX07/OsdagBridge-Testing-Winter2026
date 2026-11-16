@@ -5,7 +5,7 @@
 2. The **Custom material dialog** checks each field against its own range only. It accepts physically inconsistent combinations: ultimate strength below yield strength, and a shear modulus that contradicts E and nu.
 
 ### Environment
-Windows 11, Python 3.12, `dev` @ `d74f56dd7f22925fb8148cabf5740ed8d1e39ff3` (unmodified). Also reproduced headlessly on Linux.
+Found with my automated suite, which drives the real `InputDock`, Additional Inputs dialog and backend with no source changes (headless, Linux, env from `environment.yml`, Python 3.12), on `dev` @ `d74f56dd7f22925fb8148cabf5740ed8d1e39ff3`. The suite's dict matches the dict the real GUI sent on my Windows 11 machine key for key (576 keys). Windows 11 re-run results will be added below.
 
 ### Steps to reproduce
 **A. Load Input.** Save any design (File > Save Input). Edit the `.osi` in a text editor and change:
@@ -71,3 +71,6 @@ and call `validate_material_consistency()` at the end of `MaterialPropertiesDial
 
 ### Duplicate check
 Checked all open/closed issues on 15 Nov 2026. #88 (NaN values pass OSI validation) and #67 (empty span) concern geometry keys. #76 concerns the number of decimals in the dialog. No issue about material keys being skipped by the loader, or about cross-field material checks.
+
+---
+All scripts, inputs, outputs and logs: https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026 (suite: `scripts/run_test_suite.py`, GUI logger: `scripts/run_logged.py`).

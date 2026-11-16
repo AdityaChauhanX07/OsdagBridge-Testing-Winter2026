@@ -47,3 +47,6 @@ In `deckdesign.py`, add `cover_top_ok`, `cover_bot_ok` and `grade_ok` to the dec
 
 ### Duplicate check
 Checked all open/closed issues on 15 Nov 2026. #65 covers the hard-coded "design pass" summary text. No issue on how the deck exposure/cover is chosen.
+
+---
+All scripts, inputs, outputs and logs: https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026 (suite: `scripts/run_test_suite.py`, GUI logger: `scripts/run_logged.py`).

@@ -48,3 +48,6 @@ Custom grades keep the user's fy (and should ask for the thickness bands, or sta
 
 ### Duplicate check
 Checked all open/closed issues on 15 Nov 2026. #95 is about how the stress limit is displayed (0.9 fy vs fy/gamma_m0). #42 is about Gs for E 350A. No issue on thickness-dependent fy.
+
+---
+All scripts, inputs, outputs and logs: https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026 (suite: `scripts/run_test_suite.py`, GUI logger: `scripts/run_logged.py`).

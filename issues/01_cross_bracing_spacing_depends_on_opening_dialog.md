@@ -9,7 +9,7 @@ With identical inputs, the girder LTB check, deck design and cross-bracing force
 So in the default path the design report says 15 m, but the LTB check assumed 3 m. That makes the Stage-2 LTB capacity 3x higher than for the spacing shown to the user (unconservative).
 
 ### Environment
-Windows 11, Python 3.12, `dev` @ `d74f56dd7f22925fb8148cabf5740ed8d1e39ff3` (unmodified). Also reproduced headlessly on Linux with the same environment.
+Found with my automated suite, which drives the real `InputDock`, Additional Inputs dialog and backend with no source changes (headless, Linux, env from `environment.yml`, Python 3.12), on `dev` @ `d74f56dd7f22925fb8148cabf5740ed8d1e39ff3`. The suite's dict matches the dict the real GUI sent on my Windows 11 machine key for key (576 keys). Windows 11 re-run results will be added below.
 
 ### Steps to reproduce (GUI)
 1. Homepage: Mumbai, span 30 m, carriageway 7.5 m, skew 0, no median/footpath, Optimized, default materials. Click **Design**. Note the Stage 2 LTB result (DCR panel / report "Lateral-torsional buckling").
@@ -63,3 +63,6 @@ def _cross_bracing_spacing(self, pair: str | None = None) -> float:
 
 ### Duplicate check
 Checked all open/closed issues on 15 Nov 2026. #93 covers the **CAD** using the 3 m constant and says it has no effect on solver forces. This issue is about the **design/analysis** (LTB, deck, bracing forces) depending on dialog state. Not covered by #43, #71 or #86.
+
+---
+All scripts, inputs, outputs and logs: https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026 (suite: `scripts/run_test_suite.py`, GUI logger: `scripts/run_logged.py`).

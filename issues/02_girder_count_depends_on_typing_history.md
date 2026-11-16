@@ -4,7 +4,7 @@
 The girder layout (number of girders, spacing, overhang) is decided by the **first** carriageway width that triggers a layout solve in the session. It is never re-seeded when the carriageway width changes later. Two users who end up with identical homepage inputs therefore get different bridges and different design results. Typing a value, correcting it, unlocking and changing inputs after a run, or opening a file all lock in the old girder count.
 
 ### Environment
-Windows 11, Python 3.12, `dev` @ `d74f56dd7f22925fb8148cabf5740ed8d1e39ff3` (unmodified). Also reproduced headlessly on Linux.
+Found with my automated suite, which drives the real `InputDock`, Additional Inputs dialog and backend with no source changes (headless, Linux, env from `environment.yml`, Python 3.12), on `dev` @ `d74f56dd7f22925fb8148cabf5740ed8d1e39ff3`. The suite's dict matches the dict the real GUI sent on my Windows 11 machine key for key (576 keys). Windows 11 re-run results will be added below.
 
 ### Steps to reproduce (GUI)
 1. Fresh start of the app. Location Mumbai, span 40, carriageway **11**. Open Additional Inputs > Typical Section: **5 girders @ 2.38 m**.
@@ -51,3 +51,6 @@ no_of_girders = int(user_n)
 
 ### Duplicate check
 Checked all open/closed issues on 15 Nov 2026. No issue on girder-count history. #71 and #86 concern values being **reset**; this one is a value being wrongly **kept**.
+
+---
+All scripts, inputs, outputs and logs: https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026 (suite: `scripts/run_test_suite.py`, GUI logger: `scripts/run_logged.py`).

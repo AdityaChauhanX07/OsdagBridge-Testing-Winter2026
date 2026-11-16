@@ -53,3 +53,6 @@ and iterate the per-girder checks over the `G1..Gn` members only (skip `EB1`/`EB
 
 ### Duplicate check
 Checked all open/closed issues on 15 Nov 2026. #91 covers the zero-overhang case, where the outer **girders** are wrongly left without self-weight. This issue is the positive-overhang case, where the **deck edges** are wrongly modelled and designed as girders. Different trigger and different code path.
+
+---
+All scripts, inputs, outputs and logs: https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026 (suite: `scripts/run_test_suite.py`, GUI logger: `scripts/run_logged.py`).
