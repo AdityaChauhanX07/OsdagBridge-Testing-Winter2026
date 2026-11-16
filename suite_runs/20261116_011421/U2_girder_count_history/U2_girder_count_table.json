@@ -1,0 +1,37 @@
+[
+ {
+  "girders": 5,
+  "how": "typed 11 directly (fresh)",
+  "overhang_m": 1.19,
+  "spacing_m": 2.38,
+  "width_m": 11.899999999999999
+ },
+ {
+  "girders": 4,
+  "how": "typed 7.5, then corrected to 11",
+  "overhang_m": 1.4875,
+  "spacing_m": 2.975,
+  "width_m": 11.899999999999999
+ },
+ {
+  "girders": 3,
+  "how": "typed 5, then corrected to 11",
+  "overhang_m": 1.9833,
+  "spacing_m": 3.9667,
+  "width_m": 11.899999999999999
+ },
+ {
+  "girders": 9,
+  "how": "typed 20, then corrected to 11",
+  "overhang_m": 0.6611,
+  "spacing_m": 1.3222,
+  "width_m": 11.899999999999999
+ },
+ {
+  "girders": 4,
+  "how": "after a Design at TC00 (cw 7.5), changed to span 40/cw 11",
+  "overhang_m": 1.4875,
+  "spacing_m": 2.975,
+  "width_m": 11.899999999999999
+ }
+]

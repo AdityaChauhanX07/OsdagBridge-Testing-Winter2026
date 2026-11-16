@@ -1,0 +1,262 @@
+{
+ "member_properties.cross_bracing_details.bottom_chord.G1G2.B1M1": [
+  "Yes",
+  true
+ ],
+ "member_properties.cross_bracing_details.bottom_chord_section_designation.G1G2.B1M1": [
+  "IS 100 x 100 x 10",
+  "∠ 100 ⅹ 100ⅹ 10"
+ ],
+ "member_properties.cross_bracing_details.bracing_connection.G1G2.B1M1": [
+  null,
+  "Bolted"
+ ],
+ "member_properties.cross_bracing_details.bracing_section_designation.G1G2.B1M1": [
+  "IS 100 x 100 x 10",
+  "∠ 100 ⅹ 100ⅹ 10"
+ ],
+ "member_properties.cross_bracing_details.member_id": [
+  null,
+  "B1M1"
+ ],
+ "member_properties.cross_bracing_details.no_of_cross_bracings.G1G2": [
+  null,
+  1
+ ],
+ "member_properties.cross_bracing_details.no_of_cross_bracings.G2G3": [
+  null,
+  1
+ ],
+ "member_properties.cross_bracing_details.no_of_cross_bracings.G3G4": [
+  null,
+  1
+ ],
+ "member_properties.cross_bracing_details.select_girders": [
+  null,
+  "G1 to G2"
+ ],
+ "member_properties.cross_bracing_details.spacing": [
+  null,
+  15.0
+ ],
+ "member_properties.cross_bracing_details.top_chord.G1G2.B1M1": [
+  "Yes",
+  true
+ ],
+ "member_properties.cross_bracing_details.top_chord_section_designation.G1G2.B1M1": [
+  "IS 100 x 100 x 10",
+  "∠ 100 ⅹ 100ⅹ 10"
+ ],
+ "member_properties.end_diaphragm_details.bottom_chord.G1G2.E1M1": [
+  "Yes",
+  true
+ ],
+ "member_properties.end_diaphragm_details.bottom_chord.G1G2.E1M2": [
+  "Yes",
+  true
+ ],
+ "member_properties.end_diaphragm_details.bottom_chord_section_designation.G1G2.E1M1": [
+  "IS 100 x 100 x 10",
+  "∠ 100 ⅹ 100ⅹ 10"
+ ],
+ "member_properties.end_diaphragm_details.bottom_chord_section_designation.G1G2.E1M2": [
+  "IS 100 x 100 x 10",
+  "∠ 100 ⅹ 100ⅹ 10"
+ ],
+ "member_properties.end_diaphragm_details.bottom_flange_thickness.G1G2.E1M1": [
+  "",
+  "8"
+ ],
+ "member_properties.end_diaphragm_details.bottom_flange_thickness.G1G2.E1M2": [
+  "",
+  "8"
+ ],
+ "member_properties.end_diaphragm_details.bracing_section_designation.G1G2.E1M1": [
+  "IS 100 x 100 x 10",
+  "∠ 100 ⅹ 100ⅹ 10"
+ ],
+ "member_properties.end_diaphragm_details.bracing_section_designation.G1G2.E1M2": [
+  "IS 100 x 100 x 10",
+  "∠ 100 ⅹ 100ⅹ 10"
+ ],
+ "member_properties.end_diaphragm_details.is_section.G1G2.E1M1": [
+  "",
+  "JB 150"
+ ],
+ "member_properties.end_diaphragm_details.is_section.G1G2.E1M2": [
+  "",
+  "JB 150"
+ ],
+ "member_properties.end_diaphragm_details.member_id": [
+  null,
+  "E1M1 / E1M2"
+ ],
+ "member_properties.end_diaphragm_details.select_girders": [
+  null,
+  "G1 to G2"
+ ],
+ "member_properties.end_diaphragm_details.symmetry.G1G2.E1M1": [
+  "",
+  "Girder Symmetric"
+ ],
+ "member_properties.end_diaphragm_details.symmetry.G1G2.E1M2": [
+  "",
+  "Girder Symmetric"
+ ],
+ "member_properties.end_diaphragm_details.top_chord.G1G2.E1M1": [
+  "Yes",
+  true
+ ],
+ "member_properties.end_diaphragm_details.top_chord.G1G2.E1M2": [
+  "Yes",
+  true
+ ],
+ "member_properties.end_diaphragm_details.top_chord_section_designation.G1G2.E1M1": [
+  "IS 100 x 100 x 10",
+  "∠ 100 ⅹ 100ⅹ 10"
+ ],
+ "member_properties.end_diaphragm_details.top_chord_section_designation.G1G2.E1M2": [
+  "IS 100 x 100 x 10",
+  "∠ 100 ⅹ 100ⅹ 10"
+ ],
+ "member_properties.end_diaphragm_details.top_flange_thickness.G1G2.E1M1": [
+  "",
+  "8"
+ ],
+ "member_properties.end_diaphragm_details.top_flange_thickness.G1G2.E1M2": [
+  "",
+  "8"
+ ],
+ "member_properties.end_diaphragm_details.web_thickness.G1G2.E1M1": [
+  "",
+  "8"
+ ],
+ "member_properties.end_diaphragm_details.web_thickness.G1G2.E1M2": [
+  "",
+  "8"
+ ],
+ "member_properties.girder_details.material_properties.modulus_of_elasticity_zy.G1.M1": [
+  0.00184266,
+  "1.84e-03"
+ ],
+ "member_properties.girder_details.material_properties.modulus_of_elasticity_zz.G1.M1": [
+  0.02114289,
+  "2.11e-02"
+ ],
+ "member_properties.girder_details.material_properties.plastic_modulus_zuy.G1.M1": [
+  0.00279051,
+  "2.79e-03"
+ ],
+ "member_properties.girder_details.material_properties.plastic_modulus_zuz.G1.M1": [
+  0.02325689,
+  "2.33e-02"
+ ],
+ "member_properties.girder_details.member_id": [
+  null,
+  "G1M1"
+ ],
+ "member_properties.girder_details.section_inputs.support_width.G1.M1": [
+  400.0,
+  "400.0"
+ ],
+ "member_properties.girder_details.section_properties.area.G1.M1": [
+  0.03491878,
+  "3.49e-02"
+ ],
+ "member_properties.girder_details.section_properties.iy.G1.M1": [
+  0.0004698787,
+  "4.70e-04"
+ ],
+ "member_properties.girder_details.section_properties.iz.G1.M1": [
+  0.0176543143,
+  "1.77e-02"
+ ],
+ "member_properties.girder_details.section_properties.mass.G1.M1": [
+  274.1124,
+  "2.74e+02"
+ ],
+ "member_properties.girder_details.section_properties.radius_gyration_y.G1.M1": [
+  0.116001,
+  "1.16e-01"
+ ],
+ "member_properties.girder_details.section_properties.radius_gyration_z.G1.M1": [
+  0.711043,
+  "7.11e-01"
+ ],
+ "member_properties.girder_details.section_properties.torsion_constant_it.G1.M1": [
+  3.554869e-06,
+  "3.55e-06"
+ ],
+ "member_properties.girder_details.section_properties.warping_constant_iw.G1.M1": [
+  0.00031927714998,
+  "3.19e-04"
+ ],
+ "member_properties.girder_details.segment_table.G1": [
+  [
+   {
+    "end": 30.0,
+    "id": "G1M1",
+    "start": 0.0
+   }
+  ],
+  [
+   {
+    "end": 30.0,
+    "id": "G1M1",
+    "start": 0.0
+   }
+  ]
+ ],
+ "member_properties.girder_details.segment_table.G2": [
+  [
+   {
+    "end": 30.0,
+    "id": "G2M1",
+    "start": 0.0
+   }
+  ],
+  [
+   {
+    "end": 30.0,
+    "id": "G2M1",
+    "start": 0.0
+   }
+  ]
+ ],
+ "member_properties.girder_details.segment_table.G3": [
+  [
+   {
+    "end": 30.0,
+    "id": "G3M1",
+    "start": 0.0
+   }
+  ],
+  [
+   {
+    "end": 30.0,
+    "id": "G3M1",
+    "start": 0.0
+   }
+  ]
+ ],
+ "member_properties.girder_details.segment_table.G4": [
+  [
+   {
+    "end": 30.0,
+    "id": "G4M1",
+    "start": 0.0
+   }
+  ],
+  [
+   {
+    "end": 30.0,
+    "id": "G4M1",
+    "start": 0.0
+   }
+  ]
+ ],
+ "member_properties.girder_details.select_girder": [
+  null,
+  "Girder 1 (Exterior)"
+ ]
+}

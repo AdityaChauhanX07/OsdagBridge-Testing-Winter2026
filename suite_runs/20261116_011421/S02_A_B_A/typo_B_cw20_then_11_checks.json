@@ -1,0 +1,158 @@
+{
+ "checks": [
+  {
+   "actual": "11 (G1,G2,G3,G4,G5,G6,G7,G8,G9,G10,G11)",
+   "check": "C01",
+   "expected": 9,
+   "result": "FAIL",
+   "title": "Design check uses the real number of girders"
+  },
+  {
+   "actual": 1.335,
+   "check": "C02",
+   "expected": 1.3222,
+   "result": "FAIL",
+   "title": "Grillage girder spacing = input girder spacing"
+  },
+  {
+   "actual": 78.5,
+   "check": "C03",
+   "expected": 76.4,
+   "result": "FAIL",
+   "title": "Steel self-weight uses the girder material density"
+  },
+  {
+   "actual": 25.0,
+   "check": "C04",
+   "expected": 24.5,
+   "result": "FAIL",
+   "title": "Deck slab load uses the deck material density"
+  },
+  {
+   "actual": "783.99 (ratio 0.818)",
+   "check": "C05",
+   "expected": 958.38,
+   "result": "FAIL",
+   "title": "Girder self-weight moment ~ w*L^2/8 (simply supported)"
+  },
+  {
+   "actual": 43.729,
+   "check": "C06",
+   "expected": 25.317,
+   "result": "FAIL",
+   "title": "Deflection in design check = deflection shown per girder"
+  },
+  {
+   "actual": 27,
+   "check": "C07",
+   "expected": 0,
+   "result": "FAIL",
+   "title": "Thermal load case exists (it is used in combinations)"
+  },
+  {
+   "actual": "8 of 8 empty",
+   "check": "C08",
+   "expected": "0 empty pairs",
+   "result": "FAIL",
+   "title": "End diaphragm members are designed"
+  },
+  {
+   "actual": 3.0,
+   "check": "C09",
+   "expected": 20.0,
+   "result": "FAIL",
+   "title": "Cross-bracing spacing used = Additional Input spacing"
+  },
+  {
+   "actual": "0.06104 m2",
+   "check": "C10",
+   "expected": "0.06361 m2",
+   "result": "FAIL",
+   "title": "Girder area in analysis/self-weight = area in design check"
+  },
+  {
+   "actual": "350.0 (tf=28.0 mm)",
+   "check": "C11",
+   "expected": 350.0,
+   "result": "INFO",
+   "title": "Design fy = girder material fy"
+  },
+  {
+   "actual": 9,
+   "check": "C12",
+   "expected": 9,
+   "result": "PASS",
+   "title": "Number of girder self-weight lines = number of girders"
+  }
+ ],
+ "evidence": {
+  "A_steel_check_m2": 0.063608,
+  "D_mm": 2230.0,
+  "M_sw_expected_kNm": 958.38,
+  "M_sw_max_kNm": 783.99,
+  "M_sw_ratio": 0.818,
+  "Md_kNm": 22170.493,
+  "bracing_signature": "G1-G2/chord/compression:40 x 40 x 3:36.13|G1-G2/chord/tension:40 x 40 x 3:45.0|G1-G2/diagonal/compression:40 x 40 x 3:19.33|G1-G2/diagonal/tension:40 x 40 x 3:45.0|G2-G3/chord/compression:40 x 40 x 3:36.13|G2-G3/chord/tension:40 x 40 x 3:45.0|G2-G3/diagonal/compression:40 x 40 x 3:19.33|G2-G3/diagonal/tension:40 x 40 x 3:45.0|G3-G4/chord/compression:40 x 40 x 3:36.13|G3-G4/chord/tension:40 x 40 x 3:45.0|G3-G4/diagonal/compression:40 x 40 x 3:19.33|G3-G4/diagonal/tension:40 x 40 x 3:45.0|G4-G5/chord/compression:40 x 40 x 3:36.13|G4-G5/chord/tension:40 x 40 x 3:45.0|G4-G5/diagonal/compression:40 x 40 x 3:19.33|G4-G5/diagonal/tension:40 x 40 x 3:45.0|G5-G6/chord/compression:40 x 40 x 3:36.13|G5-G6/chord/tension:40 x 40 x 3:45.0|G5-G6/diagonal/compression:40 x 40 x 3:19.33|G5-G6/diagonal/tension:40 x 40 x 3:45.0|G6-G7/chord/compression:40 x 40 x 3:36.13|G6-G7/chord/tension:40 x 40 x 3:45.0|G6-G7/diagonal/compression:40 x 40 x 3:19.33|G6-G7/diagonal/tension:40 x 40 x 3:45.0|G7-G8/chord/compression:40 x 40 x 3:36.13|G7-G8/chord/tension:40 x 40 x 3:45.0|G7-G8/diagonal/compression:40 x 40 x 3:19.33|G7-G8/diagonal/tension:40 x 40 x 3:45.0|G8-G9/chord/compression:40 x 40 x 3:36.13|G8-G9/chord/tension:40 x 40 x 3:45.0|G8-G9/diagonal/compression:40 x 40 x 3:19.33|G8-G9/diagonal/tension:40 x 40 x 3:45.0",
+  "carriageway_m": 11.0,
+  "cb_spacing_analysis_m": 3.0,
+  "cb_spacing_check_m": 3.0,
+  "cb_spacing_input_m": 20.0,
+  "controlling_girder": "G1",
+  "cross_bracing_material": "E 350A",
+  "deck_Msls_sag_kNm_m": 25.146,
+  "deck_cover_required_mm": "50",
+  "deck_density_input": 24.5,
+  "deck_density_used": 25.0,
+  "deck_exposure": "Very Severe",
+  "deck_fck_input": 40.0,
+  "deck_material": "M40",
+  "deck_thickness_input_mm": 250.0,
+  "delta_total_check_mm": 25.317,
+  "delta_total_output_max_mm": 43.729,
+  "design_mode": "Optimized",
+  "end_diaphragm_empty_pairs": 8,
+  "end_diaphragm_pairs": 8,
+  "fy_used_MPa": 350.0,
+  "girder_E_input": 200.0,
+  "girder_density_input": 76.4,
+  "girder_density_used": 78.5,
+  "girder_fy_input": 350.0,
+  "girder_material": "E 350A",
+  "girder_spacing_analysis_m": 1.335,
+  "girder_spacing_input_m": 1.3222,
+  "max_dcr": 1.1301,
+  "n_girders_checked": 11,
+  "n_girders_input": 9,
+  "output_keys": 2276,
+  "overall_status": "FAIL",
+  "overall_width_input_m": 11.899999999999999,
+  "per_girder_ids": "G1,G2,G3,G4,G5,G6,G7,G8,G9,G10,G11",
+  "slab_load_N_m2": 6250.0,
+  "span_m": 40.0,
+  "sw_area_m2": 0.06104,
+  "sw_line_load_N_m": 4791.9,
+  "sw_lines": 9,
+  "sw_z_m": [
+   0.661,
+   1.996,
+   3.331,
+   4.665,
+   6.0,
+   7.335,
+   8.669,
+   10.004,
+   11.339
+  ],
+  "tf_mm": 28.0,
+  "thermal_missing_warnings": 27,
+  "tw_mm": 12.0
+ },
+ "record": {
+  "case": "S02_A_B_A",
+  "error": "",
+  "seconds": 136.8,
+  "status": "ok",
+  "step": "typo_B_cw20_then_11"
+ },
+ "traceback": ""
+}

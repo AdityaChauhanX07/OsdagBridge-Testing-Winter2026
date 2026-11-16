@@ -1,0 +1,91 @@
+[
+ {
+  "case": "span abc",
+  "errors": [
+   "geometry.span: Span must be a numeric value."
+  ],
+  "loaded": false
+ },
+ {
+  "case": "span 19.9",
+  "errors": [
+   "geometry.span: Span must be between 20.0 m and 45.0 m (software limitation)."
+  ],
+  "loaded": false
+ },
+ {
+  "case": "span 100",
+  "errors": [
+   "geometry.span: Span must be between 20.0 m and 45.0 m (software limitation)."
+  ],
+  "loaded": false
+ },
+ {
+  "case": "carriageway 30",
+  "errors": [
+   "geometry.carriageway_width: Carriageway width exceeds 23.6 m (software limitation)."
+  ],
+  "loaded": false
+ },
+ {
+  "case": "skew 30",
+  "errors": [
+   "geometry.skew_angle: Skew angle must be between -15.0° and 15.0°."
+  ],
+  "loaded": false
+ },
+ {
+  "case": "no_of_girders 1",
+  "errors": [
+   "typical_section.no_of_girders: No. of girders is outside the practical range allowed in the software."
+  ],
+  "loaded": false
+ },
+ {
+  "case": "girder_spacing 0",
+  "errors": [
+   "typical_section.girder_spacing: Girder spacing is outside the practical range allowed in the software."
+  ],
+  "loaded": false
+ },
+ {
+  "case": "deck_thickness 20 mm",
+  "errors": [
+   "typical_section.deck_thickness: Deck thickness must be at least 100 mm.",
+   "design_options.shear_studs.height: Stud height must be between 80 mm (4× stud diameter) and -5 mm (deck thickness − 25 mm)."
+  ],
+  "loaded": false
+ },
+ {
+  "case": "design_mode Foo",
+  "errors": [
+   "geometry.design_mode: 'Foo' is not a valid design mode (expected one of ['Custom', 'Manual', 'Optimized', 'Standard'])."
+  ],
+  "loaded": false
+ },
+ {
+  "case": "custom steel fy 5000 MPa",
+  "errors": [],
+  "loaded": true
+ },
+ {
+  "case": "girder density 999 (custom)",
+  "errors": [],
+  "loaded": true
+ },
+ {
+  "case": "deck fck 500 (custom)",
+  "errors": [],
+  "loaded": true
+ },
+ {
+  "case": "girder grade 'E 999X'",
+  "errors": [],
+  "loaded": true
+ },
+ {
+  "case": "valid file (TC00)",
+  "errors": [],
+  "loaded": true
+ }
+]

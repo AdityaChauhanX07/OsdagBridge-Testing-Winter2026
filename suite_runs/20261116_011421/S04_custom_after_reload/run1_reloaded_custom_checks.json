@@ -1,0 +1,14 @@
+{
+ "checks": [],
+ "evidence": {
+  "output_keys": 576
+ },
+ "record": {
+  "case": "S04_custom_after_reload",
+  "error": "ValueError: 'material.deck.fck' is required but was not found in 'input_dict'. Populate 'material.deck.fck' before running the design check.",
+  "seconds": 17.7,
+  "status": "error",
+  "step": "run1_reloaded_custom"
+ },
+ "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Aditya\\Projects\\OsdagBridge-Testing-Winter2026\\scripts\\run_test_suite.py\", line 636, in design\n    s.backend.design()\n  File \"C:\\Users\\Aditya\\Projects\\OsdagBridge\\src\\osdagbridge\\core\\bridge_types\\plate_girder\\plategirderbridge.py\", line 757, in design\n    self._run_stage(\"5\", self._run_dcr_checks, dataset)\n  File \"C:\\Users\\Aditya\\Projects\\OsdagBridge\\src\\osdagbridge\\core\\bridge_types\\plate_girder\\plategirderbridge.py\", line 595, in _run_stage\n    result = func(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Aditya\\Projects\\OsdagBridge\\src\\osdagbridge\\core\\bridge_types\\plate_girder\\plategirderbridge.py\", line 2297, in _run_dcr_checks\n    _, engine, design_results = run_design_check(\n                                ^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Aditya\\Projects\\OsdagBridge\\src\\osdagbridge\\core\\bridge_types\\plate_girder\\designer.py\", line 3235, in run_design_check\n    config = BridgeConfig.from_plate_girder_bridge(plate_girder_bridge)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Aditya\\Projects\\OsdagBridge\\src\\osdagbridge\\core\\bridge_types\\plate_girder\\designer.py\", line 332, in from_plate_girder_bridge\n    fck = float(_req(bridge.input_dict.get(KEY_MATERIAL_DECK_FCK),\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Aditya\\Projects\\OsdagBridge\\src\\osdagbridge\\core\\bridge_types\\plate_girder\\designer.py\", line 95, in _req\n    raise ValueError(\nValueError: 'material.deck.fck' is required but was not found in 'input_dict'. Populate 'material.deck.fck' before running the design check.\n"
+}

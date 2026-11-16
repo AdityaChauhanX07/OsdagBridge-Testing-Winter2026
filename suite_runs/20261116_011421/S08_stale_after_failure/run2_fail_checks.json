@@ -1,0 +1,14 @@
+{
+ "checks": [],
+ "evidence": {
+  "output_keys": 0
+ },
+ "record": {
+  "case": "S08_stale_after_failure",
+  "error": "ValueError: Girder spacing must be positive, got 0.0.",
+  "seconds": 0.8,
+  "status": "error",
+  "step": "run2_fail"
+ },
+ "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Aditya\\Projects\\OsdagBridge-Testing-Winter2026\\scripts\\run_test_suite.py\", line 636, in design\n    s.backend.design()\n  File \"C:\\Users\\Aditya\\Projects\\OsdagBridge\\src\\osdagbridge\\core\\bridge_types\\plate_girder\\plategirderbridge.py\", line 686, in design\n    self._run_stage(\"1\", self._validate_inputs)\n  File \"C:\\Users\\Aditya\\Projects\\OsdagBridge\\src\\osdagbridge\\core\\bridge_types\\plate_girder\\plategirderbridge.py\", line 595, in _run_stage\n    result = func(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Aditya\\Projects\\OsdagBridge\\src\\osdagbridge\\core\\bridge_types\\plate_girder\\plategirderbridge.py\", line 620, in _validate_inputs\n    raise ValueError(f\"Girder spacing must be positive, got {spacing}.\")\nValueError: Girder spacing must be positive, got 0.0.\n"
+}
