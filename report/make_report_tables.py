@@ -68,7 +68,7 @@ def main(folders):
              r" & & in/chk & in/used & in/used & in/used & ratio & chk/shown & DCR & Status\\", r"\midrule\endhead"]
     for r in runs:
         if r["status"] != "ok":
-            lines.append(f"{tex(r['case'][:3])} & {tex(r['step'])} & \\multicolumn{{8}}{{l}}{{\\emph{{{tex(r['status'])}: {tex(r['error'][:70])}}}}}\\\\")
+            lines.append(f"{tex(r['case'][:3])} & {tex(r['step'])} & \\multicolumn{{8}}{{l}}{{\\emph{{{tex(r['status'])}: {tex(r['error'][:58])}}}}}\\\\")
             continue
         lines.append(" & ".join([
             tex(r["case"][:3]), tex(r["step"]),
@@ -94,7 +94,7 @@ def main(folders):
     (OUT / "check_summary.tex").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
     # ---- every non-C check (UI logic, multi-run, materials) -------------------
-    lines = [r"\begin{longtable}{@{}p{0.07\linewidth}p{0.36\linewidth}p{0.42\linewidth}l@{}}", r"\toprule",
+    lines = [r"\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.06\linewidth}>{\raggedright\arraybackslash}p{0.36\linewidth}>{\raggedright\arraybackslash}p{0.44\linewidth}l@{}}", r"\toprule",
              r"ID & Test & Actual & Result\\", r"\midrule\endhead"]
     seen = set()
     for c in checks:
@@ -105,7 +105,7 @@ def main(folders):
             continue
         seen.add(key)
         res = {"PASS": r"\pass", "FAIL": r"\fail", "INFO": r"\info"}[c["result"]]
-        lines.append(f"{tex(c['check'])} & {tex(c['title'])} & {tex(c['actual'][:150])} & {res}\\\\")
+        lines.append(f"{tex(c['check'])} & {tex(c['title'])} & {tex(c['actual'][:120])} & {res}\\\\")
     lines += [r"\bottomrule", r"\end{longtable}"]
     (OUT / "ui_checks_table.tex").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
@@ -113,7 +113,7 @@ def main(folders):
     u5 = main_dir / "U5_homepage_validation" / "U5_validation_table.json"
     if u5.exists():
         rows = json.load(open(u5, encoding="utf-8"))
-        lines = [r"\begin{tabular}{@{}llp{0.5\linewidth}l@{}}", r"\toprule",
+        lines = [r"\begin{tabular}{@{}ll>{\raggedright\arraybackslash}p{0.5\linewidth}l@{}}", r"\toprule",
                  r"Field & Typed & Pop-up shown & Field becomes\\", r"\midrule"]
         for r in rows:
             lines.append(f"{tex(r['field'].split('.')[-1])} & {tex(r['typed'])} & {tex(r['popup'][:90]) or '(none - accepted)'} & {tex(r['field_now'])}\\\\")
@@ -124,7 +124,7 @@ def main(folders):
     u6 = main_dir / "U6_osi_validation" / "U6_osi_validation_table.json"
     if u6.exists():
         rows = json.load(open(u6, encoding="utf-8"))
-        lines = [r"\begin{tabular}{@{}lp{0.62\linewidth}@{}}", r"\toprule", r"Hand-edited value in .osi & Load Input result\\", r"\midrule"]
+        lines = [r"\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{0.62\linewidth}@{}}", r"\toprule", r"Hand-edited value in .osi & Load Input result\\", r"\midrule"]
         for r in rows:
             res = ("rejected: " + tex(r["errors"][0][:95])) if not r["loaded"] else r"\textbf{loaded}"
             lines.append(f"{tex(r['case'])} & {res}\\\\")

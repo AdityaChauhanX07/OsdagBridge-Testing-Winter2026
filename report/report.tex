@@ -42,13 +42,14 @@
 {Rhodes College\par}
 {GitHub: \href{https://github.com/AdityaChauhanX07}{AdityaChauhanX07}\par}
 \vspace{2cm}
-\begin{tabular}{@{}ll@{}}
+{\small\begin{tabular}{@{}ll@{}}
 Software under test & \upstream, branch \code{dev}\\
-Commit & \code{d74f56dd7f22925fb8148cabf5740ed8d1e39ff3} (unmodified)\\
+Commit & \code{d74f56dd7f22925fb8148cabf5740ed8d1e39ff3}\\
+ & (tested as published; no changes made to OsdagBridge's code)\\
 Module & Plate Girder Bridge (desktop app, PySide6)\\
 Evidence repository & \repo\\
 Date & \today
-\end{tabular}
+\end{tabular}}
 \vfill
 \end{titlepage}
 
@@ -87,7 +88,14 @@ Second platform & Linux (container), same \code{environment.yml}, used to run th
 %=====================================================================
 \section{Method}
 \subsection{Manual GUI runs with \texttt{run\_logged.py}}
-\code{run_logged.py} wraps \code{PlateGirderBridge.set_input()} and \code{design()} at runtime and then starts the app's own \code{main()}. Each Design click writes \code{runNN_ui_input.json} (what the UI sent), \code{runNN_backend_input.json}, \code{runNN_output.json} (the output dictionary, which the UI cannot export: its \emph{Save Outputs (.csv)} menu item has no handler, see \gh{53}), \code{runNN_meta.json} and \code{runNN_diff_vs_prev.txt}. The whole console goes to \code{session.log}.
+\code{run_logged.py} wraps \code{PlateGirderBridge.set_input()} and \code{design()} at runtime and then starts the app's own \code{main()}. Each Design click writes:
+\begin{itemize}
+\item \code{runNN_ui_input.json}: the input dictionary the UI sent;
+\item \code{runNN_backend_input.json}: the backend's normalised input;
+\item \code{runNN_output.json}: the full output dictionary (the UI itself cannot export it: its \emph{Save Outputs (.csv)} menu item has no handler, see \gh{53});
+\item \code{runNN_meta.json} and \code{runNN_diff_vs_prev.txt}: run status, timing, and a key-by-key diff against the previous run.
+\end{itemize}
+The whole console goes to \code{session.log}.
 
 \subsection{Automated suite}
 \code{run_test_suite.py} creates the real \code{InputDock} and \code{AdditionalInputs} widgets off-screen and replays the small glue methods of \code{TemplatePage} (Design pre-steps, \code{update_cad_from_inputs}, Save/Load Input, unlock), citing the source lines they mirror. Typing into a field calls the same \code{_on_field_edited} handler the \code{editingFinished} signal calls. Pop-ups and the custom-material dialog are answered programmatically, and the real \code{_validate_and_save()} runs. One backend is reused across the runs of a session with \code{backend.reset()} in between, exactly as the GUI's unlock does.
@@ -180,26 +188,26 @@ A2 & edit Additional Inputs $\to$ change span $\to$ Design & edits silently rese
 \end{itemize}
 
 \subsection{Coverage of steel components and deck}
-\begin{tabularx}{\linewidth}{@{}lXl@{}}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.16\linewidth}>{\raggedright\arraybackslash}p{0.40\linewidth}>{\raggedright\arraybackslash}p{0.38\linewidth}@{}}
 \toprule
 Component & What was checked & Outcome\\
 \midrule
 Main girders & count, spacing, section properties, self-weight, $f_y$, LTB length, deflection & \issue{01}, \issue{02}, \issue{03}, \issue{04}, \issue{06}, \issue{07}\\
-Stiffeners & intermediate/bearing stiffener inputs vs.\ report summary & summary prints required values (21.1~mm, 1.2~mm) as provided\\
+Stiffeners & intermediate and bearing stiffener inputs vs.\ the report's stiffener summary & summary prints the \emph{required} thicknesses (21.1~mm, 1.2~mm) where the provided ones belong\\
 Cross-bracing & material, spacing, section, design results & spacing \issue{01}; grade ignored (comment on \gh{43})\\
 End diaphragm & design results present & empty for straight bridges, designed for skew (\gh{72})\\
 Deck slab & density, cover/exposure, thickness propagation & \gh{41}, \issue{05}, comment on \gh{71}\\
 \bottomrule
-\end{tabularx}
+\end{tabular}
 
 \subsection{3D CAD and plots}
 \input{cad_observations.tex}
 
 \subsection{All automated design runs}
-\small
+\footnotesize\setlength{\tabcolsep}{3pt}
 \captionof{table}{All design runs. ``in/chk'': girders in the input / girders in the design check. $\gamma_s$, $\gamma_c$: steel and concrete densities, input / used by the analysis (kN/m$^3$). $M_{SW}$ ratio: per-girder self-weight moment $/(wL^2/8)$. $\delta$: total deflection in the design check / maximum per-girder value shown.}\label{tab:runs}
 \input{generated/runs_table.tex}
-\normalsize
+\normalsize\setlength{\tabcolsep}{6pt}
 
 \subsection{All UI-logic, multi-run and material checks}
 \small
@@ -243,13 +251,14 @@ Issue & Title & Severity\\
 
 \appendix
 \section{Reproducing the results}\label{app:repro}
+\noindent From \code{OsdagBridge\src}, with the conda environment from \code{environment.yml} active:
 \begin{verbatim}
-cd OsdagBridge\src                    (conda env from environment.yml active)
-python <testing-repo>\scripts\run_logged.py TC00_baseline     # GUI with logging
-python <testing-repo>\scripts\run_test_suite.py               # full suite (~25 min)
-python <testing-repo>\scripts\run_test_suite.py --ui-only     # 2-minute subset
-python <testing-repo>\report\make_report_tables.py <suite_runs\folder>   # tables in this report
+python <testing-repo>\scripts\run_logged.py TC00_baseline
+python <testing-repo>\scripts\run_test_suite.py
+python <testing-repo>\scripts\run_test_suite.py --ui-only
+python <testing-repo>\report\make_report_tables.py <suite_runs folder>
 \end{verbatim}
+\noindent The first line starts the GUI with logging, the second runs the full suite (about 25 minutes), the third a 2-minute subset without design runs, and the last rebuilds the tables of this report from a suite folder.
 \noindent Suite runs included in this report:\par\smallskip
 \input{generated/suite_runs_table.tex}
 
