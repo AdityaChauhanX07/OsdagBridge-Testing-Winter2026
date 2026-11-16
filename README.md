@@ -11,6 +11,7 @@ Software under test: [Nidhikhare12/OsdagBridge](https://github.com/Nidhikhare12/
 |---|---|
 | `scripts/run_logged.py` | Launches the normal OsdagBridge GUI and records, for every **Design** click, the input dictionary the UI sent, the backend input after normalisation, the full output dictionary, a console log, run metadata and a diff against the previous run (multi-run / stale-state evidence). No source changes: it wraps `PlateGirderBridge.set_input()` / `design()` at runtime. |
 | `scripts/run_test_suite.py` | Automated test suite. Drives the **real** homepage `InputDock`, the real Additional Inputs dialog, the real custom-material dialog, `.osi` save/load and the backend headlessly (off-screen Qt), runs ~35 designs and applies ~15 automatic consistency checks per run. See "Automated suite" below. |
+| `osi/` | Test input files for **File > Load Input**: TC00 baseline, TC01 custom materials, TC02 edited Additional Inputs, and 11 invalid files used to test Load Input validation. |
 | `fixtures/` | The exact input dictionaries the GUI produced in the two manual runs (used by the suite's self-test). |
 | `gui_runs/` | Evidence of the manual GUI runs on Windows 11 (`run_logged.py` output + generated design reports). |
 | `suite_runs/` | Output of the automated suite (`SUMMARY.md`, `checks.csv`, `runs.csv`, and per-case input/output/log files). |
