@@ -1,0 +1,472 @@
+case,step,check,result,title,expected,actual
+U1_builder_matches_gui,-,U1a,PASS,Simulated Design dict == real GUI TC00 dict (576 keys),0 differences,0 differences []
+U1_builder_matches_gui,-,U1b,PASS,Simulated custom-material dict == real GUI TC01 dict,0 differences,0 differences []
+U2_girder_count_history,-,U2,FAIL,Girder layout depends only on current inputs (not on typing history),5 girders @ 2.38 m every time,5@2.38; 4@2.975; 3@3.9667; 9@1.3222; 4@2.975
+U3_additional_inputs_reset,-,U3a0,PASS,Edits present right after Additional Inputs > Save,all edits kept,all kept
+U3_additional_inputs_reset,-,U3a,FAIL,Additional Inputs kept after changing span 30->32,all edits kept,"6 reset: {'typical_section.deck_thickness': '300.0->250.0', 'typical_section.wearing_course.thickness': '80.0->50.0', 'design_options_cont.partial_factor.yielding_and_buckling.gamma_m0': '1.15->1.10', 'loading.wind_load.avg_exposed_height': '15->10', 'support_conditions.left_support': 'Fixed->Pinned', 'design_options.shear_studs.diameter': '22->20'}"
+U3_additional_inputs_reset,-,U3b1,FAIL,Save Input writes the edited Additional Inputs to the .osi,all edits in file,"6 reset in file: {'typical_section.deck_thickness': '300.0->250.0', 'typical_section.wearing_course.thickness': '80.0->50.0', 'design_options_cont.partial_factor.yielding_and_buckling.gamma_m0': '1.15->1.10', 'loading.wind_load.avg_exposed_height': '15->10', 'support_conditions.left_support': 'Fixed->Pinned', 'design_options.shear_studs.diameter': '22->20'}"
+U3_additional_inputs_reset,-,U3b2,FAIL,Session still has the edits after clicking Save Input,all edits kept,"6 reset: {'typical_section.deck_thickness': '300.0->250.0', 'typical_section.wearing_course.thickness': '80.0->50.0', 'design_options_cont.partial_factor.yielding_and_buckling.gamma_m0': '1.15->1.10', 'loading.wind_load.avg_exposed_height': '15->10', 'support_conditions.left_support': 'Fixed->Pinned', 'design_options.shear_studs.diameter': '22->20'}"
+U3_additional_inputs_reset,-,U3c0,PASS,Hand-checked .osi with edits loads,loaded,loaded
+U3_additional_inputs_reset,-,U3c,FAIL,Additional Inputs kept after Load Input (file contains them),all edits kept,"6 reset: {'typical_section.deck_thickness': '300.0->250.0', 'typical_section.wearing_course.thickness': '80.0->50.0', 'design_options_cont.partial_factor.yielding_and_buckling.gamma_m0': '1.15->1.10', 'loading.wind_load.avg_exposed_height': '15->10', 'support_conditions.left_support': 'Fixed->Pinned', 'design_options.shear_studs.diameter': '22->20'}"
+U4_custom_material_reload,-,U4a,PASS,Custom-material .osi loads,loaded,loaded
+U4_custom_material_reload,-,U4b,FAIL,Custom material values survive Save > Load > Design,"{""material.girder.fy"": ""410"", ""material.girder.e"": ""210"", ""material.girder.density"": ""80"", ""material.deck.fck"": ""45"", ""material.deck.fctm"": ""3.8"", ""material.deck.ecm"": ""34"", ""material.deck.density"": ""26""}","changed: {'material.deck.fck': '45->None', 'material.deck.fctm': '3.8->None', 'material.deck.ecm': '34->None', 'material.deck.density': '26->24.5'}"
+U4_custom_material_reload,-,U4c,FAIL,(i) info button works for a loaded custom steel,dialog opens,UnboundLocalError: cannot access local variable 'defaults' where it is not associated with a value
+U4_custom_material_reload,-,U4d,FAIL,Re-selecting the custom steel restores its fy/E,"custom_steel_410_540: fy 410, E 210",combo=custom_steel_410_540 fy=250.0 E=200.0
+U5_homepage_validation,span=19.9,U5,PASS,geometry.span = '19.9' rejected,reject,rejected -> 20.0 (Span must be between 20.0 m and 45.0 m (software l)
+U5_homepage_validation,span=45.1,U5,PASS,geometry.span = '45.1' rejected,reject,rejected -> 45.0 (Span must be between 20.0 m and 45.0 m (software l)
+U5_homepage_validation,span=0,U5,PASS,geometry.span = '0' rejected,reject,rejected -> 20.0 (Span must be between 20.0 m and 45.0 m (software l)
+U5_homepage_validation,span=-5,U5,PASS,geometry.span = '-5' rejected,reject,rejected -> 20.0 (Span must be between 20.0 m and 45.0 m (software l)
+U5_homepage_validation,span=abc,U5,PASS,geometry.span = 'abc' rejected,reject,rejected -> 20.0 (Span must be a numeric value.)
+U5_homepage_validation,span=20,U5,PASS,geometry.span = '20' accepted,accept,accepted
+U5_homepage_validation,span=45,U5,PASS,geometry.span = '45' accepted,accept,accepted
+U5_homepage_validation,carriageway_width=4.2,U5,PASS,geometry.carriageway_width = '4.2' rejected,reject,rejected -> 4.25 (Minimum carriageway width required is 4.25 m as pe)
+U5_homepage_validation,carriageway_width=23.7,U5,PASS,geometry.carriageway_width = '23.7' rejected,reject,rejected -> 23.6 (Carriageway width exceeds 23.6 m (software limitat)
+U5_homepage_validation,carriageway_width=4.25,U5,PASS,geometry.carriageway_width = '4.25' accepted,accept,accepted
+U5_homepage_validation,carriageway_width=23.6,U5,PASS,geometry.carriageway_width = '23.6' accepted,accept,accepted
+U5_homepage_validation,skew_angle=16,U5,PASS,geometry.skew_angle = '16' rejected,reject,rejected -> 15.0 (Skew angle must be between -15.0° and 15.0°.)
+U5_homepage_validation,skew_angle=-16,U5,PASS,geometry.skew_angle = '-16' rejected,reject,rejected -> -15.0 (Skew angle must be between -15.0° and 15.0°.)
+U5_homepage_validation,skew_angle=15,U5,PASS,geometry.skew_angle = '15' accepted,accept,accepted
+U5_homepage_validation,skew_angle=-15,U5,PASS,geometry.skew_angle = '-15' accepted,accept,accepted
+U6_osi_validation,span abc,U6,PASS,.osi with span abc rejected,reject,rejected: geometry.span: Span must be a numeric value.
+U6_osi_validation,span 19.9,U6,PASS,.osi with span 19.9 rejected,reject,rejected: geometry.span: Span must be between 20.0 m and 45.0 m (software limitation).
+U6_osi_validation,span 100,U6,PASS,.osi with span 100 rejected,reject,rejected: geometry.span: Span must be between 20.0 m and 45.0 m (software limitation).
+U6_osi_validation,carriageway 30,U6,PASS,.osi with carriageway 30 rejected,reject,rejected: geometry.carriageway_width: Carriageway width exceeds 23.6 m (software limitation).
+U6_osi_validation,skew 30,U6,PASS,.osi with skew 30 rejected,reject,rejected: geometry.skew_angle: Skew angle must be between -15.0° and 15.0°.
+U6_osi_validation,no_of_girders 1,U6,PASS,.osi with no_of_girders 1 rejected,reject,rejected: typical_section.no_of_girders: No. of girders is outside the practical range allowed in th
+U6_osi_validation,girder_spacing 0,U6,PASS,.osi with girder_spacing 0 rejected,reject,rejected: typical_section.girder_spacing: Girder spacing is outside the practical range allowed in t
+U6_osi_validation,deck_thickness 20 mm,U6,PASS,.osi with deck_thickness 20 mm rejected,reject,rejected: typical_section.deck_thickness: Deck thickness must be at least 100 mm.; design_options.sh
+U6_osi_validation,design_mode Foo,U6,PASS,.osi with design_mode Foo rejected,reject,"rejected: geometry.design_mode: 'Foo' is not a valid design mode (expected one of ['Custom', 'Manual"
+U6_osi_validation,custom steel fy 5000 MPa,U6,FAIL,.osi with custom steel fy 5000 MPa rejected,reject,LOADED
+U6_osi_validation,girder density 999 (custom),U6,FAIL,.osi with girder density 999 (custom) rejected,reject,LOADED
+U6_osi_validation,deck fck 500 (custom),U6,FAIL,.osi with deck fck 500 (custom) rejected,reject,LOADED
+U6_osi_validation,girder grade 'E 999X',U6,FAIL,.osi with girder grade 'E 999X' rejected,reject,LOADED
+U6_osi_validation,valid file (TC00),U6,PASS,.osi with valid file (TC00) loaded,load,LOADED
+U7_custom_material_dialog,normal fy410/fu540,U7,PASS,Custom steel normal fy410/fu540 accepted,accept,"accepted as custom_steel_410_540 (fy=410, fu=540, G=76.9)"
+U7_custom_material_dialog,fu < fy (450/400),U7,FAIL,Custom steel fu < fy (450/400) rejected,reject,"accepted as custom_steel_450_400 (fy=450, fu=400, G=76.9)"
+U7_custom_material_dialog,density 130,U7,PASS,Custom steel density 130 rejected,reject,"rejected: [{'title': 'Input Error', 'text': 'Weight Density must be between 50.0 and 120.0 kN/m³.'}]"
+U7_custom_material_dialog,E 50 GPa,U7,PASS,Custom steel E 50 GPa rejected,reject,"rejected: [{'title': 'Input Error', 'text': 'Modulus of Elasticity, E must be between 100.0 and 300.0 GPa.'}]"
+U7_custom_material_dialog,"G inconsistent with E,nu (E200, nu0.3, G 120)",U7,FAIL,"Custom steel G inconsistent with E,nu (E200, nu0.3, G 120) rejected",reject,"accepted as custom_steel_410_540 (fy=410, fu=540, G=120)"
+U8_backend_validation,span 100 m,U8,FAIL,Backend rejects span 100 m,ValueError,accepted (no range check)
+U8_backend_validation,carriageway 40 m,U8,FAIL,Backend rejects carriageway 40 m,ValueError,accepted (no range check)
+U8_backend_validation,skew 60 deg,U8,FAIL,Backend rejects skew 60 deg,ValueError,accepted (no range check)
+U8_backend_validation,girder fy 5000,U8,FAIL,Backend rejects girder fy 5000,ValueError,accepted (no range check)
+S01_baseline_three_runs,run1,C01,FAIL,Design check uses the real number of girders,4,"6 (G1,G2,G3,G4,G5,G6)"
+S01_baseline_three_runs,run1,C02,FAIL,Grillage girder spacing = input girder spacing,2.1,2.133
+S01_baseline_three_runs,run1,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S01_baseline_three_runs,run1,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S01_baseline_three_runs,run1,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.38,206.16 (ratio 0.669)
+S01_baseline_three_runs,run1,C06,FAIL,Deflection in design check = deflection shown per girder,22.871,51.225
+S01_baseline_three_runs,run1,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S01_baseline_three_runs,run1,C08,FAIL,End diaphragm members are designed,0 empty pairs,3 of 3 empty
+S01_baseline_three_runs,run1,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,15.0,3.0
+S01_baseline_three_runs,run1,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03492 m2
+S01_baseline_three_runs,run1,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=22.0 mm)
+S01_baseline_three_runs,run1,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S01_baseline_three_runs,run2,C01,FAIL,Design check uses the real number of girders,4,"6 (G1,G2,G3,G4,G5,G6)"
+S01_baseline_three_runs,run2,C02,FAIL,Grillage girder spacing = input girder spacing,2.1,2.133
+S01_baseline_three_runs,run2,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S01_baseline_three_runs,run2,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S01_baseline_three_runs,run2,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.38,206.16 (ratio 0.669)
+S01_baseline_three_runs,run2,C06,FAIL,Deflection in design check = deflection shown per girder,22.871,51.225
+S01_baseline_three_runs,run2,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S01_baseline_three_runs,run2,C08,FAIL,End diaphragm members are designed,0 empty pairs,3 of 3 empty
+S01_baseline_three_runs,run2,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,15.0,3.0
+S01_baseline_three_runs,run2,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03492 m2
+S01_baseline_three_runs,run2,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=22.0 mm)
+S01_baseline_three_runs,run2,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S01_baseline_three_runs,run3,C01,FAIL,Design check uses the real number of girders,4,"6 (G1,G2,G3,G4,G5,G6)"
+S01_baseline_three_runs,run3,C02,FAIL,Grillage girder spacing = input girder spacing,2.1,2.133
+S01_baseline_three_runs,run3,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S01_baseline_three_runs,run3,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S01_baseline_three_runs,run3,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.38,206.16 (ratio 0.669)
+S01_baseline_three_runs,run3,C06,FAIL,Deflection in design check = deflection shown per girder,22.871,51.225
+S01_baseline_three_runs,run3,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S01_baseline_three_runs,run3,C08,FAIL,End diaphragm members are designed,0 empty pairs,3 of 3 empty
+S01_baseline_three_runs,run3,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,15.0,3.0
+S01_baseline_three_runs,run3,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03492 m2
+S01_baseline_three_runs,run3,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=22.0 mm)
+S01_baseline_three_runs,run3,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S01_baseline_three_runs,-,R1,PASS,Run 2 output identical to run 1,0 differences,"0 differences, e.g. []"
+S01_baseline_three_runs,-,R2,PASS,Run 3 output identical to run 1,0 differences,"0 differences, e.g. []"
+S02_A_B_A,run1_A,C01,FAIL,Design check uses the real number of girders,4,"6 (G1,G2,G3,G4,G5,G6)"
+S02_A_B_A,run1_A,C02,FAIL,Grillage girder spacing = input girder spacing,2.1,2.133
+S02_A_B_A,run1_A,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S02_A_B_A,run1_A,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S02_A_B_A,run1_A,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.38,206.16 (ratio 0.669)
+S02_A_B_A,run1_A,C06,FAIL,Deflection in design check = deflection shown per girder,22.871,51.225
+S02_A_B_A,run1_A,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S02_A_B_A,run1_A,C08,FAIL,End diaphragm members are designed,0 empty pairs,3 of 3 empty
+S02_A_B_A,run1_A,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,15.0,3.0
+S02_A_B_A,run1_A,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03492 m2
+S02_A_B_A,run1_A,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=22.0 mm)
+S02_A_B_A,run1_A,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S02_A_B_A,run2_B,C01,FAIL,Design check uses the real number of girders,4,"6 (G1,G2,G3,G4,G5,G6)"
+S02_A_B_A,run2_B,C02,FAIL,Grillage girder spacing = input girder spacing,2.975,3.008
+S02_A_B_A,run2_B,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S02_A_B_A,run2_B,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S02_A_B_A,run2_B,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),958.38,638.85 (ratio 0.667)
+S02_A_B_A,run2_B,C06,FAIL,Deflection in design check = deflection shown per girder,32.445,67.295
+S02_A_B_A,run2_B,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S02_A_B_A,run2_B,C08,FAIL,End diaphragm members are designed,0 empty pairs,3 of 3 empty
+S02_A_B_A,run2_B,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,20.0,3.0
+S02_A_B_A,run2_B,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.06361 m2,0.06104 m2
+S02_A_B_A,run2_B,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=28.0 mm)
+S02_A_B_A,run2_B,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S02_A_B_A,run3_A,C01,FAIL,Design check uses the real number of girders,4,"6 (G1,G2,G3,G4,G5,G6)"
+S02_A_B_A,run3_A,C02,FAIL,Grillage girder spacing = input girder spacing,2.1,2.133
+S02_A_B_A,run3_A,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S02_A_B_A,run3_A,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S02_A_B_A,run3_A,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.38,206.16 (ratio 0.669)
+S02_A_B_A,run3_A,C06,FAIL,Deflection in design check = deflection shown per girder,22.871,51.225
+S02_A_B_A,run3_A,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S02_A_B_A,run3_A,C08,FAIL,End diaphragm members are designed,0 empty pairs,3 of 3 empty
+S02_A_B_A,run3_A,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,15.0,3.0
+S02_A_B_A,run3_A,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03492 m2
+S02_A_B_A,run3_A,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=22.0 mm)
+S02_A_B_A,run3_A,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S02_A_B_A,-,R3,PASS,A after B identical to first A,0 differences,"0 differences, e.g. []"
+S02_A_B_A,fresh_B,C01,FAIL,Design check uses the real number of girders,5,"7 (G1,G2,G3,G4,G5,G6,G7)"
+S02_A_B_A,fresh_B,C02,FAIL,Grillage girder spacing = input girder spacing,2.38,2.405
+S02_A_B_A,fresh_B,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S02_A_B_A,fresh_B,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S02_A_B_A,fresh_B,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),958.38,684.44 (ratio 0.714)
+S02_A_B_A,fresh_B,C06,FAIL,Deflection in design check = deflection shown per girder,30.207,59.754
+S02_A_B_A,fresh_B,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S02_A_B_A,fresh_B,C08,FAIL,End diaphragm members are designed,0 empty pairs,4 of 4 empty
+S02_A_B_A,fresh_B,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,20.0,3.0
+S02_A_B_A,fresh_B,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.06361 m2,0.06104 m2
+S02_A_B_A,fresh_B,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=28.0 mm)
+S02_A_B_A,fresh_B,C12,PASS,Number of girder self-weight lines = number of girders,5,5
+S02_A_B_A,-,R4,FAIL,B after A (same session) == B typed in a fresh session (girders),5 girders @ 2.38 m (fresh),4 girders @ 2.975 m (after A)
+S02_A_B_A,-,R5,FAIL,B after A (same session) == B typed in a fresh session (max DCR / status),1.5115 FAIL,1.686 FAIL
+S02_A_B_A,typo_B_cw20_then_11,C01,FAIL,Design check uses the real number of girders,9,"11 (G1,G2,G3,G4,G5,G6,G7,G8,G9,G10,G11)"
+S02_A_B_A,typo_B_cw20_then_11,C02,FAIL,Grillage girder spacing = input girder spacing,1.3222,1.335
+S02_A_B_A,typo_B_cw20_then_11,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S02_A_B_A,typo_B_cw20_then_11,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S02_A_B_A,typo_B_cw20_then_11,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),958.38,783.99 (ratio 0.818)
+S02_A_B_A,typo_B_cw20_then_11,C06,FAIL,Deflection in design check = deflection shown per girder,25.317,43.729
+S02_A_B_A,typo_B_cw20_then_11,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S02_A_B_A,typo_B_cw20_then_11,C08,FAIL,End diaphragm members are designed,0 empty pairs,8 of 8 empty
+S02_A_B_A,typo_B_cw20_then_11,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,20.0,3.0
+S02_A_B_A,typo_B_cw20_then_11,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.06361 m2,0.06104 m2
+S02_A_B_A,typo_B_cw20_then_11,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=28.0 mm)
+S02_A_B_A,typo_B_cw20_then_11,C12,PASS,Number of girder self-weight lines = number of girders,9,9
+S02_A_B_A,-,R6,FAIL,B with a corrected typo (cw 20 -> 11) == B typed directly,"5 girders, max DCR 1.5115","9 girders, max DCR 1.1301 FAIL"
+S03_custom_materials,baseline_reference,C01,FAIL,Design check uses the real number of girders,4,"6 (G1,G2,G3,G4,G5,G6)"
+S03_custom_materials,baseline_reference,C02,FAIL,Grillage girder spacing = input girder spacing,2.1,2.133
+S03_custom_materials,baseline_reference,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S03_custom_materials,baseline_reference,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S03_custom_materials,baseline_reference,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.38,206.16 (ratio 0.669)
+S03_custom_materials,baseline_reference,C06,FAIL,Deflection in design check = deflection shown per girder,22.871,51.225
+S03_custom_materials,baseline_reference,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S03_custom_materials,baseline_reference,C08,FAIL,End diaphragm members are designed,0 empty pairs,3 of 3 empty
+S03_custom_materials,baseline_reference,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,15.0,3.0
+S03_custom_materials,baseline_reference,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03492 m2
+S03_custom_materials,baseline_reference,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=22.0 mm)
+S03_custom_materials,baseline_reference,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S03_custom_materials,run1_custom,C01,FAIL,Design check uses the real number of girders,4,"6 (G1,G2,G3,G4,G5,G6)"
+S03_custom_materials,run1_custom,C02,FAIL,Grillage girder spacing = input girder spacing,2.1,2.133
+S03_custom_materials,run1_custom,C03,FAIL,Steel self-weight uses the girder material density,80.0,78.5
+S03_custom_materials,run1_custom,C04,FAIL,Deck slab load uses the deck material density,26.0,25.0
+S03_custom_materials,run1_custom,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.38,206.16 (ratio 0.669)
+S03_custom_materials,run1_custom,C06,FAIL,Deflection in design check = deflection shown per girder,21.781,48.786
+S03_custom_materials,run1_custom,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S03_custom_materials,run1_custom,C08,FAIL,End diaphragm members are designed,0 empty pairs,3 of 3 empty
+S03_custom_materials,run1_custom,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,15.0,3.0
+S03_custom_materials,run1_custom,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03492 m2
+S03_custom_materials,run1_custom,C11,INFO,Design fy = girder material fy,410.0,410.0 (tf=22.0 mm)
+S03_custom_materials,run1_custom,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S03_custom_materials,-,M1,FAIL,Custom girder density 80 changes the girder self-weight,!= 2741.12 N/m,2741.12
+S03_custom_materials,-,M2,FAIL,Custom deck density 26 changes the deck design moments,!= 30.898 kNm/m,30.898
+S03_custom_materials,-,M3,PASS,Custom fy 410 reaches the design (Md changes),!= 11371.848,13263.725
+S03_custom_materials,-,M4,FAIL,Deck exposure/cover with custom M45-equivalent concrete,Very Severe (same environment as baseline),"Extreme, cover 75 mm"
+S03_custom_materials,run2_back_to_default,C01,FAIL,Design check uses the real number of girders,4,"6 (G1,G2,G3,G4,G5,G6)"
+S03_custom_materials,run2_back_to_default,C02,FAIL,Grillage girder spacing = input girder spacing,2.1,2.133
+S03_custom_materials,run2_back_to_default,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S03_custom_materials,run2_back_to_default,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S03_custom_materials,run2_back_to_default,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.38,206.16 (ratio 0.669)
+S03_custom_materials,run2_back_to_default,C06,FAIL,Deflection in design check = deflection shown per girder,22.871,51.225
+S03_custom_materials,run2_back_to_default,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S03_custom_materials,run2_back_to_default,C08,FAIL,End diaphragm members are designed,0 empty pairs,3 of 3 empty
+S03_custom_materials,run2_back_to_default,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,15.0,3.0
+S03_custom_materials,run2_back_to_default,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03492 m2
+S03_custom_materials,run2_back_to_default,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=22.0 mm)
+S03_custom_materials,run2_back_to_default,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S03_custom_materials,-,R7,PASS,Back to default materials == baseline,0 differences,"0 differences, e.g. []"
+S04_custom_after_reload,-,U4a,PASS,Custom-material .osi loads,loaded,loaded
+S04_custom_after_reload,-,U4b,FAIL,Custom material values survive Save > Load > Design,"{""material.girder.fy"": ""410"", ""material.girder.e"": ""210"", ""material.girder.density"": ""80"", ""material.deck.fck"": ""45"", ""material.deck.fctm"": ""3.8"", ""material.deck.ecm"": ""34"", ""material.deck.density"": ""26""}","changed: {'material.deck.fck': '45->None', 'material.deck.fctm': '3.8->None', 'material.deck.ecm': '34->None', 'material.deck.density': '26->24.5'}"
+S04_custom_after_reload,-,U4c,FAIL,(i) info button works for a loaded custom steel,dialog opens,UnboundLocalError: cannot access local variable 'defaults' where it is not associated with a value
+S04_custom_after_reload,-,U4d,FAIL,Re-selecting the custom steel restores its fy/E,"custom_steel_410_540: fy 410, E 210",combo=custom_steel_410_540 fy=250.0 E=200.0
+S05_additional_inputs,run1_edits,C01,FAIL,Design check uses the real number of girders,4,"6 (G1,G2,G3,G4,G5,G6)"
+S05_additional_inputs,run1_edits,C02,FAIL,Grillage girder spacing = input girder spacing,2.1,2.133
+S05_additional_inputs,run1_edits,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S05_additional_inputs,run1_edits,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S05_additional_inputs,run1_edits,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.21,206.21 (ratio 0.669)
+S05_additional_inputs,run1_edits,C06,FAIL,Deflection in design check = deflection shown per girder,23.553,56.513
+S05_additional_inputs,run1_edits,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S05_additional_inputs,run1_edits,C08,FAIL,End diaphragm members are designed,0 empty pairs,3 of 3 empty
+S05_additional_inputs,run1_edits,C09,PASS,Cross-bracing spacing used = Additional Input spacing,15.0,15.0
+S05_additional_inputs,run1_edits,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03490 m2
+S05_additional_inputs,run1_edits,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=22.0 mm)
+S05_additional_inputs,run1_edits,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S05_additional_inputs,-,A1,PASS,Deck thickness 300 mm used in the slab load,300 mm,"input 300.0 mm, slab load 7500.0 N/m2"
+S05_additional_inputs,run2_span32,C01,FAIL,Design check uses the real number of girders,4,"6 (G1,G2,G3,G4,G5,G6)"
+S05_additional_inputs,run2_span32,C02,FAIL,Grillage girder spacing = input girder spacing,2.1,2.133
+S05_additional_inputs,run2_span32,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S05_additional_inputs,run2_span32,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S05_additional_inputs,run2_span32,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),395.4,263.18 (ratio 0.666)
+S05_additional_inputs,run2_span32,C06,FAIL,Deflection in design check = deflection shown per girder,23.881,50.814
+S05_additional_inputs,run2_span32,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S05_additional_inputs,run2_span32,C08,FAIL,End diaphragm members are designed,0 empty pairs,3 of 3 empty
+S05_additional_inputs,run2_span32,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,16.0,15.0
+S05_additional_inputs,run2_span32,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.04430 m2,0.03935 m2
+S05_additional_inputs,run2_span32,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=25.0 mm)
+S05_additional_inputs,run2_span32,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S05_additional_inputs,-,A2,FAIL,Deck thickness after changing span (user never re-edited it),300,250.0
+S06_girders_and_bracing,run1_5_girders,C01,FAIL,Design check uses the real number of girders,5,"7 (G1,G2,G3,G4,G5,G6,G7)"
+S06_girders_and_bracing,run1_5_girders,C02,FAIL,Grillage girder spacing = input girder spacing,1.68,1.705
+S06_girders_and_bracing,run1_5_girders,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S06_girders_and_bracing,run1_5_girders,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S06_girders_and_bracing,run1_5_girders,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.38,220.89 (ratio 0.716)
+S06_girders_and_bracing,run1_5_girders,C06,FAIL,Deflection in design check = deflection shown per girder,21.09,45.052
+S06_girders_and_bracing,run1_5_girders,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S06_girders_and_bracing,run1_5_girders,C08,FAIL,End diaphragm members are designed,0 empty pairs,4 of 4 empty
+S06_girders_and_bracing,run1_5_girders,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,15.0,3.0
+S06_girders_and_bracing,run1_5_girders,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03492 m2
+S06_girders_and_bracing,run1_5_girders,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=22.0 mm)
+S06_girders_and_bracing,run1_5_girders,C12,PASS,Number of girder self-weight lines = number of girders,5,5
+S06_girders_and_bracing,run2_cb_spacing_5m,C01,FAIL,Design check uses the real number of girders,4,"6 (G1,G2,G3,G4,G5,G6)"
+S06_girders_and_bracing,run2_cb_spacing_5m,C02,FAIL,Grillage girder spacing = input girder spacing,2.1,2.133
+S06_girders_and_bracing,run2_cb_spacing_5m,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S06_girders_and_bracing,run2_cb_spacing_5m,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S06_girders_and_bracing,run2_cb_spacing_5m,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.21,206.21 (ratio 0.669)
+S06_girders_and_bracing,run2_cb_spacing_5m,C06,FAIL,Deflection in design check = deflection shown per girder,22.863,51.209
+S06_girders_and_bracing,run2_cb_spacing_5m,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S06_girders_and_bracing,run2_cb_spacing_5m,C08,FAIL,End diaphragm members are designed,0 empty pairs,3 of 3 empty
+S06_girders_and_bracing,run2_cb_spacing_5m,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,5.0,15.0
+S06_girders_and_bracing,run2_cb_spacing_5m,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03490 m2
+S06_girders_and_bracing,run2_cb_spacing_5m,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=22.0 mm)
+S06_girders_and_bracing,run2_cb_spacing_5m,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S06_girders_and_bracing,run3_bracing_E450A,C01,FAIL,Design check uses the real number of girders,4,"6 (G1,G2,G3,G4,G5,G6)"
+S06_girders_and_bracing,run3_bracing_E450A,C02,FAIL,Grillage girder spacing = input girder spacing,2.1,2.133
+S06_girders_and_bracing,run3_bracing_E450A,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S06_girders_and_bracing,run3_bracing_E450A,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S06_girders_and_bracing,run3_bracing_E450A,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.38,206.16 (ratio 0.669)
+S06_girders_and_bracing,run3_bracing_E450A,C06,FAIL,Deflection in design check = deflection shown per girder,22.871,51.225
+S06_girders_and_bracing,run3_bracing_E450A,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S06_girders_and_bracing,run3_bracing_E450A,C08,FAIL,End diaphragm members are designed,0 empty pairs,3 of 3 empty
+S06_girders_and_bracing,run3_bracing_E450A,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,15.0,3.0
+S06_girders_and_bracing,run3_bracing_E450A,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03492 m2
+S06_girders_and_bracing,run3_bracing_E450A,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=22.0 mm)
+S06_girders_and_bracing,run3_bracing_E450A,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S06_girders_and_bracing,baseline_reference,C01,FAIL,Design check uses the real number of girders,4,"6 (G1,G2,G3,G4,G5,G6)"
+S06_girders_and_bracing,baseline_reference,C02,FAIL,Grillage girder spacing = input girder spacing,2.1,2.133
+S06_girders_and_bracing,baseline_reference,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S06_girders_and_bracing,baseline_reference,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S06_girders_and_bracing,baseline_reference,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.38,206.16 (ratio 0.669)
+S06_girders_and_bracing,baseline_reference,C06,FAIL,Deflection in design check = deflection shown per girder,22.871,51.225
+S06_girders_and_bracing,baseline_reference,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S06_girders_and_bracing,baseline_reference,C08,FAIL,End diaphragm members are designed,0 empty pairs,3 of 3 empty
+S06_girders_and_bracing,baseline_reference,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,15.0,3.0
+S06_girders_and_bracing,baseline_reference,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03492 m2
+S06_girders_and_bracing,baseline_reference,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=22.0 mm)
+S06_girders_and_bracing,baseline_reference,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S06_girders_and_bracing,-,M6,FAIL,Cross-bracing steel E 350A -> E 450A changes bracing design,different capacities,identical sections and capacities
+S07_boundaries,span20,C01,FAIL,Design check uses the real number of girders,4,"6 (G1,G2,G3,G4,G5,G6)"
+S07_boundaries,span20,C02,FAIL,Grillage girder spacing = input girder spacing,2.1,2.133
+S07_boundaries,span20,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.51
+S07_boundaries,span20,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S07_boundaries,span20,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),61.2,40.6 (ratio 0.663)
+S07_boundaries,span20,C06,FAIL,Deflection in design check = deflection shown per girder,21.516,60.408
+S07_boundaries,span20,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S07_boundaries,span20,C08,FAIL,End diaphragm members are designed,0 empty pairs,3 of 3 empty
+S07_boundaries,span20,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,10.0,3.0
+S07_boundaries,span20,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.01958 m2,0.01559 m2
+S07_boundaries,span20,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=16.0 mm)
+S07_boundaries,span20,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S07_boundaries,span45,C01,FAIL,Design check uses the real number of girders,4,"6 (G1,G2,G3,G4,G5,G6)"
+S07_boundaries,span45,C02,FAIL,Grillage girder spacing = input girder spacing,2.1,2.133
+S07_boundaries,span45,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S07_boundaries,span45,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S07_boundaries,span45,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),1521.71,1014.64 (ratio 0.667)
+S07_boundaries,span45,C06,FAIL,Deflection in design check = deflection shown per girder,27.709,49.842
+S07_boundaries,span45,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S07_boundaries,span45,C08,FAIL,End diaphragm members are designed,0 empty pairs,3 of 3 empty
+S07_boundaries,span45,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,22.5,3.0
+S07_boundaries,span45,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.08210 m2,0.07658 m2
+S07_boundaries,span45,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=32.0 mm)
+S07_boundaries,span45,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S07_boundaries,cw4.25,C01,FAIL,Design check uses the real number of girders,3,"5 (G1,G2,G3,G4,G5)"
+S07_boundaries,cw4.25,C02,FAIL,Grillage girder spacing = input girder spacing,1.7167,1.767
+S07_boundaries,cw4.25,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S07_boundaries,cw4.25,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S07_boundaries,cw4.25,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.38,185.33 (ratio 0.601)
+S07_boundaries,cw4.25,C06,FAIL,Deflection in design check = deflection shown per girder,16.91,36.297
+S07_boundaries,cw4.25,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S07_boundaries,cw4.25,C08,FAIL,End diaphragm members are designed,0 empty pairs,2 of 2 empty
+S07_boundaries,cw4.25,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,15.0,3.0
+S07_boundaries,cw4.25,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03492 m2
+S07_boundaries,cw4.25,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=22.0 mm)
+S07_boundaries,cw4.25,C12,PASS,Number of girder self-weight lines = number of girders,3,3
+S07_boundaries,cw23.6,C01,FAIL,Design check uses the real number of girders,10,"12 (G1,G2,G3,G4,G5,G6,G7,G8,G9,G10,G11,G12)"
+S07_boundaries,cw23.6,C02,FAIL,Grillage girder spacing = input girder spacing,2.45,2.461
+S07_boundaries,cw23.6,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S07_boundaries,cw23.6,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S07_boundaries,cw23.6,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.38,264.99 (ratio 0.859)
+S07_boundaries,cw23.6,C06,FAIL,Deflection in design check = deflection shown per girder,35.486,81.952
+S07_boundaries,cw23.6,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S07_boundaries,cw23.6,C08,FAIL,End diaphragm members are designed,0 empty pairs,9 of 9 empty
+S07_boundaries,cw23.6,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,15.0,3.0
+S07_boundaries,cw23.6,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03492 m2
+S07_boundaries,cw23.6,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=22.0 mm)
+S07_boundaries,cw23.6,C12,PASS,Number of girder self-weight lines = number of girders,10,10
+S07_boundaries,skew+15,C01,FAIL,Design check uses the real number of girders,4,6 (G1)
+S07_boundaries,skew+15,C02,FAIL,Grillage girder spacing = input girder spacing,2.1,2.133
+S07_boundaries,skew+15,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S07_boundaries,skew+15,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S07_boundaries,skew+15,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.38,204.73 (ratio 0.664)
+S07_boundaries,skew+15,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S07_boundaries,skew+15,C08,PASS,End diaphragm members are designed,0 empty pairs,0 of 3 empty
+S07_boundaries,skew+15,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,15.0,3.0
+S07_boundaries,skew+15,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03492 m2
+S07_boundaries,skew+15,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=22.0 mm)
+S07_boundaries,skew+15,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S07_boundaries,skew-15,C01,FAIL,Design check uses the real number of girders,4,6 (G1)
+S07_boundaries,skew-15,C02,FAIL,Grillage girder spacing = input girder spacing,2.1,2.133
+S07_boundaries,skew-15,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S07_boundaries,skew-15,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S07_boundaries,skew-15,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.38,204.73 (ratio 0.664)
+S07_boundaries,skew-15,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S07_boundaries,skew-15,C08,PASS,End diaphragm members are designed,0 empty pairs,0 of 3 empty
+S07_boundaries,skew-15,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,15.0,3.0
+S07_boundaries,skew-15,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03492 m2
+S07_boundaries,skew-15,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=22.0 mm)
+S07_boundaries,skew-15,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S07_boundaries,median_yes_cw15,C01,FAIL,Design check uses the real number of girders,7,"9 (G1,G2,G3,G4,G5,G6,G7,G8,G9)"
+S07_boundaries,median_yes_cw15,C02,FAIL,Grillage girder spacing = input girder spacing,4.5857,4.602
+S07_boundaries,median_yes_cw15,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S07_boundaries,median_yes_cw15,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S07_boundaries,median_yes_cw15,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.38,260.74 (ratio 0.846)
+S07_boundaries,median_yes_cw15,C06,FAIL,Deflection in design check = deflection shown per girder,50.815,130.958
+S07_boundaries,median_yes_cw15,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S07_boundaries,median_yes_cw15,C08,FAIL,End diaphragm members are designed,0 empty pairs,6 of 6 empty
+S07_boundaries,median_yes_cw15,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,15.0,3.0
+S07_boundaries,median_yes_cw15,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03492 m2
+S07_boundaries,median_yes_cw15,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=22.0 mm)
+S07_boundaries,median_yes_cw15,C12,PASS,Number of girder self-weight lines = number of girders,7,7
+S07_boundaries,footpath_both,C01,FAIL,Design check uses the real number of girders,5,"7 (G1,G2,G3,G4,G5,G6,G7)"
+S07_boundaries,footpath_both,C02,FAIL,Grillage girder spacing = input girder spacing,2.43,2.405
+S07_boundaries,footpath_both,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S07_boundaries,footpath_both,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S07_boundaries,footpath_both,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.38,221.11 (ratio 0.717)
+S07_boundaries,footpath_both,C06,FAIL,Deflection in design check = deflection shown per girder,26.511,61.103
+S07_boundaries,footpath_both,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S07_boundaries,footpath_both,C08,FAIL,End diaphragm members are designed,0 empty pairs,4 of 4 empty
+S07_boundaries,footpath_both,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,15.0,3.0
+S07_boundaries,footpath_both,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03492 m2
+S07_boundaries,footpath_both,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=22.0 mm)
+S07_boundaries,footpath_both,C12,PASS,Number of girder self-weight lines = number of girders,5,5
+S08_stale_after_failure,run1_A,C01,FAIL,Design check uses the real number of girders,4,"6 (G1,G2,G3,G4,G5,G6)"
+S08_stale_after_failure,run1_A,C02,FAIL,Grillage girder spacing = input girder spacing,2.1,2.133
+S08_stale_after_failure,run1_A,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S08_stale_after_failure,run1_A,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S08_stale_after_failure,run1_A,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.38,206.16 (ratio 0.669)
+S08_stale_after_failure,run1_A,C06,FAIL,Deflection in design check = deflection shown per girder,22.871,51.225
+S08_stale_after_failure,run1_A,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S08_stale_after_failure,run1_A,C08,FAIL,End diaphragm members are designed,0 empty pairs,3 of 3 empty
+S08_stale_after_failure,run1_A,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,15.0,3.0
+S08_stale_after_failure,run1_A,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03492 m2
+S08_stale_after_failure,run1_A,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=22.0 mm)
+S08_stale_after_failure,run1_A,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S08_stale_after_failure,-,R8,PASS,After a failed design no results from the previous run remain,output_dict empty,"status=error (ValueError: Girder spacing must be positive, got 0.0.), output_dict still has 0 keys (previous run had 1066)"
+S08_stale_after_failure,run3_A,C01,FAIL,Design check uses the real number of girders,4,"6 (G1,G2,G3,G4,G5,G6)"
+S08_stale_after_failure,run3_A,C02,FAIL,Grillage girder spacing = input girder spacing,2.1,2.133
+S08_stale_after_failure,run3_A,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S08_stale_after_failure,run3_A,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S08_stale_after_failure,run3_A,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.38,206.16 (ratio 0.669)
+S08_stale_after_failure,run3_A,C06,FAIL,Deflection in design check = deflection shown per girder,22.871,51.225
+S08_stale_after_failure,run3_A,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S08_stale_after_failure,run3_A,C08,FAIL,End diaphragm members are designed,0 empty pairs,3 of 3 empty
+S08_stale_after_failure,run3_A,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,15.0,3.0
+S08_stale_after_failure,run3_A,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03492 m2
+S08_stale_after_failure,run3_A,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=22.0 mm)
+S08_stale_after_failure,run3_A,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S08_stale_after_failure,-,R9,PASS,A after a failed run identical to first A,0 differences,"0 differences, e.g. []"
+S09_osi_bad_material,span abc,U6,PASS,.osi with span abc rejected,reject,rejected: geometry.span: Span must be a numeric value.
+S09_osi_bad_material,span 19.9,U6,PASS,.osi with span 19.9 rejected,reject,rejected: geometry.span: Span must be between 20.0 m and 45.0 m (software limitation).
+S09_osi_bad_material,span 100,U6,PASS,.osi with span 100 rejected,reject,rejected: geometry.span: Span must be between 20.0 m and 45.0 m (software limitation).
+S09_osi_bad_material,carriageway 30,U6,PASS,.osi with carriageway 30 rejected,reject,rejected: geometry.carriageway_width: Carriageway width exceeds 23.6 m (software limitation).
+S09_osi_bad_material,skew 30,U6,PASS,.osi with skew 30 rejected,reject,rejected: geometry.skew_angle: Skew angle must be between -15.0° and 15.0°.
+S09_osi_bad_material,no_of_girders 1,U6,PASS,.osi with no_of_girders 1 rejected,reject,rejected: typical_section.no_of_girders: No. of girders is outside the practical range allowed in th
+S09_osi_bad_material,girder_spacing 0,U6,PASS,.osi with girder_spacing 0 rejected,reject,rejected: typical_section.girder_spacing: Girder spacing is outside the practical range allowed in t
+S09_osi_bad_material,deck_thickness 20 mm,U6,PASS,.osi with deck_thickness 20 mm rejected,reject,rejected: typical_section.deck_thickness: Deck thickness must be at least 100 mm.; design_options.sh
+S09_osi_bad_material,design_mode Foo,U6,PASS,.osi with design_mode Foo rejected,reject,"rejected: geometry.design_mode: 'Foo' is not a valid design mode (expected one of ['Custom', 'Manual"
+S09_osi_bad_material,custom steel fy 5000 MPa,U6,FAIL,.osi with custom steel fy 5000 MPa rejected,reject,LOADED
+S09_osi_bad_material,girder density 999 (custom),U6,FAIL,.osi with girder density 999 (custom) rejected,reject,LOADED
+S09_osi_bad_material,deck fck 500 (custom),U6,FAIL,.osi with deck fck 500 (custom) rejected,reject,LOADED
+S09_osi_bad_material,girder grade 'E 999X',U6,FAIL,.osi with girder grade 'E 999X' rejected,reject,LOADED
+S09_osi_bad_material,valid file (TC00),U6,PASS,.osi with valid file (TC00) loaded,load,LOADED
+S09_osi_bad_material,run1_fy5000,C01,FAIL,Design check uses the real number of girders,4,"6 (G1,G2,G3,G4,G5,G6)"
+S09_osi_bad_material,run1_fy5000,C02,FAIL,Grillage girder spacing = input girder spacing,2.1,2.133
+S09_osi_bad_material,run1_fy5000,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S09_osi_bad_material,run1_fy5000,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S09_osi_bad_material,run1_fy5000,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.38,206.16 (ratio 0.669)
+S09_osi_bad_material,run1_fy5000,C06,FAIL,Deflection in design check = deflection shown per girder,22.871,51.225
+S09_osi_bad_material,run1_fy5000,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S09_osi_bad_material,run1_fy5000,C08,FAIL,End diaphragm members are designed,0 empty pairs,3 of 3 empty
+S09_osi_bad_material,run1_fy5000,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,15.0,3.0
+S09_osi_bad_material,run1_fy5000,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03492 m2
+S09_osi_bad_material,run1_fy5000,C11,INFO,Design fy = girder material fy,5000.0,5000.0 (tf=22.0 mm)
+S09_osi_bad_material,run1_fy5000,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S09_osi_bad_material,-,V1,FAIL,Design refuses fy = 5000 MPa loaded from .osi,error / refused,"designed with fy=5000.0 MPa, status FAIL"
+S10_deck_grade,deck_M45,C01,FAIL,Design check uses the real number of girders,4,"6 (G1,G2,G3,G4,G5,G6)"
+S10_deck_grade,deck_M45,C02,FAIL,Grillage girder spacing = input girder spacing,2.1,2.133
+S10_deck_grade,deck_M45,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S10_deck_grade,deck_M45,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S10_deck_grade,deck_M45,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.38,206.16 (ratio 0.669)
+S10_deck_grade,deck_M45,C06,FAIL,Deflection in design check = deflection shown per girder,22.871,51.225
+S10_deck_grade,deck_M45,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S10_deck_grade,deck_M45,C08,FAIL,End diaphragm members are designed,0 empty pairs,3 of 3 empty
+S10_deck_grade,deck_M45,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,15.0,3.0
+S10_deck_grade,deck_M45,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03492 m2
+S10_deck_grade,deck_M45,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=22.0 mm)
+S10_deck_grade,deck_M45,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S10_deck_grade,deck_M50,C01,FAIL,Design check uses the real number of girders,4,"6 (G1,G2,G3,G4,G5,G6)"
+S10_deck_grade,deck_M50,C02,FAIL,Grillage girder spacing = input girder spacing,2.1,2.133
+S10_deck_grade,deck_M50,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S10_deck_grade,deck_M50,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S10_deck_grade,deck_M50,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.38,206.16 (ratio 0.669)
+S10_deck_grade,deck_M50,C06,FAIL,Deflection in design check = deflection shown per girder,22.871,51.225
+S10_deck_grade,deck_M50,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S10_deck_grade,deck_M50,C08,FAIL,End diaphragm members are designed,0 empty pairs,3 of 3 empty
+S10_deck_grade,deck_M50,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,15.0,3.0
+S10_deck_grade,deck_M50,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03492 m2
+S10_deck_grade,deck_M50,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=22.0 mm)
+S10_deck_grade,deck_M50,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S10_deck_grade,-,D1,FAIL,Exposure class does not change when only the concrete grade changes,Very Severe for every grade,"M40->Very Severe (50 mm), M45->Extreme (75 mm), M50->Extreme (75 mm)"
+S11_open_additional_inputs_no_edit,baseline_reference,C01,FAIL,Design check uses the real number of girders,4,"6 (G1,G2,G3,G4,G5,G6)"
+S11_open_additional_inputs_no_edit,baseline_reference,C02,FAIL,Grillage girder spacing = input girder spacing,2.1,2.133
+S11_open_additional_inputs_no_edit,baseline_reference,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S11_open_additional_inputs_no_edit,baseline_reference,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S11_open_additional_inputs_no_edit,baseline_reference,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.38,206.16 (ratio 0.669)
+S11_open_additional_inputs_no_edit,baseline_reference,C06,FAIL,Deflection in design check = deflection shown per girder,22.871,51.225
+S11_open_additional_inputs_no_edit,baseline_reference,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S11_open_additional_inputs_no_edit,baseline_reference,C08,FAIL,End diaphragm members are designed,0 empty pairs,3 of 3 empty
+S11_open_additional_inputs_no_edit,baseline_reference,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,15.0,3.0
+S11_open_additional_inputs_no_edit,baseline_reference,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03492 m2
+S11_open_additional_inputs_no_edit,baseline_reference,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=22.0 mm)
+S11_open_additional_inputs_no_edit,baseline_reference,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S11_open_additional_inputs_no_edit,opened_and_saved_no_edits,C01,FAIL,Design check uses the real number of girders,4,"6 (G1,G2,G3,G4,G5,G6)"
+S11_open_additional_inputs_no_edit,opened_and_saved_no_edits,C02,FAIL,Grillage girder spacing = input girder spacing,2.1,2.133
+S11_open_additional_inputs_no_edit,opened_and_saved_no_edits,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S11_open_additional_inputs_no_edit,opened_and_saved_no_edits,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S11_open_additional_inputs_no_edit,opened_and_saved_no_edits,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.21,206.21 (ratio 0.669)
+S11_open_additional_inputs_no_edit,opened_and_saved_no_edits,C06,FAIL,Deflection in design check = deflection shown per girder,22.863,51.209
+S11_open_additional_inputs_no_edit,opened_and_saved_no_edits,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S11_open_additional_inputs_no_edit,opened_and_saved_no_edits,C08,FAIL,End diaphragm members are designed,0 empty pairs,3 of 3 empty
+S11_open_additional_inputs_no_edit,opened_and_saved_no_edits,C09,PASS,Cross-bracing spacing used = Additional Input spacing,15.0,15.0
+S11_open_additional_inputs_no_edit,opened_and_saved_no_edits,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03490 m2
+S11_open_additional_inputs_no_edit,opened_and_saved_no_edits,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=22.0 mm)
+S11_open_additional_inputs_no_edit,opened_and_saved_no_edits,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S11_open_additional_inputs_no_edit,-,A3,FAIL,Design unchanged after opening Additional Inputs and saving with no edits,"cross_bracing_spacing_m=3.0, chi_LT=1.0, Mb_kNm=7986.443, max_dcr=1.577, overall_status=FAIL","cross_bracing_spacing_m=15.0, chi_LT=0.3282, Mb_kNm=2621.07, max_dcr=1.5765, overall_status=FAIL"
+S11_open_additional_inputs_no_edit,-,A4,FAIL,Girder area unchanged after opening Additional Inputs (no edits),0.03492,0.0349

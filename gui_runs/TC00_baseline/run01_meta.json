@@ -1,0 +1,10 @@
+{
+ "duration_s": 24.74,
+ "n_output_keys": 1066,
+ "n_ui_input_keys": 576,
+ "run": 1,
+ "session_label": "TC00_baseline",
+ "started": "2026-11-13T10:31:22",
+ "status": "ok",
+ "traceback": null
+}

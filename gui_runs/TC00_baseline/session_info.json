@@ -1,0 +1,21 @@
+{
+ "conda_env": "osdagbridge-env",
+ "cwd": "C:\\Users\\Aditya\\Projects\\OsdagBridge\\src",
+ "executable": "C:\\Users\\Aditya\\miniconda3\\envs\\osdagbridge-env\\python.exe",
+ "git_error": "argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'NoneType'",
+ "label": "TC00_baseline",
+ "pkg_PySide6": "6.11.3 ",
+ "pkg_matplotlib": "3.11.2",
+ "pkg_numpy": "2.5.4",
+ "pkg_openseespy": "3.8.0.0",
+ "pkg_opsvis": "1.3.7",
+ "pkg_osdagbridge": "1.0.0",
+ "pkg_pandas": "3.1.1",
+ "pkg_pydantic": "2.14.3",
+ "pkg_scipy": "1.18.1",
+ "pkg_shapely": "2.2.0",
+ "pkg_xarray": "2026.9.0",
+ "platform": "Windows-11-10.0.26300-SP0",
+ "python": "3.12.16 | packaged by conda-forge | (main, Oct 26 2026, 11:29:01) [MSC v.1944 64 bit (AMD64)]",
+ "started": "2026-11-13T10:30:55"
+}

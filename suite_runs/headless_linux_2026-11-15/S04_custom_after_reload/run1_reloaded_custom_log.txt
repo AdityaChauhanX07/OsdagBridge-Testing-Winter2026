@@ -1,0 +1,215 @@
+Bridge width from layout: 8.5 m
+Self weight line load @ z=1.050 m: 2741.12 N/m (A=0.03492 m²)
+Self weight line load @ z=3.183 m: 2741.12 N/m (A=0.03492 m²)
+Self weight line load @ z=5.317 m: 2741.12 N/m (A=0.03492 m²)
+Self weight line load @ z=7.450 m: 2741.12 N/m (A=0.03492 m²)
+Deck slab load magnitude: 6250.00 N/m²
+Wearing course load magnitude: 1250.00 N/m²
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:607: UserWarning: No footpath component in layout; skipping footpath load creation
+  warnings.warn("No footpath component in layout; skipping footpath load creation")
+Crash barrier line load magnitude: 6540.00 N/m
+[Crash barrier left] line load: start(x=0.000, z=0.250)  end(x=30.000, z=0.250)
+[Crash barrier right] line load: start(x=0.000, z=8.250)  end(x=30.000, z=8.250)
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:771: UserWarning: No railing component in layout; skipping railing load creation
+  warnings.warn("No railing component in layout; skipping railing load creation")
+Median line load magnitude: 4000.00 N/m
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:854: UserWarning: No median component in layout; skipping median load creation
+  warnings.warn("No median component in layout; skipping median load creation")
+Wind loads (IRC:6-2017): Pz=463.7 N/m²  FT=14.79 kN  FT/m=0.493 kN/m  FL=14.4957 N/m²  FV=695.55 N/m²
+Seismic inputs: DL=2241.4 kN  Governing LL=0.0 kN
+Seismic loads (IRC:6-2017 Cl.218): Z=0.16  Ah=0.2240  Av=0.1493
+  Feq_X=502.08 kN  Feq_Z=502.08 kN  Feq_Y=334.65 kN
+Governing LL: Case2 1xClass70R  (max |Mz_i| = 921.66 kNm)
+ULS Basic combinations:
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2381: UserWarning: BASIC_1: 'thermal_load' load case not available — create it before calling create_uls_combinations().
+  warnings.warn(
+  Created: BASIC_1: 1.35DL + 1.75DW + 1.5LL + 0.9WL       DL=1.35(adding)  Surf=1.75  live_load leading
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2381: UserWarning: BASIC_2: 'thermal_load' load case not available — create it before calling create_uls_combinations().
+  warnings.warn(
+  Created: BASIC_2: 1.35DL + 1.75DW + 1.15LL + 1.5WL      DL=1.35(adding)  Surf=1.75  wind_load leading
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2381: UserWarning: BASIC_3: 'thermal_load' load case not available — create it before calling create_uls_combinations().
+  warnings.warn(
+  Created: BASIC_3: 1.35DL + 1.75DW + 1.15LL + 0.9WL      DL=1.35(adding)  Surf=1.75  thermal_load leading
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2381: UserWarning: BASIC_4: 'thermal_load' load case not available — create it before calling create_uls_combinations().
+  warnings.warn(
+  Created: BASIC_4: 1.0DL + 1.0DW + 1.5LL + 0.9WL         DL=1.0(relieving)  Surf=1.0  live_load leading
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2381: UserWarning: BASIC_5: 'thermal_load' load case not available — create it before calling create_uls_combinations().
+  warnings.warn(
+  Created: BASIC_5: 1.0DL + 1.0DW + 1.15LL + 1.5WL        DL=1.0(relieving)  Surf=1.0  wind_load leading
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2381: UserWarning: BASIC_6: 'thermal_load' load case not available — create it before calling create_uls_combinations().
+  warnings.warn(
+  Created: BASIC_6: 1.0DL + 1.0DW + 1.15LL + 0.9WL        DL=1.0(relieving)  Surf=1.0  thermal_load leading
+
+ULS Accidental combinations:
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2381: UserWarning: ACCIDENTAL_1: 'thermal_load' load case not available — create it before calling create_uls_combinations().
+  warnings.warn(
+  Created: ACCIDENTAL_1: 1.0DL + 1.0DW + 0.75LL           DL=1.0  vehicle_collision(no lc)  live_load leading
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2381: UserWarning: ACCIDENTAL_2: 'thermal_load' load case not available — create it before calling create_uls_combinations().
+  warnings.warn(
+  Created: ACCIDENTAL_2: 1.0DL + 1.0DW + 0.75LL           DL=1.0  barge_impact(no lc)  live_load leading
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2381: UserWarning: ACCIDENTAL_3: 'thermal_load' load case not available — create it before calling create_uls_combinations().
+  warnings.warn(
+  Created: ACCIDENTAL_3: 1.0DL + 1.0DW + 0.75LL           DL=1.0  floating_bodies(no lc)  live_load leading
+
+ULS Seismic combinations:
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2381: UserWarning: SEISMIC_1: 'thermal_load' load case not available — create it before calling create_uls_combinations().
+  warnings.warn(
+  Created: SEISMIC_1: 1.35DL + 1.75DW + 0.2LL + 1.5EL     DL=1.35(adding)  EL=1.5(service)
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2381: UserWarning: SEISMIC_2: 'thermal_load' load case not available — create it before calling create_uls_combinations().
+  warnings.warn(
+  Created: SEISMIC_2: 1.35DL + 1.75DW + 0.2LL + 0.75EL    DL=1.35(adding)  EL=0.75(construction)
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2381: UserWarning: SEISMIC_3: 'thermal_load' load case not available — create it before calling create_uls_combinations().
+  warnings.warn(
+  Created: SEISMIC_3: 1.0DL + 1.0DW + 0.2LL + 1.5EL       DL=1.0(relieving)  EL=1.5(service)
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2381: UserWarning: SEISMIC_4: 'thermal_load' load case not available — create it before calling create_uls_combinations().
+  warnings.warn(
+  Created: SEISMIC_4: 1.0DL + 1.0DW + 0.2LL + 0.75EL      DL=1.0(relieving)  EL=0.75(construction)
+
+Total ULS combinations created: 13
+SLS Rare combinations:
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2576: UserWarning: SLS_RARE_1: 'thermal_load' load case not available — create it before calling create_sls_combinations().
+  warnings.warn(
+  Created: SLS_RARE_1: 1.0DL + 1.2DW + 1.0LL + 0.6WL      DL=1.0  Surf=1.2(adding)  live_load leading
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2576: UserWarning: SLS_RARE_2: 'thermal_load' load case not available — create it before calling create_sls_combinations().
+  warnings.warn(
+  Created: SLS_RARE_2: 1.0DL + 1.2DW + 0.75LL + 1.0WL     DL=1.0  Surf=1.2(adding)  wind_load leading
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2576: UserWarning: SLS_RARE_3: 'thermal_load' load case not available — create it before calling create_sls_combinations().
+  warnings.warn(
+  Created: SLS_RARE_3: 1.0DL + 1.2DW + 0.75LL + 0.6WL     DL=1.0  Surf=1.2(adding)  thermal_load leading
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2576: UserWarning: SLS_RARE_4: 'thermal_load' load case not available — create it before calling create_sls_combinations().
+  warnings.warn(
+  Created: SLS_RARE_4: 1.0DL + 1.0DW + 1.0LL + 0.6WL      DL=1.0  Surf=1.0(relieving)  live_load leading
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2576: UserWarning: SLS_RARE_5: 'thermal_load' load case not available — create it before calling create_sls_combinations().
+  warnings.warn(
+  Created: SLS_RARE_5: 1.0DL + 1.0DW + 0.75LL + 1.0WL     DL=1.0  Surf=1.0(relieving)  wind_load leading
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2576: UserWarning: SLS_RARE_6: 'thermal_load' load case not available — create it before calling create_sls_combinations().
+  warnings.warn(
+  Created: SLS_RARE_6: 1.0DL + 1.0DW + 0.75LL + 0.6WL     DL=1.0  Surf=1.0(relieving)  thermal_load leading
+
+SLS Frequent combinations:
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2576: UserWarning: SLS_FREQUENT_1: 'thermal_load' load case not available — create it before calling create_sls_combinations().
+  warnings.warn(
+  Created: SLS_FREQUENT_1: 1.0DL + 1.2DW + 0.75LL + 0.5WL  DL=1.0  Surf=1.2(adding)  live_load leading
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2576: UserWarning: SLS_FREQUENT_2: 'thermal_load' load case not available — create it before calling create_sls_combinations().
+  warnings.warn(
+  Created: SLS_FREQUENT_2: 1.0DL + 1.2DW + 0.2LL + 0.6WL  DL=1.0  Surf=1.2(adding)  wind_load leading
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2576: UserWarning: SLS_FREQUENT_3: 'thermal_load' load case not available — create it before calling create_sls_combinations().
+  warnings.warn(
+  Created: SLS_FREQUENT_3: 1.0DL + 1.2DW + 0.2LL + 0.5WL  DL=1.0  Surf=1.2(adding)  thermal_load leading
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2576: UserWarning: SLS_FREQUENT_4: 'thermal_load' load case not available — create it before calling create_sls_combinations().
+  warnings.warn(
+  Created: SLS_FREQUENT_4: 1.0DL + 1.0DW + 0.75LL + 0.5WL  DL=1.0  Surf=1.0(relieving)  live_load leading
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2576: UserWarning: SLS_FREQUENT_5: 'thermal_load' load case not available — create it before calling create_sls_combinations().
+  warnings.warn(
+  Created: SLS_FREQUENT_5: 1.0DL + 1.0DW + 0.2LL + 0.6WL  DL=1.0  Surf=1.0(relieving)  wind_load leading
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2576: UserWarning: SLS_FREQUENT_6: 'thermal_load' load case not available — create it before calling create_sls_combinations().
+  warnings.warn(
+  Created: SLS_FREQUENT_6: 1.0DL + 1.0DW + 0.2LL + 0.5WL  DL=1.0  Surf=1.0(relieving)  thermal_load leading
+
+SLS Quasi-permanent combinations:
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2576: UserWarning: SLS_QP_1: 'thermal_load' load case not available — create it before calling create_sls_combinations().
+  warnings.warn(
+  Created: SLS_QP_1: 1.0DL + 1.2DW                        DL=1.0  Surf=1.2(adding)  TL=0.5
+~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/analyser.py:2576: UserWarning: SLS_QP_2: 'thermal_load' load case not available — create it before calling create_sls_combinations().
+  warnings.warn(
+  Created: SLS_QP_2: 1.0DL + 1.0DW                        DL=1.0  Surf=1.0(relieving)  TL=0.5
+
+Total SLS combinations created: 14
+Envelope ULS (worst signed magnitude) over 13 combinations: peak |Mz_i|=2224.95 kNm  peak |dy|=56.53 mm
+Envelope SLS (worst signed magnitude) over 14 combinations: peak |Mz_i|=2115.42 kNm  peak |dy|=53.59 mm
+
+------------------------------------------------------------
+  PLATE GIRDER BRIDGE - DESIGN SUMMARY
+------------------------------------------------------------
+  Span                  : 30.0 m
+  Overall width         : 8.400 m
+  No. of girders        : 4
+  Girder spacing        : 2100.0 mm
+  Deck overhang         : 1050.0 mm
+
+------------------------------------------------------------
+  GIRDER G1 CROSS-SECTION (mm) / PROPERTIES (SI)
+------------------------------------------------------------
+  Total depth      D    : 1670.0
+  Web depth        d_w  : 1628.0
+  Web thickness    t_w  : 10.0
+  Top flange width B_ft : 510.0
+  Top flange thk   T_ft : 22.0
+  Bot flange width B_fb : 510.0
+  Bot flange thk   T_fb : 22.0
+  Area   A  : 0.034919 m^2
+  I_z       : 0.017654 m^4
+  I_y       : 0.000470 m^4
+  I_t (J)   : 0.000004 m^3
+------------------------------------------------------------
+------------------------------------------------------------
+  GIRDER G2 CROSS-SECTION (mm) / PROPERTIES (SI)
+------------------------------------------------------------
+  Total depth      D    : 1670.0
+  Web depth        d_w  : 1628.0
+  Web thickness    t_w  : 10.0
+  Top flange width B_ft : 510.0
+  Top flange thk   T_ft : 22.0
+  Bot flange width B_fb : 510.0
+  Bot flange thk   T_fb : 22.0
+  Area   A  : 0.034919 m^2
+  I_z       : 0.017654 m^4
+  I_y       : 0.000470 m^4
+  I_t (J)   : 0.000004 m^3
+------------------------------------------------------------
+------------------------------------------------------------
+  GIRDER G3 CROSS-SECTION (mm) / PROPERTIES (SI)
+------------------------------------------------------------
+  Total depth      D    : 1670.0
+  Web depth        d_w  : 1628.0
+  Web thickness    t_w  : 10.0
+  Top flange width B_ft : 510.0
+  Top flange thk   T_ft : 22.0
+  Bot flange width B_fb : 510.0
+  Bot flange thk   T_fb : 22.0
+  Area   A  : 0.034919 m^2
+  I_z       : 0.017654 m^4
+  I_y       : 0.000470 m^4
+  I_t (J)   : 0.000004 m^3
+------------------------------------------------------------
+------------------------------------------------------------
+  GIRDER G4 CROSS-SECTION (mm) / PROPERTIES (SI)
+------------------------------------------------------------
+  Total depth      D    : 1670.0
+  Web depth        d_w  : 1628.0
+  Web thickness    t_w  : 10.0
+  Top flange width B_ft : 510.0
+  Top flange thk   T_ft : 22.0
+  Bot flange width B_fb : 510.0
+  Bot flange thk   T_fb : 22.0
+  Area   A  : 0.034919 m^2
+  I_z       : 0.017654 m^4
+  I_y       : 0.000470 m^4
+  I_t (J)   : 0.000004 m^3
+------------------------------------------------------------
+============================================================
+  IRC 22:2015 DESIGN CHECK PIPELINE
+============================================================
+
+[Step 1] Loading bridge configuration ...
+Traceback (most recent call last):
+  File "~/OsdagBridge-Testing/scripts/run_test_suite.py", line 632, in design
+    s.backend.design()
+  File "~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/plategirderbridge.py", line 757, in design
+    self._run_stage("5", self._run_dcr_checks, dataset)
+  File "~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/plategirderbridge.py", line 595, in _run_stage
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/plategirderbridge.py", line 2297, in _run_dcr_checks
+    _, engine, design_results = run_design_check(
+                                ^^^^^^^^^^^^^^^^^
+  File "~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/designer.py", line 3235, in run_design_check
+    config = BridgeConfig.from_plate_girder_bridge(plate_girder_bridge)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/designer.py", line 332, in from_plate_girder_bridge
+    fck = float(_req(bridge.input_dict.get(KEY_MATERIAL_DECK_FCK),
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "~/nidhikhare12/osdagbridge/src/osdagbridge/core/bridge_types/plate_girder/designer.py", line 95, in _req
+    raise ValueError(
+ValueError: 'material.deck.fck' is required but was not found in 'input_dict'. Populate 'material.deck.fck' before running the design check.
+
