@@ -1,0 +1,18 @@
+\begin{tabular}{@{}llrrrl@{}}
+\toprule
+ID & Check & Pass & Fail & Info & Issue\\
+\midrule
+C01 & Design check uses the real number of girders & 0 & 32 & 0 & \issue{03}\\
+C02 & Grillage girder spacing = input girder spacing & 0 & 32 & 0 & \href{https://github.com/Nidhikhare12/OsdagBridge/issues/74}{\#74}\\
+C03 & Steel self-weight uses the girder material density & 0 & 32 & 0 & \href{https://github.com/Nidhikhare12/OsdagBridge/issues/20}{\#20}\\
+C04 & Deck slab load uses the deck material density & 0 & 32 & 0 & \href{https://github.com/Nidhikhare12/OsdagBridge/issues/41}{\#41}\\
+C05 & Girder SW moment = $wL^2/8$ (within 5\%) & 0 & 32 & 0 & \issue{03}\\
+C06 & Deflection: design check = per-girder output/report & 0 & 30 & 0 & \issue{04}\\
+C07 & Thermal load case exists & 0 & 32 & 0 & \href{https://github.com/Nidhikhare12/OsdagBridge/issues/92}{\#92}\\
+C08 & End-diaphragm members designed & 2 & 30 & 0 & \href{https://github.com/Nidhikhare12/OsdagBridge/issues/72}{\#72}\\
+C09 & Cross-bracing spacing used = spacing shown & 2 & 30 & 0 & \issue{01}\\
+C10 & Girder area: analysis = design check & 0 & 32 & 0 & \issue{06}\\
+C11 & Design $f_y$ = material $f_y$ (info: thickness) & 0 & 0 & 32 & \issue{07}\\
+C12 & One self-weight line per girder & 32 & 0 & 0 & --\\
+\bottomrule
+\end{tabular}

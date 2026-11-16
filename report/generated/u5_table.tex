@@ -1,0 +1,21 @@
+\begin{tabular}{@{}llp{0.5\linewidth}l@{}}
+\toprule
+Field & Typed & Pop-up shown & Field becomes\\
+\midrule
+span & 19.9 & Span must be between 20.0 m and 45.0 m (software limitation). & 20.0\\
+span & 45.1 & Span must be between 20.0 m and 45.0 m (software limitation). & 45.0\\
+span & 0 & Span must be between 20.0 m and 45.0 m (software limitation). & 20.0\\
+span & -5 & Span must be between 20.0 m and 45.0 m (software limitation). & 20.0\\
+span & abc & Span must be a numeric value. & 20.0\\
+span & 20 & (none - accepted) & 20\\
+span & 45 & (none - accepted) & 45\\
+carriageway\_width & 4.2 & Minimum carriageway width required is 4.25 m as per IRC 5:2015 Clause 104.3.1. & 4.25\\
+carriageway\_width & 23.7 & Carriageway width exceeds 23.6 m (software limitation). & 23.6\\
+carriageway\_width & 4.25 & (none - accepted) & 4.25\\
+carriageway\_width & 23.6 & (none - accepted) & 23.6\\
+skew\_angle & 16 & Skew angle must be between -15.0$^\circ$ and 15.0$^\circ$. & 15.0\\
+skew\_angle & -16 & Skew angle must be between -15.0$^\circ$ and 15.0$^\circ$. & -15.0\\
+skew\_angle & 15 & (none - accepted) & 15\\
+skew\_angle & -15 & (none - accepted) & -15\\
+\bottomrule
+\end{tabular}

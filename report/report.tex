@@ -1,0 +1,253 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{booktabs,longtable,array,tabularx}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+\setlist{itemsep=2pt,topsep=4pt}
+\definecolor{ok}{HTML}{2E7D32}\definecolor{bad}{HTML}{C62828}\definecolor{inf}{HTML}{1565C0}
+\newcommand{\pass}{\textcolor{ok}{\textbf{PASS}}}
+\newcommand{\fail}{\textcolor{bad}{\textbf{FAIL}}}
+\newcommand{\info}{\textcolor{inf}{\textbf{INFO}}}
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\upstream}{\href{https://github.com/Nidhikhare12/OsdagBridge}{Nidhikhare12/OsdagBridge}}
+\newcommand{\repo}{\url{https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026}}
+% --- issue numbers: draft id -> GitHub number (filled in after posting) -------------
+\newcommand{\setissue}[2]{\expandafter\def\csname issnum#1\endcsname{#2}}
+\newcommand{\issue}[1]{\ifcsname issnum#1\endcsname\href{https://github.com/Nidhikhare12/OsdagBridge/issues/\csname issnum#1\endcsname}{\#\csname issnum#1\endcsname}\else draft~#1\fi}
+\newcommand{\gh}[1]{\href{https://github.com/Nidhikhare12/OsdagBridge/issues/#1}{\##1}}
+\input{issue_numbers.tex}
+\IfFileExists{generated/runs_table.tex}{}{\typeout{Run make_report_tables.py first}}
+\newcommand{\shot}[2]{\IfFileExists{figures/#1}{\begin{figure}[h]\centering\includegraphics[width=0.92\linewidth]{figures/#1}\caption{#2}\end{figure}}{\par\noindent\fbox{\parbox{0.95\linewidth}{\small Screenshot \code{#1}: #2}}\par}}
+
+\pagestyle{fancy}\fancyhf{}\lhead{\small OsdagBridge Software Testing \& Issue Reporting}\rhead{\small Aditya Chauhan}\cfoot{\thepage}
+
+\begin{document}
+\begin{titlepage}
+\centering
+\vspace*{3cm}
+{\LARGE\bfseries OsdagBridge -- Software Testing \& Issue Reporting\par}
+\vspace{0.6cm}
+{\large FOSSEE Winter Internship 2026 -- Screening Task (Non-Civil)\par}
+\vspace{2cm}
+{\large Aditya Chauhan\par}
+{Rhodes College\par}
+{GitHub: \href{https://github.com/AdityaChauhanX07}{AdityaChauhanX07}\par}
+\vspace{2cm}
+\begin{tabular}{@{}ll@{}}
+Software under test & \upstream, branch \code{dev}\\
+Commit & \code{d74f56dd7f22925fb8148cabf5740ed8d1e39ff3} (unmodified)\\
+Module & Plate Girder Bridge (desktop app, PySide6)\\
+Evidence repository & \repo\\
+Date & \today
+\end{tabular}
+\vfill
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+%=====================================================================
+\section{Summary}
+I tested the OsdagBridge Plate Girder module in two complementary ways:
+\begin{enumerate}
+\item \textbf{Manual GUI testing on Windows 11}, with a small launcher (\code{run_logged.py}). It records, for every \emph{Design} click, the input dictionary the UI sends, the backend's normalised input, the full output dictionary, the console log and a diff against the previous run. OsdagBridge's source is not modified.
+\item \textbf{An automated test suite} (\code{run_test_suite.py}). It drives the \emph{real} homepage \code{InputDock}, the real \emph{Additional Inputs} dialog, the real custom-material dialog, \code{.osi} save/load and the backend off-screen. The dictionary it builds matches, key for key, the dictionary the real GUI produced in my manual runs (576 keys, test U1). So each automated run reproduces what a user does.
+\end{enumerate}
+
+\noindent The suite performed \textbf{\input{generated/n_designs.tex}design runs} and \textbf{\input{generated/n_checks.tex}automatic checks} (Section~\ref{sec:results}). The main results:
+\begin{itemize}
+\item \textbf{Works well:} homepage hard validation (span, carriageway, skew: every valid and invalid boundary behaved as specified); 3 consecutive identical runs give identical outputs; returning to an earlier input set gives the earlier result; a failed run leaves no stale backend data; custom $f_y$, $E$, $f_{ck}$, $f_{ctm}$, $E_{cm}$ reach the design.
+\item \textbf{8 new defects reported} (Table~\ref{tab:issues}). The most significant: the LTB unbraced length depends on whether the Additional Inputs dialog was ever saved (\issue{01}); the number of girders depends on typing history (\issue{02}); the deck-edge lines are designed as girders, which makes girder self-weight demand $\approx n/(n+2)$ of $wL^2/8$ (\issue{03}); and deflection is reported with two different values and two different verdicts (\issue{04}).
+\item \textbf{3 comments} adding new evidence to existing issues (\gh{71}, \gh{19}, \gh{43}). Defects that other applicants had already reported were \emph{not} re-filed; they are cross-referenced in the result tables.
+\end{itemize}
+
+%=====================================================================
+\section{Test environment and setup}
+\begin{tabularx}{\linewidth}{@{}lX@{}}
+\toprule
+OS & Windows 11 (x86\_64), Intel Raptor Lake-S graphics, OpenGL 4.6\\
+Conda & Miniconda, conda 26.9.4; environment created from the repo's \code{environment.yml}\\
+Python / Qt & Python 3.12.16, PySide6 6.11.3 (qt6-main 6.11.3)\\
+Key packages & osdag 2026.04.0.0, openseespy 3.8.0.0, pythonocc-core 8.0.1.2, numpy 2.5.4, pandas 3.1.1\\
+Second platform & Linux (container), same \code{environment.yml}, used to run the suite off-screen\\
+\bottomrule
+\end{tabularx}
+
+\paragraph{Setup notes.} conda 26.x asks the user to accept the Anaconda Terms of Service for the \code{defaults} channels. I declined, and removed \code{defaults} from both \code{.condarc} files (user and installation level, \code{conda config --file <miniconda>/.condarc --remove channels defaults}). After that, \code{conda env create -f environment.yml} worked from conda-forge and the osdag channels only. On the Linux machine the \code{osdag_core} package shipped an empty SQLite database (only the \code{.sql} dump), so I built it from the dump. On Windows it was already present.
+
+%=====================================================================
+\section{Method}
+\subsection{Manual GUI runs with \texttt{run\_logged.py}}
+\code{run_logged.py} wraps \code{PlateGirderBridge.set_input()} and \code{design()} at runtime and then starts the app's own \code{main()}. Each Design click writes \code{runNN_ui_input.json} (what the UI sent), \code{runNN_backend_input.json}, \code{runNN_output.json} (the output dictionary, which the UI cannot export: its \emph{Save Outputs (.csv)} menu item has no handler, see \gh{53}), \code{runNN_meta.json} and \code{runNN_diff_vs_prev.txt}. The whole console goes to \code{session.log}.
+
+\subsection{Automated suite}
+\code{run_test_suite.py} creates the real \code{InputDock} and \code{AdditionalInputs} widgets off-screen and replays the small glue methods of \code{TemplatePage} (Design pre-steps, \code{update_cad_from_inputs}, Save/Load Input, unlock), citing the source lines they mirror. Typing into a field calls the same \code{_on_field_edited} handler the \code{editingFinished} signal calls. Pop-ups and the custom-material dialog are answered programmatically, and the real \code{_validate_and_save()} runs. One backend is reused across the runs of a session with \code{backend.reset()} in between, exactly as the GUI's unlock does.
+
+\paragraph{Self-test.} Building TC00 (and TC01, custom materials) through the simulated GUI gives a dictionary identical to the one recorded from the real GUI on Windows (U1a, U1b: 0 differences in 576 keys).
+
+\paragraph{Automatic checks per design run.} Table~\ref{tab:checks} lists the twelve checks applied to every design. Expected values come from the inputs (e.g.\ density entered, number of girders), from hand calculation ($wL^2/8$) or from consistency (the same quantity reported in two places).
+
+\begin{table}[H]\centering\small
+\caption{Automatic checks applied to every design run and how often they passed. The last column links the issue that explains each failure.}\label{tab:checks}
+\input{generated/check_summary.tex}
+\end{table}
+
+\paragraph{Duplicate policy.} Before drafting, I read all open and closed issues on \upstream\ (48 open on 15~Nov~2026). Findings already reported by others were not filed again. Where I had new evidence, I added it as a comment.
+
+%=====================================================================
+\section{Results}\label{sec:results}
+\subsection{Basic inputs: valid and invalid boundaries}
+\begin{table}[H]\centering\small
+\caption{Homepage hard validation (U5), typed into the real input fields. All 15 cases behave as specified: \pass.}
+\input{generated/u5_table.tex}
+\end{table}
+
+All valid boundary values were also designed end to end in a fresh session (span 20 / 45~m, carriageway 4.25 / 23.6~m, skew $\pm15^\circ$, median with carriageway 15~m, footpaths both sides). Every run completed (Table~\ref{tab:runs}). The design-level failures in these runs are the systematic ones of Table~\ref{tab:checks}, not boundary-specific. Two observations: with skew, the per-girder deflection keys are missing (consistent with \gh{89}), and the end-diaphragm members \emph{are} designed (C08 passes), while for every straight bridge they are not (\gh{72}).
+
+\paragraph{Invalid values outside the homepage.} The backend's own validation only checks span $>0$, girders $\ge 2$ and spacing $>0$ (U8: span 100~m, carriageway 40~m, skew $60^\circ$ and $f_y=5000$~MPa are accepted; already reported for span in \gh{69}). Load Input rejects bad geometry but no material value at all (Table~\ref{tab:osi}, \issue{08}).
+
+\begin{table}[H]\centering\small
+\caption{Load Input validation of hand-edited \code{.osi} files (U6).}\label{tab:osi}
+\input{generated/u6_table.tex}
+\end{table}
+
+\subsection{Custom materials (girder steel and deck concrete)}
+TC01 (Windows GUI): girder \code{custom_steel_410_540} ($\rho$ 80~kN/m$^3$, $f_y$ 410, $f_u$ 540, $E$ 210~GPa, $\nu$ 0.3, $\alpha$ 12) and deck \code{custom_concrete_45_3.8} ($\rho$ 26, $f_{ck}$ 45, $f_{ctm}$ 3.8, $E_{cm}$ 34, $\alpha$ 10). The same inputs were rerun by the suite (S03), followed by a run back at the default materials.
+
+\begin{table}[H]\centering\small
+\caption{Custom material values: UI entry vs.\ input/output dictionaries vs.\ what the calculation actually used (TC01 vs.\ TC00 baseline).}\label{tab:custom}
+\begin{tabularx}{\linewidth}{@{}lllXl@{}}
+\toprule
+Property & UI / input dict & Output dict & Used by analysis / design (evidence) & Verdict\\
+\midrule
+Girder density & 80 & 80.0 & self-weight 2741.12~N/m, identical to TC00 ($=A\times78.5$) & \fail\ \gh{20}\\
+Girder $f_y$ & 410 & 410.0 & $M_d$ 11371.85 $\to$ 13263.73~kNm; $M_b$ 7986.44 $\to$ 9355.55 & \pass\\
+Girder $E$ & 210 & 210.0 & deflections scaled exactly by 200/210 (51.225 $\to$ 48.786~mm) & \pass\\
+Deck density & 26 & 26.0 & slab load 6250~N/m$^2$ ($=0.25\times25$); deck design $w_{DL}$ 6.13~kN/m$^2$ ($\gamma=24.525$) & \fail\ \gh{41}\\
+Deck $f_{ck}$, $f_{ctm}$, $E_{cm}$ & 45 / 3.8 / 34 & same & stud $Q_u$ 95.36 $\to$ 99.53~kN; punching $v_{Rd}$ 0.555 $\to$ 0.588~MPa & \pass\\
+Deck $f_{ck}$ (cover) & 45 & -- & exposure assumed ``Extreme'', cover $\ge75$~mm $\Rightarrow$ deck cover FAIL & \fail\ \issue{05}\\
+Default density (no custom) & 76.4 / 24.5 & 76.4 / 24.5 & analysis uses 78.5 / 25.0, deck design 24.525 & \fail\ \gh{20}, \gh{41}\\
+Back to defaults (S03 run 2) & -- & -- & output identical to baseline (R7) & \pass\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\noindent Further findings: after \emph{Save $\to$ Load}, the custom deck properties become \code{None} and Design stops with \code{'material.deck.fck' is required} (S04, already in \gh{19}). Re-selecting a reloaded custom steel silently keeps another grade's properties (U4d, comment on \gh{19}). The custom dialog accepts $f_u<f_y$ and a $G$ inconsistent with $E,\nu$ (U7, \issue{08}). The cross-bracing grade has no effect, even for the standard grades: E\,350A $\to$ E\,450A leaves every bracing design identical (M6, comment on \gh{43}).
+
+\subsection{Additional Inputs propagation}
+\begin{itemize}
+\item Deck thickness 300~mm, wearing course 80~mm, $\gamma_{m0}$ 1.15, wind height 15~m, left support Fixed and stud diameter 22~mm all reach the design after \emph{Additional Inputs $\to$ Save} (A1: slab load 7500~N/m$^2$). \pass
+\item They are all reset to defaults when a homepage field changes (U3a, A2), by Save Input (U3b, file \emph{and} live session), and by Load Input even when the file contains them (U3c). \fail\ Comment on \gh{71}.
+\item Opening Additional Inputs and pressing Save \emph{without edits} changes the design: cross-bracing spacing $3\to15$~m, $\chi_{LT}$ $1.0\to0.328$, $M_b$ $7986\to2621$~kNm (S11, A3). The girder area is also rounded to 3 significant figures (A4). \fail\ \issue{01}.
+\item Five girders requested in Typical Section: the design check covers 7 lines (C01). \fail\ \issue{03}.
+\end{itemize}
+
+\subsection{Multi-run stability}
+\begin{table}[H]\centering\small
+\caption{Consecutive runs in one session (one backend, unlock between runs). Output dictionaries compared key by key, ignoring time stamps.}
+\begin{tabularx}{\linewidth}{@{}lXXl@{}}
+\toprule
+ID & Sequence & Result & Verdict\\
+\midrule
+R1, R2 & TC00 $\times3$ (Design, unlock, Design, unlock, Design) & outputs identical & \pass\\
+R3 & A (30/7.5) $\to$ B (40/11) $\to$ A & third run identical to first & \pass\\
+R4--R6 & B after A vs.\ B typed fresh vs.\ B after a typo (cw 20 $\to$ 11) & 4 / 5 / 9 girders; max DCR 1.686 / 1.512 / 1.130 & \fail\ \issue{02}\\
+R7 & custom materials $\to$ default materials & identical to baseline & \pass\\
+R8, R9 & A $\to$ failing run (spacing 0) $\to$ A & no stale backend data; third run identical to first & \pass\\
+A2 & edit Additional Inputs $\to$ change span $\to$ Design & edits silently reset & \fail\ \gh{71}\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Output dictionary vs.\ display docks vs.\ report}
+\begin{itemize}
+\item Deflection: design check 22.871~mm (PASS) vs.\ per-girder output, Generate Results and report Table 5.10 51.225~mm (FAIL against $L/600=50$~mm). \issue{04}.
+\item Girder labels: the design check reports G1--G6 for a 4-girder bridge, while the dock and per-girder plots show G1--G4. Dock ``G1'' is a deck-edge line. \issue{03}.
+\item Cross-bracing spacing: report Table 2.7 prints 15~m, the design used 3~m. \issue{01}.
+\item Optimized section: design check $A=38{,}700$~mm$^2$; analysis, self-weight and bill of materials use 34{,}919~mm$^2$ (32.89~t instead of $\approx$36.4~t of girder steel). \issue{06}.
+\item Material densities: the report states the custom densities as ``applied'', but the analysis does not use them (\gh{20}, \gh{41}).
+\end{itemize}
+
+\subsection{Coverage of steel components and deck}
+\begin{tabularx}{\linewidth}{@{}lXl@{}}
+\toprule
+Component & What was checked & Outcome\\
+\midrule
+Main girders & count, spacing, section properties, self-weight, $f_y$, LTB length, deflection & \issue{01}, \issue{02}, \issue{03}, \issue{04}, \issue{06}, \issue{07}\\
+Stiffeners & intermediate/bearing stiffener inputs vs.\ report summary & summary prints required values (21.1~mm, 1.2~mm) as provided\\
+Cross-bracing & material, spacing, section, design results & spacing \issue{01}; grade ignored (comment on \gh{43})\\
+End diaphragm & design results present & empty for straight bridges, designed for skew (\gh{72})\\
+Deck slab & density, cover/exposure, thickness propagation & \gh{41}, \issue{05}, comment on \gh{71}\\
+\bottomrule
+\end{tabularx}
+
+\subsection{3D CAD and plots}
+\input{cad_observations.tex}
+
+\subsection{All automated design runs}
+\small
+\captionof{table}{All design runs. ``in/chk'': girders in the input / girders in the design check. $\gamma_s$, $\gamma_c$: steel and concrete densities, input / used by the analysis (kN/m$^3$). $M_{SW}$ ratio: per-girder self-weight moment $/(wL^2/8)$. $\delta$: total deflection in the design check / maximum per-girder value shown.}\label{tab:runs}
+\input{generated/runs_table.tex}
+\normalsize
+
+\subsection{All UI-logic, multi-run and material checks}
+\small
+\input{generated/ui_checks_table.tex}
+\normalsize
+
+%=====================================================================
+\section{Issues raised}\label{sec:issues}
+\begin{table}[H]\centering\small
+\caption{Issues posted to \upstream. Each issue gives the exact trigger conditions (works when / fails when), input/output dictionary evidence, the root cause with file and line links at commit \code{d74f56d}, and a suggested fix with code.}\label{tab:issues}
+\begin{tabularx}{\linewidth}{@{}lXl@{}}
+\toprule
+Issue & Title & Severity\\
+\midrule
+\issue{01} & Opening Additional Inputs and pressing Save (no edits) changes the design: LTB length 3~m $\to$ 15~m & high\\
+\issue{02} & Number of girders depends on the first carriageway width typed & high\\
+\issue{03} & Deck-edge grillage lines get the girder section and are designed as girders & high\\
+\issue{04} & Two different girder deflections (22.87 PASS vs.\ 51.23 FAIL) & medium\\
+\issue{05} & Deck exposure inferred from concrete grade: better concrete $\Rightarrow$ cover FAIL & medium\\
+\issue{06} & Optimized mode: analysis/self-weight/BOM use the un-rounded section & medium\\
+\issue{07} & $f_y$ not reduced for plate thickness (IS~2062 Table~2) & medium\\
+\issue{08} & Material values not validated on Load Input; dialog accepts $f_u<f_y$ & medium\\
+\midrule
+\gh{71} & comment: same reset on homepage edits and Load Input; Save also resets the live session & \\
+\gh{19} & comment: re-selected custom steel silently keeps another grade's properties & \\
+\gh{43} & comment: sensitivity run, bracing always designed as E\,250 even for standard grades & \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\noindent Defects confirmed by my runs but already reported by others (not re-filed): grillage width from the fixed 0.5~m barrier width (\gh{74}), thermal load case never created (\gh{92}), densities not used (\gh{20}, \gh{41}), end diaphragm results (\gh{72}), seismic live-load mass (\gh{87}), railing load mismatch (\gh{64}), executive summary text (\gh{65}), report units (\gh{66}), bill-of-materials crash-barrier quantity (\gh{84}), menu items without handlers (\gh{53}), out-of-range span accepted by \code{design()} (\gh{69}), CAD cross-bracing spacing (\gh{93}).
+
+%=====================================================================
+\section{Limitations}
+\begin{itemize}
+\item The suite builds widgets but not the main window. CAD drawing, plots and the output dock were checked manually (Section on 3D CAD), not automatically.
+\item Engineering expectations were limited to what can be derived from the inputs and the codes cited in the software (IRC~6/22/112, IS~2062). The issues report inconsistencies; they do not certify a correct design.
+\item Every number in this report can be regenerated with the two scripts in the evidence repository (Appendix~\ref{app:repro}).
+\end{itemize}
+
+\appendix
+\section{Reproducing the results}\label{app:repro}
+\begin{verbatim}
+cd OsdagBridge\src                    (conda env from environment.yml active)
+python <testing-repo>\scripts\run_logged.py TC00_baseline     # GUI with logging
+python <testing-repo>\scripts\run_test_suite.py               # full suite (~25 min)
+python <testing-repo>\scripts\run_test_suite.py --ui-only     # 2-minute subset
+python <testing-repo>\report\make_report_tables.py <suite_runs\folder>   # tables in this report
+\end{verbatim}
+\noindent Suite runs included in this report:\par\smallskip
+\input{generated/suite_runs_table.tex}
+
+\end{document}
