@@ -24,7 +24,14 @@
 \newcommand{\setissue}[2]{\expandafter\def\csname issnum#1\endcsname{#2}}
 \newcommand{\issue}[1]{\ifcsname issnum#1\endcsname\href{https://github.com/Nidhikhare12/OsdagBridge/issues/\csname issnum#1\endcsname}{\#\csname issnum#1\endcsname}\else draft~#1\fi}
 \newcommand{\gh}[1]{\href{https://github.com/Nidhikhare12/OsdagBridge/issues/#1}{\##1}}
+\newcommand{\pr}[1]{\href{https://github.com/Nidhikhare12/OsdagBridge/pull/#1}{PR~\##1}}
+\newcommand{\unsafe}{\textcolor{bad}{\textbf{unsafe side}}}
+\newcommand{\inconsistent}{\textcolor{bad}{\textbf{inconsistent}}}
+\newcommand{\contradicts}{\textcolor{bad}{\textbf{contradictory}}}
+\newcommand{\conservative}{\textcolor{inf}{\textbf{over-conservative}}}
+\newcommand{\validation}{\textcolor{inf}{\textbf{input validation}}}
 \input{issue_numbers.tex}
+\input{links.tex}
 \IfFileExists{generated/runs_table.tex}{}{\typeout{Run make_report_tables.py first}}
 \newcommand{\shot}[2]{\IfFileExists{figures/#1}{\begin{figure}[h]\centering\includegraphics[width=0.92\linewidth]{figures/#1}\caption{#2}\end{figure}}{\par\noindent\fbox{\parbox{0.95\linewidth}{\small Screenshot \code{#1}: #2}}\par}}
 
@@ -48,11 +55,44 @@ Commit & \code{d74f56dd7f22925fb8148cabf5740ed8d1e39ff3}\\
  & (tested as published; no changes made to OsdagBridge's code)\\
 Module & Plate Girder Bridge (desktop app, PySide6)\\
 Evidence repository & \repo\\
+Fix pull requests & \pr{219} (for \issue{08}), \pr{220} (for \issue{02})\\
 Date & \today
 \end{tabular}}
 \vfill
 \end{titlepage}
 
+%=====================================================================
+\section*{At a glance}
+\noindent\textbf{8 new issues} with trigger conditions, dictionary evidence, root cause (file and line) and a suggested fix; \textbf{4 comments} with new evidence on existing issues; \textbf{2 fix pull requests} with regression tests; an \textbf{automated GUI-level test suite} (\input{generated/n_designs.tex}design runs, \input{generated/n_checks.tex}checks) with identical results on Windows~11 and Linux.
+
+\medskip
+\noindent{\small
+\begin{tabularx}{\linewidth}{@{}l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{0.20\linewidth}l@{}}
+\toprule
+Issue & What goes wrong (key numbers) & Effect & Fix\\
+\midrule
+\issue{03} & Deck-edge grillage lines are designed as girders: a 4-girder bridge is checked as 6; per-girder self-weight moment $=0.67\,wL^2/8$ & \unsafe\ (demand too low) & \pr{160}$^{*}$\\
+\issue{07} & $f_y$ not reduced for thickness: 22~mm E\,350 flanges designed with 350 instead of 330~MPa (IS~2062) & \unsafe\ (capacity $\approx$6\,\% high) & \\
+\issue{06} & Optimized mode: analysis, self-weight and BOM use $A=34{,}919$~mm$^2$; the design check uses 38{,}700 (+10.8\,\%) & \unsafe\ (self-weight too low) & \\
+\issue{04} & Deflection: design check 22.87~mm \pass; per-girder output and report 51.23~mm, above $L/600=50$~mm & \contradicts\ verdicts & \\
+\issue{01} & Opening Additional Inputs and pressing Save, with no edits, changes the LTB length 3~m $\to$ 15~m: $M_b$ 7986 $\to$ 2621~kNm & \inconsistent\ (same inputs) & \\
+\issue{02} & Same final inputs give 3, 4, 5 or 9 girders depending on typing history; max DCR 1.13 to 1.69 & \inconsistent\ (same inputs) & \pr{220}\\
+\issue{05} & Deck exposure inferred from concrete grade: M40 $\to$ M45 requires 75~mm cover and the deck fails & \conservative & \\
+\issue{08} & Custom steel dialog saves $f_u<f_y$ and a $G$ that contradicts $E$ and $\nu$ & \validation & \pr{219}\\
+\bottomrule
+\end{tabularx}\par}
+{\footnotesize $^{*}$ opened by another contributor for the same defect.}
+
+\medskip
+\noindent\textbf{Fixes.} \pr{219} and \pr{220} each add regression tests to the project's own \code{tests/unit} that fail on \code{d74f56d} and pass with the fix. My suite, rerun with each fix, changes only the targeted checks, from \fail\ to \pass: two dialog checks for \pr{219}; the girder-count check and three design checks for \pr{220}. Span 40~m / carriageway 11~m now gives 5 girders and max DCR 1.5115 however the inputs were entered (Section~\ref{sec:fixes}).
+
+\smallskip
+\noindent\textbf{Independently confirmed by other testers:} \issue{02} (median and footpath changes do not re-seed the count either) and \issue{03} (reproduced; plot and design-check girder numbering offset).
+
+\smallskip
+\noindent\textbf{Evidence:} \href{https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026}{github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026} (scripts, every input and output dictionary, logs, \code{.osi} files). \ifx\videourl\empty Video: link in the submission form.\else Video: \url{\videourl}.\fi\ To re-check every UI-level finding in about 2 minutes: \texttt{python scripts/run\_test\_suite.py -{}-ui-only}.
+
+\newpage
 \tableofcontents
 \newpage
 
@@ -69,6 +109,7 @@ I tested the OsdagBridge Plate Girder module in two complementary ways:
 \item \textbf{Works well:} homepage hard validation (span, carriageway, skew: every valid and invalid boundary behaved as specified); 3 consecutive identical runs give identical outputs; returning to an earlier input set gives the earlier result; a failed run leaves no stale backend data; custom $f_y$, $E$, $f_{ck}$, $f_{ctm}$, $E_{cm}$ reach the design.
 \item \textbf{8 new defects reported} (Table~\ref{tab:issues}). The most significant: the LTB unbraced length depends on whether the Additional Inputs dialog was ever saved (\issue{01}); the number of girders depends on typing history (\issue{02}); the deck-edge lines are designed as girders, which makes girder self-weight demand $\approx n/(n+2)$ of $wL^2/8$ (\issue{03}); and deflection is reported with two different values and two different verdicts (\issue{04}).
 \item \textbf{4 comments} adding new evidence to existing issues (\gh{71}, \gh{19}, \gh{43}, \gh{96}). Defects that other applicants had already reported were \emph{not} re-filed; they are cross-referenced in the result tables.
+\item \textbf{2 fix pull requests} with regression tests: \pr{219} (\issue{08}) and \pr{220} (\issue{02}), Section~\ref{sec:fixes}.
 \end{itemize}
 
 %=====================================================================
@@ -193,7 +234,7 @@ A2 & edit Additional Inputs $\to$ change span $\to$ Design & edits silently rese
 Component & What was checked & Outcome\\
 \midrule
 Main girders & count, spacing, section properties, self-weight, $f_y$, LTB length, deflection & \issue{01}, \issue{02}, \issue{03}, \issue{04}, \issue{06}, \issue{07}\\
-Stiffeners & intermediate and bearing stiffener inputs vs.\ the report's stiffener summary & summary prints the \emph{required} thicknesses (21.1~mm, 1.2~mm) where the provided ones belong\\
+Stiffeners & intermediate and bearing stiffener inputs vs.\ the report's stiffener summary; material & summary prints the \emph{required} thicknesses (21.1~mm, 1.2~mm) where the provided ones belong. Stiffeners have no material input of their own and use the girder steel\\
 Cross-bracing & material, spacing, section, design results & spacing \issue{01}; grade ignored (comment on \gh{43})\\
 End diaphragm & design results present & empty for straight bridges, designed for skew (\gh{72})\\
 Deck slab & density, cover/exposure, thickness propagation & \gh{41}, \issue{05}, comment on \gh{71}\\
@@ -235,11 +276,29 @@ Issue & Title & Severity\\
 \gh{19} & comment: re-selected custom steel silently keeps another grade's properties & \\
 \gh{43} & comment: sensitivity run, bracing always designed as E\,250 even for standard grades & \\
 \gh{96} & comment: $f_y=5000$~MPa loaded from \code{.osi} reaches the design; unknown grade names load & \\
+\midrule
+\pr{219} & fix for \issue{08}, with 13 regression tests (Section~\ref{sec:fixes}) & \\
+\pr{220} & fix for \issue{02}, with 10 regression tests (Section~\ref{sec:fixes}) & \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
 \noindent Defects confirmed by my runs but already reported by others (not re-filed): grillage width from the fixed 0.5~m barrier width (\gh{74}), thermal load case never created (\gh{92}), densities not used (\gh{20}, \gh{41}), end diaphragm results (\gh{72}), seismic live-load mass (\gh{87}), railing load mismatch (\gh{64}), executive summary text (\gh{65}), report units (\gh{66}), bill-of-materials crash-barrier quantity (\gh{84}), menu items without handlers (\gh{53}), out-of-range span accepted by \code{design()} (\gh{69}), CAD cross-bracing spacing (\gh{93}).
+
+\subsection{Fixes submitted}\label{sec:fixes}
+For two of the issues I also submitted a fix as a pull request from my fork. Each PR is one commit on top of \code{d74f56d}. It adds regression tests to the project's own \code{tests/unit}: they fail on the unmodified code and pass with the fix, and the existing tests still pass. I then reran my suite with the fix applied and compared every check with the run on the unmodified code. Evidence: \code{suite_runs/fix_118_ui_tests_2026-11-21} and \code{suite_runs/fix_112_tests_2026-11-21}.
+
+\begin{table}[H]\centering\small
+\caption{Fix pull requests and their effect on the suite (all other checks unchanged).}\label{tab:fixes}
+\begin{tabularx}{\linewidth}{@{}l>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+PR & Change and tests & Suite before $\to$ after\\
+\midrule
+\pr{219} for \issue{08} & New method \code{validate_material_consistency()} in \code{BridgeInputValidator}: $f_u>f_y$, and $G$ within 2\,\% of $E/(2(1+\nu))$. Called at the end of the material dialog's \emph{Save}, for steel members only. 13 tests: validator cases, the real dialog off-screen, and every steel grade in the database (no false rejections). 12 of them fail on \code{d74f56d}. & U7: $f_y$ 450 / $f_u$ 400 and $G=120$~GPa change from \emph{saved} (\fail) to \emph{rejected} (\pass). The other 49 UI checks are unchanged.\\
+\pr{220} for \issue{02} & The stored girder count is reused only while the deck width it was solved for (already stored next to it) is unchanged; otherwise it is seeded again from the new width. A count set in Typical Section or loaded from \code{.osi} is kept until the carriageway, median or footpath changes. 10 tests replaying the GUI sequences; 6 of them fail on \code{d74f56d}. & U2 and R4--R6 change from \fail\ to \pass: span 40 / cw 11 now gives 5 girders @ 2.38~m and max DCR 1.5115 after a previous design and after a typo (before: 4 girders and DCR 1.686; 9 girders and DCR 1.130). The other 50 UI and 61 S02 checks are unchanged.\\
+\bottomrule
+\end{tabularx}
+\end{table}
 
 %=====================================================================
 \section{Limitations}

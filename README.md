@@ -5,6 +5,12 @@ Screening task submission by **Aditya Chauhan** ([@AdityaChauhanX07](https://git
 Software under test: [Nidhikhare12/OsdagBridge](https://github.com/Nidhikhare12/OsdagBridge), branch `dev`, commit
 `d74f56dd7f22925fb8148cabf5740ed8d1e39ff3` (unmodified). Plate Girder Bridge module.
 
+**In short:** 8 new issues ([#111](https://github.com/Nidhikhare12/OsdagBridge/issues/111)-[#118](https://github.com/Nidhikhare12/OsdagBridge/issues/118)),
+4 comments with new evidence on existing issues, 2 fix pull requests with regression tests
+([#219](https://github.com/Nidhikhare12/OsdagBridge/pull/219), [#220](https://github.com/Nidhikhare12/OsdagBridge/pull/220)),
+and an automated GUI-level test suite with identical results on Windows 11 and Linux.
+Report: [`report/report.pdf`](report/report.pdf) (page 1 is a one-page summary).
+
 ## What is in this repository
 
 | Folder | Contents |
@@ -66,3 +72,14 @@ Issues posted to Nidhikhare12/OsdagBridge (texts in `issues/`):
 | [#117](https://github.com/Nidhikhare12/OsdagBridge/issues/117) | `07_fy_not_reduced_for_plate_thickness.md` | fy not reduced for plates of 20 mm and more |
 | [#118](https://github.com/Nidhikhare12/OsdagBridge/issues/118) | `08_custom_material_dialog_cross_field_checks.md` | custom material dialog accepts fu < fy and an inconsistent G |
 | comments on [#71](https://github.com/Nidhikhare12/OsdagBridge/issues/71), [#19](https://github.com/Nidhikhare12/OsdagBridge/issues/19), [#43](https://github.com/Nidhikhare12/OsdagBridge/issues/43), [#96](https://github.com/Nidhikhare12/OsdagBridge/issues/96) | `comments_on_existing_issues.md` | additional evidence for existing issues #71, #19, #43, #96 |
+
+## Fix pull requests
+
+Both are one commit on top of `d74f56d` in my fork, with regression tests in the project's own `tests/unit` that fail
+on the unmodified code and pass with the fix. The suite was rerun with each fix applied: only the targeted checks change
+(FAIL -> PASS), every other check gives the same result as before.
+
+| PR | Fixes | Tests added | Suite with the fix |
+|---|---|---|---|
+| [#219](https://github.com/Nidhikhare12/OsdagBridge/pull/219) | [#118](https://github.com/Nidhikhare12/OsdagBridge/issues/118): reject custom steel with fu <= fy or G inconsistent with E and nu | 13 (`tests/unit/test_material_consistency.py`) | [`suite_runs/fix_118_ui_tests_2026-11-21`](suite_runs/fix_118_ui_tests_2026-11-21) |
+| [#220](https://github.com/Nidhikhare12/OsdagBridge/pull/220) | [#112](https://github.com/Nidhikhare12/OsdagBridge/issues/112): re-seed the girder count when the deck width changes | 10 (`tests/unit/test_girder_count_layout.py`) | [`suite_runs/fix_112_tests_2026-11-21`](suite_runs/fix_112_tests_2026-11-21) |
