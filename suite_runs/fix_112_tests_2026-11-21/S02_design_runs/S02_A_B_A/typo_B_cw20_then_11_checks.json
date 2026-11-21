@@ -1,0 +1,154 @@
+{
+ "checks": [
+  {
+   "actual": "7 (G1,G2,G3,G4,G5,G6,G7)",
+   "check": "C01",
+   "expected": 5,
+   "result": "FAIL",
+   "title": "Design check uses the real number of girders"
+  },
+  {
+   "actual": 2.405,
+   "check": "C02",
+   "expected": 2.38,
+   "result": "FAIL",
+   "title": "Grillage girder spacing = input girder spacing"
+  },
+  {
+   "actual": 78.5,
+   "check": "C03",
+   "expected": 76.4,
+   "result": "FAIL",
+   "title": "Steel self-weight uses the girder material density"
+  },
+  {
+   "actual": 25.0,
+   "check": "C04",
+   "expected": 24.5,
+   "result": "FAIL",
+   "title": "Deck slab load uses the deck material density"
+  },
+  {
+   "actual": "684.44 (ratio 0.714)",
+   "check": "C05",
+   "expected": 958.38,
+   "result": "FAIL",
+   "title": "Girder self-weight moment ~ w*L^2/8 (simply supported)"
+  },
+  {
+   "actual": 59.754,
+   "check": "C06",
+   "expected": 30.207,
+   "result": "FAIL",
+   "title": "Deflection in design check = deflection shown per girder"
+  },
+  {
+   "actual": 27,
+   "check": "C07",
+   "expected": 0,
+   "result": "FAIL",
+   "title": "Thermal load case exists (it is used in combinations)"
+  },
+  {
+   "actual": "4 of 4 empty",
+   "check": "C08",
+   "expected": "0 empty pairs",
+   "result": "FAIL",
+   "title": "End diaphragm members are designed"
+  },
+  {
+   "actual": 3.0,
+   "check": "C09",
+   "expected": 20.0,
+   "result": "FAIL",
+   "title": "Cross-bracing spacing used = Additional Input spacing"
+  },
+  {
+   "actual": "0.06104 m2",
+   "check": "C10",
+   "expected": "0.06361 m2",
+   "result": "FAIL",
+   "title": "Girder area in analysis/self-weight = area in design check"
+  },
+  {
+   "actual": "350.0 (tf=28.0 mm)",
+   "check": "C11",
+   "expected": 350.0,
+   "result": "INFO",
+   "title": "Design fy = girder material fy"
+  },
+  {
+   "actual": 5,
+   "check": "C12",
+   "expected": 5,
+   "result": "PASS",
+   "title": "Number of girder self-weight lines = number of girders"
+  }
+ ],
+ "evidence": {
+  "A_steel_check_m2": 0.063608,
+  "D_mm": 2230.0,
+  "M_sw_expected_kNm": 958.38,
+  "M_sw_max_kNm": 684.44,
+  "M_sw_ratio": 0.714,
+  "Md_kNm": 23680.587,
+  "bracing_signature": "G1-G2/chord/compression:40 x 40 x 3:18.51|G1-G2/chord/tension:40 x 40 x 3:45.0|G1-G2/diagonal/compression:40 x 40 x 4:16.15|G1-G2/diagonal/tension:40 x 40 x 3:45.0|G2-G3/chord/compression:40 x 40 x 3:18.51|G2-G3/chord/tension:40 x 40 x 3:45.0|G2-G3/diagonal/compression:40 x 40 x 3:12.52|G2-G3/diagonal/tension:40 x 40 x 3:45.0|G3-G4/chord/compression:40 x 40 x 3:18.51|G3-G4/chord/tension:40 x 40 x 3:45.0|G3-G4/diagonal/compression:40 x 40 x 3:12.52|G3-G4/diagonal/tension:40 x 40 x 3:45.0|G4-G5/chord/compression:40 x 40 x 3:18.51|G4-G5/chord/tension:40 x 40 x 3:45.0|G4-G5/diagonal/compression:40 x 40 x 3:12.52|G4-G5/diagonal/tension:40 x 40 x 3:45.0",
+  "carriageway_m": 11.0,
+  "cb_spacing_analysis_m": 3.0,
+  "cb_spacing_check_m": 3.0,
+  "cb_spacing_input_m": 20.0,
+  "controlling_girder": "G1",
+  "cross_bracing_material": "E 350A",
+  "deck_Msls_sag_kNm_m": 33.483,
+  "deck_cover_required_mm": "50",
+  "deck_density_input": 24.5,
+  "deck_density_used": 25.0,
+  "deck_exposure": "Very Severe",
+  "deck_fck_input": 40.0,
+  "deck_material": "M40",
+  "deck_thickness_input_mm": 250.0,
+  "delta_total_check_mm": 30.207,
+  "delta_total_output_max_mm": 59.754,
+  "design_mode": "Optimized",
+  "end_diaphragm_empty_pairs": 4,
+  "end_diaphragm_pairs": 4,
+  "fy_used_MPa": 350.0,
+  "girder_E_input": 200.0,
+  "girder_density_input": 76.4,
+  "girder_density_used": 78.5,
+  "girder_fy_input": 350.0,
+  "girder_material": "E 350A",
+  "girder_spacing_analysis_m": 2.405,
+  "girder_spacing_input_m": 2.38,
+  "max_dcr": 1.5115,
+  "n_girders_checked": 7,
+  "n_girders_input": 5,
+  "output_keys": 1308,
+  "overall_status": "FAIL",
+  "overall_width_input_m": 11.899999999999999,
+  "per_girder_ids": "G1,G2,G3,G4,G5,G6,G7",
+  "slab_load_N_m2": 6250.0,
+  "span_m": 40.0,
+  "sw_area_m2": 0.06104,
+  "sw_line_load_N_m": 4791.9,
+  "sw_lines": 5,
+  "sw_z_m": [
+   1.19,
+   3.595,
+   6.0,
+   8.405,
+   10.81
+  ],
+  "tf_mm": 28.0,
+  "thermal_missing_warnings": 27,
+  "tw_mm": 12.0
+ },
+ "record": {
+  "case": "S02_A_B_A",
+  "error": "",
+  "seconds": 52.1,
+  "status": "ok",
+  "step": "typo_B_cw20_then_11"
+ },
+ "traceback": ""
+}

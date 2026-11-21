@@ -1,0 +1,65 @@
+case,step,check,result,title,expected,actual
+S02_A_B_A,run1_A,C01,FAIL,Design check uses the real number of girders,4,"6 (G1,G2,G3,G4,G5,G6)"
+S02_A_B_A,run1_A,C02,FAIL,Grillage girder spacing = input girder spacing,2.1,2.133
+S02_A_B_A,run1_A,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S02_A_B_A,run1_A,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S02_A_B_A,run1_A,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.38,206.16 (ratio 0.669)
+S02_A_B_A,run1_A,C06,FAIL,Deflection in design check = deflection shown per girder,22.871,51.225
+S02_A_B_A,run1_A,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S02_A_B_A,run1_A,C08,FAIL,End diaphragm members are designed,0 empty pairs,3 of 3 empty
+S02_A_B_A,run1_A,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,15.0,3.0
+S02_A_B_A,run1_A,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03492 m2
+S02_A_B_A,run1_A,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=22.0 mm)
+S02_A_B_A,run1_A,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S02_A_B_A,run2_B,C01,FAIL,Design check uses the real number of girders,5,"7 (G1,G2,G3,G4,G5,G6,G7)"
+S02_A_B_A,run2_B,C02,FAIL,Grillage girder spacing = input girder spacing,2.38,2.405
+S02_A_B_A,run2_B,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S02_A_B_A,run2_B,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S02_A_B_A,run2_B,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),958.38,684.44 (ratio 0.714)
+S02_A_B_A,run2_B,C06,FAIL,Deflection in design check = deflection shown per girder,30.207,59.754
+S02_A_B_A,run2_B,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S02_A_B_A,run2_B,C08,FAIL,End diaphragm members are designed,0 empty pairs,4 of 4 empty
+S02_A_B_A,run2_B,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,20.0,3.0
+S02_A_B_A,run2_B,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.06361 m2,0.06104 m2
+S02_A_B_A,run2_B,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=28.0 mm)
+S02_A_B_A,run2_B,C12,PASS,Number of girder self-weight lines = number of girders,5,5
+S02_A_B_A,run3_A,C01,FAIL,Design check uses the real number of girders,4,"6 (G1,G2,G3,G4,G5,G6)"
+S02_A_B_A,run3_A,C02,FAIL,Grillage girder spacing = input girder spacing,2.1,2.133
+S02_A_B_A,run3_A,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S02_A_B_A,run3_A,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S02_A_B_A,run3_A,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),308.38,206.16 (ratio 0.669)
+S02_A_B_A,run3_A,C06,FAIL,Deflection in design check = deflection shown per girder,22.871,51.225
+S02_A_B_A,run3_A,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S02_A_B_A,run3_A,C08,FAIL,End diaphragm members are designed,0 empty pairs,3 of 3 empty
+S02_A_B_A,run3_A,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,15.0,3.0
+S02_A_B_A,run3_A,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.03870 m2,0.03492 m2
+S02_A_B_A,run3_A,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=22.0 mm)
+S02_A_B_A,run3_A,C12,PASS,Number of girder self-weight lines = number of girders,4,4
+S02_A_B_A,-,R3,PASS,A after B identical to first A,0 differences,"0 differences, e.g. []"
+S02_A_B_A,fresh_B,C01,FAIL,Design check uses the real number of girders,5,"7 (G1,G2,G3,G4,G5,G6,G7)"
+S02_A_B_A,fresh_B,C02,FAIL,Grillage girder spacing = input girder spacing,2.38,2.405
+S02_A_B_A,fresh_B,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S02_A_B_A,fresh_B,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S02_A_B_A,fresh_B,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),958.38,684.44 (ratio 0.714)
+S02_A_B_A,fresh_B,C06,FAIL,Deflection in design check = deflection shown per girder,30.207,59.754
+S02_A_B_A,fresh_B,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S02_A_B_A,fresh_B,C08,FAIL,End diaphragm members are designed,0 empty pairs,4 of 4 empty
+S02_A_B_A,fresh_B,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,20.0,3.0
+S02_A_B_A,fresh_B,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.06361 m2,0.06104 m2
+S02_A_B_A,fresh_B,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=28.0 mm)
+S02_A_B_A,fresh_B,C12,PASS,Number of girder self-weight lines = number of girders,5,5
+S02_A_B_A,-,R4,PASS,B after A (same session) == B typed in a fresh session (girders),5 girders @ 2.38 m (fresh),5 girders @ 2.38 m (after A)
+S02_A_B_A,-,R5,PASS,B after A (same session) == B typed in a fresh session (max DCR / status),1.5115 FAIL,1.5115 FAIL
+S02_A_B_A,typo_B_cw20_then_11,C01,FAIL,Design check uses the real number of girders,5,"7 (G1,G2,G3,G4,G5,G6,G7)"
+S02_A_B_A,typo_B_cw20_then_11,C02,FAIL,Grillage girder spacing = input girder spacing,2.38,2.405
+S02_A_B_A,typo_B_cw20_then_11,C03,FAIL,Steel self-weight uses the girder material density,76.4,78.5
+S02_A_B_A,typo_B_cw20_then_11,C04,FAIL,Deck slab load uses the deck material density,24.5,25.0
+S02_A_B_A,typo_B_cw20_then_11,C05,FAIL,Girder self-weight moment ~ w*L^2/8 (simply supported),958.38,684.44 (ratio 0.714)
+S02_A_B_A,typo_B_cw20_then_11,C06,FAIL,Deflection in design check = deflection shown per girder,30.207,59.754
+S02_A_B_A,typo_B_cw20_then_11,C07,FAIL,Thermal load case exists (it is used in combinations),0,27
+S02_A_B_A,typo_B_cw20_then_11,C08,FAIL,End diaphragm members are designed,0 empty pairs,4 of 4 empty
+S02_A_B_A,typo_B_cw20_then_11,C09,FAIL,Cross-bracing spacing used = Additional Input spacing,20.0,3.0
+S02_A_B_A,typo_B_cw20_then_11,C10,FAIL,Girder area in analysis/self-weight = area in design check,0.06361 m2,0.06104 m2
+S02_A_B_A,typo_B_cw20_then_11,C11,INFO,Design fy = girder material fy,350.0,350.0 (tf=28.0 mm)
+S02_A_B_A,typo_B_cw20_then_11,C12,PASS,Number of girder self-weight lines = number of girders,5,5
+S02_A_B_A,-,R6,PASS,B with a corrected typo (cw 20 -> 11) == B typed directly,"5 girders, max DCR 1.5115","5 girders, max DCR 1.5115 FAIL"

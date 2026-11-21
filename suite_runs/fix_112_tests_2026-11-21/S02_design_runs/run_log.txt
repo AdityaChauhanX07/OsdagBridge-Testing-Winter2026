@@ -1,0 +1,25 @@
+OsdagBridge test suite -> ~/pr_runs/S02_112
+OsdagBridge commit d74f56dd7f  status 'M src/osdagbridge/core/bridge_types/plate_girder/defaults.py
+?? tests/unit/test_girder_count_layout.py'
+
+== S02: A (span30/cw7.5) -> B (span40/cw11) -> A again, in one session; plus B in a fresh session.
+   > Design [S02_A_B_A run1_A] ...
+     ok in 28.4 s; girders in check=6 status=FAIL maxDCR=1.577 failed checks=C01,C02,C03,C04,C05,C06,C07,C08,C09,C10 
+   > Design [S02_A_B_A run2_B] ...
+     ok in 53.1 s; girders in check=7 status=FAIL maxDCR=1.5115 failed checks=C01,C02,C03,C04,C05,C06,C07,C08,C09,C10 
+   > Design [S02_A_B_A run3_A] ...
+     ok in 24.9 s; girders in check=6 status=FAIL maxDCR=1.577 failed checks=C01,C02,C03,C04,C05,C06,C07,C08,C09,C10 
+     ok  R3 A after B identical to first A: expected 0 differences  got 0 differences, e.g. []
+   > Design [S02_A_B_A fresh_B] ...
+     ok in 51.8 s; girders in check=7 status=FAIL maxDCR=1.5115 failed checks=C01,C02,C03,C04,C05,C06,C07,C08,C09,C10 
+     ok  R4 B after A (same session) == B typed in a fresh session (girders): expected 5 girders @ 2.38 m (fresh)  got 5 girders @ 2.38 m (after A)
+     ok  R5 B after A (same session) == B typed in a fresh session (max DCR / status): expected 1.5115 FAIL  got 1.5115 FAIL
+   > Design [S02_A_B_A typo_B_cw20_then_11] ...
+     ok in 52.1 s; girders in check=7 status=FAIL maxDCR=1.5115 failed checks=C01,C02,C03,C04,C05,C06,C07,C08,C09,C10 
+     ok  R6 B with a corrected typo (cw 20 -> 11) == B typed directly: expected 5 girders, max DCR 1.5115  got 5 girders, max DCR 1.5115 FAIL
+   (219 s)
+
+Done. 5 design runs, 9 pass / 50 fail / 5 info checks.
+Results: ~/pr_runs/S02_112
+Total time 221 s
+Process 0 Terminating

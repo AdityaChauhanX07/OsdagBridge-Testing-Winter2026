@@ -1,0 +1,52 @@
+case,step,check,result,title,expected,actual
+U1_builder_matches_gui,-,U1a,PASS,Simulated Design dict == real GUI TC00 dict (576 keys),0 differences,0 differences []
+U1_builder_matches_gui,-,U1b,PASS,Simulated custom-material dict == real GUI TC01 dict,0 differences,0 differences []
+U2_girder_count_history,-,U2,PASS,Girder layout depends only on current inputs (not on typing history),5 girders @ 2.38 m every time,5@2.38; 5@2.38; 5@2.38; 5@2.38; 5@2.38
+U3_additional_inputs_reset,-,U3a0,PASS,Edits present right after Additional Inputs > Save,all edits kept,all kept
+U3_additional_inputs_reset,-,U3a,FAIL,Additional Inputs kept after changing span 30->32,all edits kept,"6 reset: {'typical_section.deck_thickness': '300.0->250.0', 'typical_section.wearing_course.thickness': '80.0->50.0', 'design_options_cont.partial_factor.yielding_and_buckling.gamma_m0': '1.15->1.10', 'loading.wind_load.avg_exposed_height': '15->10', 'support_conditions.left_support': 'Fixed->Pinned', 'design_options.shear_studs.diameter': '22->20'}"
+U3_additional_inputs_reset,-,U3b1,FAIL,Save Input writes the edited Additional Inputs to the .osi,all edits in file,"6 reset in file: {'typical_section.deck_thickness': '300.0->250.0', 'typical_section.wearing_course.thickness': '80.0->50.0', 'design_options_cont.partial_factor.yielding_and_buckling.gamma_m0': '1.15->1.10', 'loading.wind_load.avg_exposed_height': '15->10', 'support_conditions.left_support': 'Fixed->Pinned', 'design_options.shear_studs.diameter': '22->20'}"
+U3_additional_inputs_reset,-,U3b2,FAIL,Session still has the edits after clicking Save Input,all edits kept,"6 reset: {'typical_section.deck_thickness': '300.0->250.0', 'typical_section.wearing_course.thickness': '80.0->50.0', 'design_options_cont.partial_factor.yielding_and_buckling.gamma_m0': '1.15->1.10', 'loading.wind_load.avg_exposed_height': '15->10', 'support_conditions.left_support': 'Fixed->Pinned', 'design_options.shear_studs.diameter': '22->20'}"
+U3_additional_inputs_reset,-,U3c0,PASS,Hand-checked .osi with edits loads,loaded,loaded
+U3_additional_inputs_reset,-,U3c,FAIL,Additional Inputs kept after Load Input (file contains them),all edits kept,"6 reset: {'typical_section.deck_thickness': '300.0->250.0', 'typical_section.wearing_course.thickness': '80.0->50.0', 'design_options_cont.partial_factor.yielding_and_buckling.gamma_m0': '1.15->1.10', 'loading.wind_load.avg_exposed_height': '15->10', 'support_conditions.left_support': 'Fixed->Pinned', 'design_options.shear_studs.diameter': '22->20'}"
+U4_custom_material_reload,-,U4a,PASS,Custom-material .osi loads,loaded,loaded
+U4_custom_material_reload,-,U4b,FAIL,Custom material values survive Save > Load > Design,"{""material.girder.fy"": ""410"", ""material.girder.e"": ""210"", ""material.girder.density"": ""80"", ""material.deck.fck"": ""45"", ""material.deck.fctm"": ""3.8"", ""material.deck.ecm"": ""34"", ""material.deck.density"": ""26""}","changed: {'material.deck.fck': '45->None', 'material.deck.fctm': '3.8->None', 'material.deck.ecm': '34->None', 'material.deck.density': '26->24.5'}"
+U4_custom_material_reload,-,U4c,FAIL,(i) info button works for a loaded custom steel,dialog opens,UnboundLocalError: cannot access local variable 'defaults' where it is not associated with a value
+U4_custom_material_reload,-,U4d,FAIL,Re-selecting the custom steel restores its fy/E,"custom_steel_410_540: fy 410, E 210",combo=custom_steel_410_540 fy=250.0 E=200.0
+U5_homepage_validation,span=19.9,U5,PASS,geometry.span = '19.9' rejected,reject,rejected -> 20.0 (Span must be between 20.0 m and 45.0 m (software l)
+U5_homepage_validation,span=45.1,U5,PASS,geometry.span = '45.1' rejected,reject,rejected -> 45.0 (Span must be between 20.0 m and 45.0 m (software l)
+U5_homepage_validation,span=0,U5,PASS,geometry.span = '0' rejected,reject,rejected -> 20.0 (Span must be between 20.0 m and 45.0 m (software l)
+U5_homepage_validation,span=-5,U5,PASS,geometry.span = '-5' rejected,reject,rejected -> 20.0 (Span must be between 20.0 m and 45.0 m (software l)
+U5_homepage_validation,span=abc,U5,PASS,geometry.span = 'abc' rejected,reject,rejected -> 20.0 (Span must be a numeric value.)
+U5_homepage_validation,span=20,U5,PASS,geometry.span = '20' accepted,accept,accepted
+U5_homepage_validation,span=45,U5,PASS,geometry.span = '45' accepted,accept,accepted
+U5_homepage_validation,carriageway_width=4.2,U5,PASS,geometry.carriageway_width = '4.2' rejected,reject,rejected -> 4.25 (Minimum carriageway width required is 4.25 m as pe)
+U5_homepage_validation,carriageway_width=23.7,U5,PASS,geometry.carriageway_width = '23.7' rejected,reject,rejected -> 23.6 (Carriageway width exceeds 23.6 m (software limitat)
+U5_homepage_validation,carriageway_width=4.25,U5,PASS,geometry.carriageway_width = '4.25' accepted,accept,accepted
+U5_homepage_validation,carriageway_width=23.6,U5,PASS,geometry.carriageway_width = '23.6' accepted,accept,accepted
+U5_homepage_validation,skew_angle=16,U5,PASS,geometry.skew_angle = '16' rejected,reject,rejected -> 15.0 (Skew angle must be between -15.0° and 15.0°.)
+U5_homepage_validation,skew_angle=-16,U5,PASS,geometry.skew_angle = '-16' rejected,reject,rejected -> -15.0 (Skew angle must be between -15.0° and 15.0°.)
+U5_homepage_validation,skew_angle=15,U5,PASS,geometry.skew_angle = '15' accepted,accept,accepted
+U5_homepage_validation,skew_angle=-15,U5,PASS,geometry.skew_angle = '-15' accepted,accept,accepted
+U6_osi_validation,span abc,U6,PASS,.osi with span abc rejected,reject,rejected: geometry.span: Span must be a numeric value.
+U6_osi_validation,span 19.9,U6,PASS,.osi with span 19.9 rejected,reject,rejected: geometry.span: Span must be between 20.0 m and 45.0 m (software limitation).
+U6_osi_validation,span 100,U6,PASS,.osi with span 100 rejected,reject,rejected: geometry.span: Span must be between 20.0 m and 45.0 m (software limitation).
+U6_osi_validation,carriageway 30,U6,PASS,.osi with carriageway 30 rejected,reject,rejected: geometry.carriageway_width: Carriageway width exceeds 23.6 m (software limitation).
+U6_osi_validation,skew 30,U6,PASS,.osi with skew 30 rejected,reject,rejected: geometry.skew_angle: Skew angle must be between -15.0° and 15.0°.
+U6_osi_validation,no_of_girders 1,U6,PASS,.osi with no_of_girders 1 rejected,reject,rejected: typical_section.no_of_girders: No. of girders is outside the practical range allowed in th
+U6_osi_validation,girder_spacing 0,U6,PASS,.osi with girder_spacing 0 rejected,reject,rejected: typical_section.girder_spacing: Girder spacing is outside the practical range allowed in t
+U6_osi_validation,deck_thickness 20 mm,U6,PASS,.osi with deck_thickness 20 mm rejected,reject,rejected: typical_section.deck_thickness: Deck thickness must be at least 100 mm.; design_options.sh
+U6_osi_validation,design_mode Foo,U6,PASS,.osi with design_mode Foo rejected,reject,"rejected: geometry.design_mode: 'Foo' is not a valid design mode (expected one of ['Custom', 'Manual"
+U6_osi_validation,custom steel fy 5000 MPa,U6,FAIL,.osi with custom steel fy 5000 MPa rejected,reject,LOADED
+U6_osi_validation,girder density 999 (custom),U6,FAIL,.osi with girder density 999 (custom) rejected,reject,LOADED
+U6_osi_validation,deck fck 500 (custom),U6,FAIL,.osi with deck fck 500 (custom) rejected,reject,LOADED
+U6_osi_validation,girder grade 'E 999X',U6,FAIL,.osi with girder grade 'E 999X' rejected,reject,LOADED
+U6_osi_validation,valid file (TC00),U6,PASS,.osi with valid file (TC00) loaded,load,LOADED
+U7_custom_material_dialog,normal fy410/fu540,U7,PASS,Custom steel normal fy410/fu540 accepted,accept,"accepted as custom_steel_410_540 (fy=410, fu=540, G=76.9)"
+U7_custom_material_dialog,fu < fy (450/400),U7,FAIL,Custom steel fu < fy (450/400) rejected,reject,"accepted as custom_steel_450_400 (fy=450, fu=400, G=76.9)"
+U7_custom_material_dialog,density 130,U7,PASS,Custom steel density 130 rejected,reject,"rejected: [{'title': 'Input Error', 'text': 'Weight Density must be between 50.0 and 120.0 kN/m³.'}]"
+U7_custom_material_dialog,E 50 GPa,U7,PASS,Custom steel E 50 GPa rejected,reject,"rejected: [{'title': 'Input Error', 'text': 'Modulus of Elasticity, E must be between 100.0 and 300.0 GPa.'}]"
+U7_custom_material_dialog,"G inconsistent with E,nu (E200, nu0.3, G 120)",U7,FAIL,"Custom steel G inconsistent with E,nu (E200, nu0.3, G 120) rejected",reject,"accepted as custom_steel_410_540 (fy=410, fu=540, G=120)"
+U8_backend_validation,span 100 m,U8,FAIL,Backend rejects span 100 m,ValueError,accepted (no range check)
+U8_backend_validation,carriageway 40 m,U8,FAIL,Backend rejects carriageway 40 m,ValueError,accepted (no range check)
+U8_backend_validation,skew 60 deg,U8,FAIL,Backend rejects skew 60 deg,ValueError,accepted (no range check)
+U8_backend_validation,girder fy 5000,U8,FAIL,Backend rejects girder fy 5000,ValueError,accepted (no range check)
