@@ -1,0 +1,107 @@
+[
+ {
+  "dict_now": "20.0",
+  "field": "geometry.span",
+  "field_now": "20.0",
+  "popup": "Span must be between 20.0 m and 45.0 m (software limitation).",
+  "typed": "19.9"
+ },
+ {
+  "dict_now": "45.0",
+  "field": "geometry.span",
+  "field_now": "45.0",
+  "popup": "Span must be between 20.0 m and 45.0 m (software limitation).",
+  "typed": "45.1"
+ },
+ {
+  "dict_now": "20.0",
+  "field": "geometry.span",
+  "field_now": "20.0",
+  "popup": "Span must be between 20.0 m and 45.0 m (software limitation).",
+  "typed": "0"
+ },
+ {
+  "dict_now": "20.0",
+  "field": "geometry.span",
+  "field_now": "20.0",
+  "popup": "Span must be between 20.0 m and 45.0 m (software limitation).",
+  "typed": "-5"
+ },
+ {
+  "dict_now": "20.0",
+  "field": "geometry.span",
+  "field_now": "20.0",
+  "popup": "Span must be a numeric value.",
+  "typed": "abc"
+ },
+ {
+  "dict_now": "20",
+  "field": "geometry.span",
+  "field_now": "20",
+  "popup": "",
+  "typed": "20"
+ },
+ {
+  "dict_now": "45",
+  "field": "geometry.span",
+  "field_now": "45",
+  "popup": "",
+  "typed": "45"
+ },
+ {
+  "dict_now": "4.25",
+  "field": "geometry.carriageway_width",
+  "field_now": "4.25",
+  "popup": "Minimum carriageway width required is 4.25 m as per IRC 5:2015 Clause 104.3.1.",
+  "typed": "4.2"
+ },
+ {
+  "dict_now": "23.6",
+  "field": "geometry.carriageway_width",
+  "field_now": "23.6",
+  "popup": "Carriageway width exceeds 23.6 m (software limitation).",
+  "typed": "23.7"
+ },
+ {
+  "dict_now": "4.25",
+  "field": "geometry.carriageway_width",
+  "field_now": "4.25",
+  "popup": "",
+  "typed": "4.25"
+ },
+ {
+  "dict_now": "23.6",
+  "field": "geometry.carriageway_width",
+  "field_now": "23.6",
+  "popup": "",
+  "typed": "23.6"
+ },
+ {
+  "dict_now": "15.0",
+  "field": "geometry.skew_angle",
+  "field_now": "15.0",
+  "popup": "Skew angle must be between -15.0° and 15.0°.",
+  "typed": "16"
+ },
+ {
+  "dict_now": "-15.0",
+  "field": "geometry.skew_angle",
+  "field_now": "-15.0",
+  "popup": "Skew angle must be between -15.0° and 15.0°.",
+  "typed": "-16"
+ },
+ {
+  "dict_now": "15",
+  "field": "geometry.skew_angle",
+  "field_now": "15",
+  "popup": "",
+  "typed": "15"
+ },
+ {
+  "dict_now": "-15",
+  "field": "geometry.skew_angle",
+  "field_now": "-15",
+  "popup": "",
+  "typed": "-15"
+ }
+]
