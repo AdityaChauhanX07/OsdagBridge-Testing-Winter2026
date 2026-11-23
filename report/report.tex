@@ -88,7 +88,7 @@ Issue & What goes wrong (key numbers) & Effect & Fix\\
 \noindent\textbf{Fixes.} \pr{219} and \pr{220} each add regression tests to the project's own \code{tests/unit} that fail on \code{d74f56d} and pass with the fix. My suite, rerun with each fix, changes only the targeted checks, from \fail\ to \pass: two dialog checks for \pr{219}; the girder-count check and three design checks for \pr{220}. Span 40~m / carriageway 11~m now gives 5 girders and max DCR 1.5115 however the inputs were entered (Section~\ref{sec:fixes}).
 
 \smallskip
-\noindent\textbf{Independently confirmed by other testers:} \issue{02} (median and footpath changes do not re-seed the count either) and \issue{03} (reproduced; plot and design-check girder numbering offset).
+\noindent\textbf{Independently confirmed by other testers} (as of 22 Nov): \issue{03} by three testers, one on macOS (4 girders in, 6 checked; the design-check report states 5 girders for a 3-girder input); \issue{02} by two (median and footpath changes do not re-seed the count either; carriageway 7 $\rightarrow$ 5~m keeps 4 girders where a fresh session gives 3); \issue{06} for Optimized mode. My evidence on \gh{43} (bracing always designed as E\,250) and \gh{71} (Additional Inputs reset) was also confirmed by another tester.
 
 \smallskip
 \noindent\textbf{Evidence:} \href{https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026}{github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026} (scripts, every input and output dictionary, logs, \code{.osi} files). \ifx\videourl\empty Video: link in the submission form.\else Video: \url{\videourl}.\fi\ To re-check every UI-level finding in about 2 minutes: \texttt{python scripts/run\_test\_suite.py -{}-ui-only}.
