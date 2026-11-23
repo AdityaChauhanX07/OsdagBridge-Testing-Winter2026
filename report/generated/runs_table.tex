@@ -1,4 +1,10 @@
 \begin{longtable}{@{}llrrrrrrrr@{}}
+\caption{All design runs. ``in/chk'': girders in the input / girders in the design check. $\gamma_s$, $\gamma_c$: steel and concrete densities, input / used by the analysis (kN/m$^3$). $M_{SW}$ ratio: per-girder self-weight moment $/(wL^2/8)$. $\delta$: total deflection in the design check / maximum per-girder value shown.}\label{tab:runs}\\
+\toprule
+Case & Step & Girders & Spacing (m) & $\gamma_s$ & $\gamma_c$ & $M_{SW}$ & $\delta$ (mm) & max & \\
+ & & in/chk & in/used & in/used & in/used & ratio & chk/shown & DCR & Status\\
+\midrule\endfirsthead
+\multicolumn{10}{@{}l}{\emph{Table \thetable{} continued}}\\
 \toprule
 Case & Step & Girders & Spacing (m) & $\gamma_s$ & $\gamma_c$ & $M_{SW}$ & $\delta$ (mm) & max & \\
  & & in/chk & in/used & in/used & in/used & ratio & chk/shown & DCR & Status\\
@@ -13,7 +19,7 @@ S02 & fresh\_B & 5/7 & 2.38/2.405 & 76.4/78.5 & 24.5/25 & 0.714 & 30.2/59.8 & 1.
 S02 & typo\_B\_cw20\_then\_11 & 9/11 & 1.322/1.335 & 76.4/78.5 & 24.5/25 & 0.818 & 25.3/43.7 & 1.13 & FAIL\\
 S03 & run1\_custom & 4/6 & 2.1/2.133 & 80/78.5 & 26/25 & 0.669 & 21.8/48.8 & 1.577 & FAIL\\
 S03 & run2\_back\_to\_default & 4/6 & 2.1/2.133 & 76.4/78.5 & 24.5/25 & 0.669 & 22.9/51.2 & 1.577 & FAIL\\
-S04 & run1\_reloaded\_custom & \multicolumn{8}{l}{\emph{error: ValueError: 'material.deck.fck' is required but was not fo}}\\
+S04 & run1\_reloaded\_custom & \multicolumn{8}{@{}p{0.6\linewidth}@{}}{\raggedright\emph{error: ValueError: 'material.deck.fck' is required but was not found in 'input\_dict'. Populate 'material.deck.fck' before running the design check.}}\\
 S05 & run1\_edits & 4/6 & 2.1/2.133 & 76.4/78.5 & 24.5/25 & 0.669 & 23.6/56.5 & 1.757 & FAIL\\
 S05 & run2\_span32 & 4/6 & 2.1/2.133 & 76.4/78.5 & 24.5/25 & 0.666 & 23.9/50.8 & 1.436 & FAIL\\
 S06 & run1\_5\_girders & 5/7 & 1.68/1.705 & 76.4/78.5 & 24.5/25 & 0.716 & 21.1/45.1 & 1.402 & FAIL\\
@@ -28,7 +34,7 @@ S07 & skew-15 & 4/6 & 2.1/2.133 & 76.4/78.5 & 24.5/25 & 0.664 & 21.8/-- & 1.468 
 S07 & median\_yes\_cw15 & 7/9 & 4.586/4.602 & 76.4/78.5 & 24.5/25 & 0.846 & 50.8/131 & 3.89 & FAIL\\
 S07 & footpath\_both & 5/7 & 2.43/2.405 & 76.4/78.5 & 24.5/25 & 0.717 & 26.5/61.1 & 1.851 & FAIL\\
 S08 & run1\_A & 4/6 & 2.1/2.133 & 76.4/78.5 & 24.5/25 & 0.669 & 22.9/51.2 & 1.577 & FAIL\\
-S08 & run2\_fail & \multicolumn{8}{l}{\emph{error: ValueError: Girder spacing must be positive, got 0.0.}}\\
+S08 & run2\_fail & \multicolumn{8}{@{}p{0.6\linewidth}@{}}{\raggedright\emph{error: ValueError: Girder spacing must be positive, got 0.0.}}\\
 S08 & run3\_A & 4/6 & 2.1/2.133 & 76.4/78.5 & 24.5/25 & 0.669 & 22.9/51.2 & 1.577 & FAIL\\
 S09 & run1\_fy5000 & 4/6 & 2.1/2.133 & 76.4/78.5 & 24.5/25 & 0.669 & 22.9/51.2 & 1.577 & FAIL\\
 S10 & deck\_M45 & 4/6 & 2.1/2.133 & 76.4/78.5 & 24.5/25 & 0.669 & 22.9/51.2 & 1.577 & FAIL\\

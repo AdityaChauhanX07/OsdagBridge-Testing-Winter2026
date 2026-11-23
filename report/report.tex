@@ -7,6 +7,7 @@
 \usepackage{xcolor}
 \usepackage{enumitem}
 \usepackage{caption}
+\usepackage{needspace}
 \usepackage{float}
 \usepackage{fancyhdr}
 \usepackage{amsmath}
@@ -177,7 +178,7 @@ TC01 (Windows GUI): girder \code{custom_steel_410_540} ($\rho$ 80~kN/m$^3$, $f_y
 
 \begin{table}[H]\centering\small
 \caption{Custom material values: UI entry vs.\ input/output dictionaries vs.\ what the calculation actually used (TC01 vs.\ TC00 baseline).}\label{tab:custom}
-\begin{tabularx}{\linewidth}{@{}lllXl@{}}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.2\linewidth}>{\raggedright\arraybackslash}p{0.1\linewidth}>{\raggedright\arraybackslash}p{0.1\linewidth}>{\raggedright\arraybackslash}X l@{}}
 \toprule
 Property & UI / input dict & Output dict & Used by analysis / design (evidence) & Verdict\\
 \midrule
@@ -242,19 +243,18 @@ Deck slab & density, cover/exposure, thickness propagation & \gh{41}, \issue{05}
 \bottomrule
 \end{tabular}
 
-\subsection{3D CAD and plots}
+\subsection{3D CAD and plots}\label{sec:cad}
 \input{cad_observations.tex}
 
-\subsection{All automated design runs}
-\footnotesize\setlength{\tabcolsep}{3pt}
-\captionof{table}{All design runs. ``in/chk'': girders in the input / girders in the design check. $\gamma_s$, $\gamma_c$: steel and concrete densities, input / used by the analysis (kN/m$^3$). $M_{SW}$ ratio: per-girder self-weight moment $/(wL^2/8)$. $\delta$: total deflection in the design check / maximum per-girder value shown.}\label{tab:runs}
-\input{generated/runs_table.tex}
-\normalsize\setlength{\tabcolsep}{6pt}
+\needspace{0.35\textheight}
+\subsection{All automated design runs}\label{sec:allruns}
+{\footnotesize\setlength{\tabcolsep}{3pt}\captionsetup{font=normalsize}\setlength{\LTcapwidth}{\linewidth}
+\input{generated/runs_table.tex}}
 
-\subsection{All UI-logic, multi-run and material checks}
-\small
-\input{generated/ui_checks_table.tex}
-\normalsize
+\needspace{0.3\textheight}
+\subsection{All UI-logic, multi-run and material checks}\label{sec:allchecks}
+{\small\captionsetup{font=normalsize}\setlength{\LTcapwidth}{\linewidth}
+\input{generated/ui_checks_table.tex}}
 
 %=====================================================================
 \section{Issues raised}\label{sec:issues}
@@ -304,9 +304,9 @@ PR & Change and tests & Suite before $\to$ after\\
 %=====================================================================
 \section{Limitations}
 \begin{itemize}
-\item The suite builds widgets but not the main window. CAD drawing, plots and the output dock were checked manually (Section on 3D CAD), not automatically.
+\item The suite builds widgets but not the main window. CAD drawing, plots and the output dock were checked manually (Section~\ref{sec:cad}), not automatically.
 \item Engineering expectations were limited to what can be derived from the inputs and the codes cited in the software (IRC~6/22/112, IS~2062). The issues report inconsistencies; they do not certify a correct design.
-\item Every number in this report can be regenerated with the two scripts in the evidence repository (Appendix~\ref{app:repro}).
+\item Every number in this report can be regenerated with the scripts in the evidence repository (Appendix~\ref{app:repro}).
 \end{itemize}
 
 \appendix

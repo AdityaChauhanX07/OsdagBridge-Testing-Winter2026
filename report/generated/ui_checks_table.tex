@@ -1,33 +1,38 @@
-\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.06\linewidth}>{\raggedright\arraybackslash}p{0.36\linewidth}>{\raggedright\arraybackslash}p{0.44\linewidth}l@{}}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.06\linewidth}>{\raggedright\arraybackslash}p{0.33\linewidth}>{\raggedright\arraybackslash}p{0.47\linewidth}l@{}}
+\caption{Every UI-logic, multi-run and material check (U = UI logic, R = repeated runs, A = Additional Inputs, M = materials, V = validation in design, D = deck grade), with the recorded result.}\label{tab:uichecks}\\
+\toprule
+ID & Test & Actual & Result\\
+\midrule\endfirsthead
+\multicolumn{4}{@{}l}{\emph{Table \thetable{} continued}}\\
 \toprule
 ID & Test & Actual & Result\\
 \midrule\endhead
-U1a & Simulated Design dict == real GUI TC00 dict (576 keys) & 0 differences [] & \pass\\
-U1b & Simulated custom-material dict == real GUI TC01 dict & 0 differences [] & \pass\\
+U1a & Simulated Design dict == real GUI TC00 dict (576 keys) & 0 differences & \pass\\
+U1b & Simulated custom-material dict == real GUI TC01 dict & 0 differences & \pass\\
 U2 & Girder layout depends only on current inputs (not on typing history) & 5@2.38; 4@2.975; 3@3.9667; 9@1.3222; 4@2.975 & \fail\\
 U3a0 & Edits present right after Additional Inputs > Save & all kept & \pass\\
-U3a & Additional Inputs kept after changing span 30->32 & 6 reset: \{'typical\_section.deck\_thickness': '300.0->250.0', 'typical\_section.wearing\_course.thickness': '80.0->50.0', 'd & \fail\\
-U3b1 & Save Input writes the edited Additional Inputs to the .osi & 6 reset in file: \{'typical\_section.deck\_thickness': '300.0->250.0', 'typical\_section.wearing\_course.thickness': '80.0->5 & \fail\\
-U3b2 & Session still has the edits after clicking Save Input & 6 reset: \{'typical\_section.deck\_thickness': '300.0->250.0', 'typical\_section.wearing\_course.thickness': '80.0->50.0', 'd & \fail\\
+U3a & Additional Inputs kept after changing span 30$\rightarrow$32 & 6 reset: deck\_thickness 300.0 $\rightarrow$ 250.0; wearing\_course.thickness 80.0 $\rightarrow$ 50.0; gamma\_m0 1.15 $\rightarrow$ 1.10; avg\_exposed\_height 15 $\rightarrow$ 10; left\_support Fixed $\rightarrow$ Pinned; shear\_studs.diameter 22 $\rightarrow$ 20 & \fail\\
+U3b1 & Save Input writes the edited Additional Inputs to the .osi & 6 reset in file: deck\_thickness 300.0 $\rightarrow$ 250.0; wearing\_course.thickness 80.0 $\rightarrow$ 50.0; gamma\_m0 1.15 $\rightarrow$ 1.10; avg\_exposed\_height 15 $\rightarrow$ 10; left\_support Fixed $\rightarrow$ Pinned; shear\_studs.diameter 22 $\rightarrow$ 20 & \fail\\
+U3b2 & Session still has the edits after clicking Save Input & 6 reset: deck\_thickness 300.0 $\rightarrow$ 250.0; wearing\_course.thickness 80.0 $\rightarrow$ 50.0; gamma\_m0 1.15 $\rightarrow$ 1.10; avg\_exposed\_height 15 $\rightarrow$ 10; left\_support Fixed $\rightarrow$ Pinned; shear\_studs.diameter 22 $\rightarrow$ 20 & \fail\\
 U3c0 & Hand-checked .osi with edits loads & loaded & \pass\\
-U3c & Additional Inputs kept after Load Input (file contains them) & 6 reset: \{'typical\_section.deck\_thickness': '300.0->250.0', 'typical\_section.wearing\_course.thickness': '80.0->50.0', 'd & \fail\\
+U3c & Additional Inputs kept after Load Input (file contains them) & 6 reset: deck\_thickness 300.0 $\rightarrow$ 250.0; wearing\_course.thickness 80.0 $\rightarrow$ 50.0; gamma\_m0 1.15 $\rightarrow$ 1.10; avg\_exposed\_height 15 $\rightarrow$ 10; left\_support Fixed $\rightarrow$ Pinned; shear\_studs.diameter 22 $\rightarrow$ 20 & \fail\\
 U4a & Custom-material .osi loads & loaded & \pass\\
-U4b & Custom material values survive Save > Load > Design & changed: \{'material.deck.fck': '45->None', 'material.deck.fctm': '3.8->None', 'material.deck.ecm': '34->None', 'material & \fail\\
+U4b & Custom material values survive Save > Load > Design & changed: fck 45 $\rightarrow$ None; fctm 3.8 $\rightarrow$ None; ecm 34 $\rightarrow$ None; density 26 $\rightarrow$ 24.5 & \fail\\
 U4c & (i) info button works for a loaded custom steel & UnboundLocalError: cannot access local variable 'defaults' where it is not associated with a value & \fail\\
 U4d & Re-selecting the custom steel restores its fy/E & combo=custom\_steel\_410\_540 fy=250.0 E=200.0 & \fail\\
-U5 & geometry.span = '19.9' rejected & rejected -> 20.0 (Span must be between 20.0 m and 45.0 m (software l) & \pass\\
-U5 & geometry.span = '45.1' rejected & rejected -> 45.0 (Span must be between 20.0 m and 45.0 m (software l) & \pass\\
-U5 & geometry.span = '0' rejected & rejected -> 20.0 (Span must be between 20.0 m and 45.0 m (software l) & \pass\\
-U5 & geometry.span = '-5' rejected & rejected -> 20.0 (Span must be between 20.0 m and 45.0 m (software l) & \pass\\
-U5 & geometry.span = 'abc' rejected & rejected -> 20.0 (Span must be a numeric value.) & \pass\\
+U5 & geometry.span = '19.9' rejected & rejected, field set to 20.0. Pop-up: Span must be between 20.0 m and 45.0 m (software limitation). & \pass\\
+U5 & geometry.span = '45.1' rejected & rejected, field set to 45.0. Pop-up: Span must be between 20.0 m and 45.0 m (software limitation). & \pass\\
+U5 & geometry.span = '0' rejected & rejected, field set to 20.0. Pop-up: Span must be between 20.0 m and 45.0 m (software limitation). & \pass\\
+U5 & geometry.span = '-5' rejected & rejected, field set to 20.0. Pop-up: Span must be between 20.0 m and 45.0 m (software limitation). & \pass\\
+U5 & geometry.span = 'abc' rejected & rejected, field set to 20.0. Pop-up: Span must be a numeric value. & \pass\\
 U5 & geometry.span = '20' accepted & accepted & \pass\\
 U5 & geometry.span = '45' accepted & accepted & \pass\\
-U5 & geometry.carriageway\_width = '4.2' rejected & rejected -> 4.25 (Minimum carriageway width required is 4.25 m as pe) & \pass\\
-U5 & geometry.carriageway\_width = '23.7' rejected & rejected -> 23.6 (Carriageway width exceeds 23.6 m (software limitat) & \pass\\
+U5 & geometry.carriageway\_width = '4.2' rejected & rejected, field set to 4.25. Pop-up: Minimum carriageway width required is 4.25 m as per IRC 5:2015 Clause 104.3.1. & \pass\\
+U5 & geometry.carriageway\_width = '23.7' rejected & rejected, field set to 23.6. Pop-up: Carriageway width exceeds 23.6 m (software limitation). & \pass\\
 U5 & geometry.carriageway\_width = '4.25' accepted & accepted & \pass\\
 U5 & geometry.carriageway\_width = '23.6' accepted & accepted & \pass\\
-U5 & geometry.skew\_angle = '16' rejected & rejected -> 15.0 (Skew angle must be between -15.0$^\circ$ and 15.0$^\circ$.) & \pass\\
-U5 & geometry.skew\_angle = '-16' rejected & rejected -> -15.0 (Skew angle must be between -15.0$^\circ$ and 15.0$^\circ$.) & \pass\\
+U5 & geometry.skew\_angle = '16' rejected & rejected, field set to 15.0. Pop-up: Skew angle must be between -15.0$^\circ$ and 15.0$^\circ$. & \pass\\
+U5 & geometry.skew\_angle = '-16' rejected & rejected, field set to -15.0. Pop-up: Skew angle must be between -15.0$^\circ$ and 15.0$^\circ$. & \pass\\
 U5 & geometry.skew\_angle = '15' accepted & accepted & \pass\\
 U5 & geometry.skew\_angle = '-15' accepted & accepted & \pass\\
 U6 & .osi with span abc rejected & rejected: geometry.span: Span must be a numeric value. & \pass\\
@@ -35,10 +40,10 @@ U6 & .osi with span 19.9 rejected & rejected: geometry.span: Span must be betwee
 U6 & .osi with span 100 rejected & rejected: geometry.span: Span must be between 20.0 m and 45.0 m (software limitation). & \pass\\
 U6 & .osi with carriageway 30 rejected & rejected: geometry.carriageway\_width: Carriageway width exceeds 23.6 m (software limitation). & \pass\\
 U6 & .osi with skew 30 rejected & rejected: geometry.skew\_angle: Skew angle must be between -15.0$^\circ$ and 15.0$^\circ$. & \pass\\
-U6 & .osi with no\_of\_girders 1 rejected & rejected: typical\_section.no\_of\_girders: No. of girders is outside the practical range allowed in th & \pass\\
-U6 & .osi with girder\_spacing 0 rejected & rejected: typical\_section.girder\_spacing: Girder spacing is outside the practical range allowed in t & \pass\\
-U6 & .osi with deck\_thickness 20 mm rejected & rejected: typical\_section.deck\_thickness: Deck thickness must be at least 100 mm.; design\_options.sh & \pass\\
-U6 & .osi with design\_mode Foo rejected & rejected: geometry.design\_mode: 'Foo' is not a valid design mode (expected one of ['Custom', 'Manual & \pass\\
+U6 & .osi with no\_of\_girders 1 rejected & rejected: typical\_section.no\_of\_girders: No. of girders is outside the practical range allowed in the software. & \pass\\
+U6 & .osi with girder\_spacing 0 rejected & rejected: typical\_section.girder\_spacing: Girder spacing is outside the practical range allowed in the software. & \pass\\
+U6 & .osi with deck\_thickness 20 mm rejected & rejected: typical\_section.deck\_thickness: Deck thickness must be at least 100 mm. design\_options.shear\_studs.height: Stud height must be between 80 mm (4$\times$ stud diameter) and -5 mm (deck thickness $-$ 25 mm). & \pass\\
+U6 & .osi with design\_mode Foo rejected & rejected: geometry.design\_mode: 'Foo' is not a valid design mode (expected one of ['Custom', 'Manual', 'Optimized', 'Standard']). & \pass\\
 U6 & .osi with custom steel fy 5000 MPa rejected & LOADED & \fail\\
 U6 & .osi with girder density 999 (custom) rejected & LOADED & \fail\\
 U6 & .osi with deck fck 500 (custom) rejected & LOADED & \fail\\
@@ -46,31 +51,31 @@ U6 & .osi with girder grade 'E 999X' rejected & LOADED & \fail\\
 U6 & .osi with valid file (TC00) loaded & LOADED & \pass\\
 U7 & Custom steel normal fy410/fu540 accepted & accepted as custom\_steel\_410\_540 (fy=410, fu=540, G=76.9) & \pass\\
 U7 & Custom steel fu < fy (450/400) rejected & accepted as custom\_steel\_450\_400 (fy=450, fu=400, G=76.9) & \fail\\
-U7 & Custom steel density 130 rejected & rejected: [\{'title': 'Input Error', 'text': 'Weight Density must be between 50.0 and 120.0 kN/m$^3$.'\}] & \pass\\
-U7 & Custom steel E 50 GPa rejected & rejected: [\{'title': 'Input Error', 'text': 'Modulus of Elasticity, E must be between 100.0 and 300.0 GPa.'\}] & \pass\\
+U7 & Custom steel density 130 rejected & rejected. Pop-up (Input Error): Weight Density must be between 50.0 and 120.0 kN/m$^3$. & \pass\\
+U7 & Custom steel E 50 GPa rejected & rejected. Pop-up (Input Error): Modulus of Elasticity, E must be between 100.0 and 300.0 GPa. & \pass\\
 U7 & Custom steel G inconsistent with E,nu (E200, nu0.3, G 120) rejected & accepted as custom\_steel\_410\_540 (fy=410, fu=540, G=120) & \fail\\
 U8 & Backend rejects span 100 m & accepted (no range check) & \fail\\
 U8 & Backend rejects carriageway 40 m & accepted (no range check) & \fail\\
 U8 & Backend rejects skew 60 deg & accepted (no range check) & \fail\\
 U8 & Backend rejects girder fy 5000 & accepted (no range check) & \fail\\
-R1 & Run 2 output identical to run 1 & 0 differences, e.g. [] & \pass\\
-R2 & Run 3 output identical to run 1 & 0 differences, e.g. [] & \pass\\
-R3 & A after B identical to first A & 0 differences, e.g. [] & \pass\\
+R1 & Run 2 output identical to run 1 & 0 differences & \pass\\
+R2 & Run 3 output identical to run 1 & 0 differences & \pass\\
+R3 & A after B identical to first A & 0 differences & \pass\\
 R4 & B after A (same session) == B typed in a fresh session (girders) & 4 girders @ 2.975 m (after A) & \fail\\
 R5 & B after A (same session) == B typed in a fresh session (max DCR / status) & 1.686 FAIL & \fail\\
-R6 & B with a corrected typo (cw 20 -> 11) == B typed directly & 9 girders, max DCR 1.1301 FAIL & \fail\\
+R6 & B with a corrected typo (cw 20 $\rightarrow$ 11) == B typed directly & 9 girders, max DCR 1.1301 FAIL & \fail\\
 M1 & Custom girder density 80 changes the girder self-weight & 2741.12 & \fail\\
 M2 & Custom deck density 26 changes the deck design moments & 30.898 & \fail\\
 M3 & Custom fy 410 reaches the design (Md changes) & 13263.725 & \pass\\
 M4 & Deck exposure/cover with custom M45-equivalent concrete & Extreme, cover 75 mm & \fail\\
-R7 & Back to default materials == baseline & 0 differences, e.g. [] & \pass\\
+R7 & Back to default materials == baseline & 0 differences & \pass\\
 A1 & Deck thickness 300 mm used in the slab load & input 300.0 mm, slab load 7500.0 N/m2 & \pass\\
 A2 & Deck thickness after changing span (user never re-edited it) & 250.0 & \fail\\
-M6 & Cross-bracing steel E 350A -> E 450A changes bracing design & identical sections and capacities & \fail\\
-R8 & After a failed design no results from the previous run remain & status=error (ValueError: Girder spacing must be positive, got 0.0.), output\_dict still has 0 keys (previous run had 106 & \pass\\
-R9 & A after a failed run identical to first A & 0 differences, e.g. [] & \pass\\
+M6 & Cross-bracing steel E 350A $\rightarrow$ E 450A changes bracing design & identical sections and capacities & \fail\\
+R8 & After a failed design no results from the previous run remain & status=error (ValueError: Girder spacing must be positive, got 0.0.), output\_dict still has 0 keys (previous run had 1066) & \pass\\
+R9 & A after a failed run identical to first A & 0 differences & \pass\\
 V1 & Design refuses fy = 5000 MPa loaded from .osi & designed with fy=5000.0 MPa, status FAIL & \fail\\
-D1 & Exposure class does not change when only the concrete grade changes & M40->Very Severe (50 mm), M45->Extreme (75 mm), M50->Extreme (75 mm) & \fail\\
+D1 & Exposure class does not change when only the concrete grade changes & M40$\rightarrow$Very Severe (50 mm), M45$\rightarrow$Extreme (75 mm), M50$\rightarrow$Extreme (75 mm) & \fail\\
 A3 & Design unchanged after opening Additional Inputs and saving with no edits & cross\_bracing\_spacing\_m=15.0, chi\_LT=0.3282, Mb\_kNm=2621.07, max\_dcr=1.5765, overall\_status=FAIL & \fail\\
 A4 & Girder area unchanged after opening Additional Inputs (no edits) & 0.0349 & \fail\\
 \bottomrule

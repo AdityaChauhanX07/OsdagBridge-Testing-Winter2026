@@ -1,16 +1,16 @@
 \begin{tabular}{@{}l>{\raggedright\arraybackslash}p{0.62\linewidth}@{}}
 \toprule
-Hand-edited value in .osi & Load Input result\\
+Value changed in the .osi & Load Input result\\
 \midrule
 span abc & rejected: geometry.span: Span must be a numeric value.\\
 span 19.9 & rejected: geometry.span: Span must be between 20.0 m and 45.0 m (software limitation).\\
 span 100 & rejected: geometry.span: Span must be between 20.0 m and 45.0 m (software limitation).\\
 carriageway 30 & rejected: geometry.carriageway\_width: Carriageway width exceeds 23.6 m (software limitation).\\
 skew 30 & rejected: geometry.skew\_angle: Skew angle must be between -15.0$^\circ$ and 15.0$^\circ$.\\
-no\_of\_girders 1 & rejected: typical\_section.no\_of\_girders: No. of girders is outside the practical range allowed in the sof\\
-girder\_spacing 0 & rejected: typical\_section.girder\_spacing: Girder spacing is outside the practical range allowed in the so\\
-deck\_thickness 20 mm & rejected: typical\_section.deck\_thickness: Deck thickness must be at least 100 mm.\\
-design\_mode Foo & rejected: geometry.design\_mode: 'Foo' is not a valid design mode (expected one of ['Custom', 'Manual', 'O\\
+no\_of\_girders 1 & rejected: typical\_section.no\_of\_girders: No. of girders is outside the practical range allowed in the software.\\
+girder\_spacing 0 & rejected: typical\_section.girder\_spacing: Girder spacing is outside the practical range allowed in the software.\\
+deck\_thickness 20 mm & rejected: typical\_section.deck\_thickness: Deck thickness must be at least 100 mm. design\_options.shear\_studs.height: Stud height must be between 80 mm (4$\times$ stud diameter) and -5 mm (deck thickness $-$ 25 mm).\\
+design\_mode Foo & rejected: geometry.design\_mode: 'Foo' is not a valid design mode (expected one of ['Custom', 'Manual', 'Optimized', 'Standard']).\\
 custom steel fy 5000 MPa & \textbf{loaded}\\
 girder density 999 (custom) & \textbf{loaded}\\
 deck fck 500 (custom) & \textbf{loaded}\\
