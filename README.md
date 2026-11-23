@@ -9,7 +9,8 @@ Software under test: [Nidhikhare12/OsdagBridge](https://github.com/Nidhikhare12/
 4 comments with new evidence on existing issues, 2 fix pull requests with regression tests
 ([#219](https://github.com/Nidhikhare12/OsdagBridge/pull/219), [#220](https://github.com/Nidhikhare12/OsdagBridge/pull/220)),
 and an automated GUI-level test suite with identical results on Windows 11 and Linux.
-Report: [`report/report.pdf`](report/report.pdf) (page 1 is a one-page summary).
+Report: [`report/report.pdf`](report/report.pdf) (the page after the title page is a one-page summary).
+Video of the test session (6 design runs, 3D CAD, plots, design report): https://youtu.be/G32tJCyJotU
 
 ## What is in this repository
 

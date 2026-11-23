@@ -1,3 +1,5 @@
+**Final video:** https://youtu.be/G32tJCyJotU (5 min; captions added, analysis waits shown at 4× speed).
+
 # Video script (silent screen recording, about 8 minutes)
 
 The task asks for: a custom-material run, 3 consecutive runs, and the 3D CAD and plots.
