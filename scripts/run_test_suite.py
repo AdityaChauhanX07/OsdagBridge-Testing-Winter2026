@@ -24,12 +24,12 @@ section-area consistency, ...). Multi-run sequences are diffed run-to-run.
 
 Usage (Anaconda Prompt, osdagbridge-env active):
     cd C:\\Users\\Aditya\\Projects\\OsdagBridge\\src
-    python C:\\Users\\Aditya\\Projects\\OsdagBridge-Testing\\scripts\\run_test_suite.py
+    python C:\\Users\\Aditya\\Projects\\OsdagBridge-Testing-Winter2026\\scripts\\run_test_suite.py
 Options:
     --list            list the test cases and exit
     --only U1,S03     run only these case ids (comma separated)
     --ui-only         run only the fast U* (no-design) tests
-    --out DIR         output folder (default: OsdagBridge-Testing/suite_runs/<timestamp>)
+    --out DIR         output folder (default: suite_runs/<timestamp> in this repository)
 
 Results: suite_runs/<timestamp>/SUMMARY.md, checks.csv, runs.csv, and one
 folder per case with *_input.json, *_output.json.gz, *_log.txt, *_checks.json.

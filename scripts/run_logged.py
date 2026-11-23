@@ -22,7 +22,7 @@ How it works: it wraps PlateGirderBridge.set_input() and .design() at runtime
 
 Usage (Anaconda Prompt, osdagbridge-env active):
     cd C:\\Users\\Aditya\\Projects\\OsdagBridge\\src
-    python C:\\Users\\Aditya\\Projects\\OsdagBridge-Testing\\scripts\\run_logged.py TC01_short_label
+    python C:\\Users\\Aditya\\Projects\\OsdagBridge-Testing-Winter2026\\scripts\\run_logged.py TC01_short_label
 """
 
 from __future__ import annotations
