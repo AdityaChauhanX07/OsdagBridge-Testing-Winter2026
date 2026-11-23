@@ -25,6 +25,7 @@
    I rebuilt it from the dump (`sqlite3.executescript`). Windows already had the database.
 
 ## How the GUI runs were recorded
-`python <testing-repo>\scripts\run_logged.py <LABEL>` from `OsdagBridge\src`. Each Design click writes the
-UI input dict, the backend input dict, the full output dict, run metadata and a diff against the previous run into
-`runs\<timestamp>_<LABEL>\`.
+`python ..\..\OsdagBridge-Testing-Winter2026\scripts\run_logged.py <LABEL>` from `OsdagBridge\src` (osdagbridge-env active).
+Each Design click writes the UI input dict, the backend input dict, the full output dict, run metadata and a diff
+against the previous run into `runs\<timestamp>_<LABEL>\` inside the testing repository. The two manual sessions
+kept as evidence are in `gui_runs/`.

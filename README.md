@@ -18,13 +18,13 @@ Video of the test session (6 design runs, 3D CAD, plots, design report): https:/
 |---|---|
 | `scripts/run_logged.py` | Launches the normal OsdagBridge GUI and records, for every **Design** click, the input dictionary the UI sent, the backend input after normalisation, the full output dictionary, a console log, run metadata and a diff against the previous run (multi-run / stale-state evidence). No source changes: it wraps `PlateGirderBridge.set_input()` / `design()` at runtime. |
 | `scripts/run_test_suite.py` | Automated test suite. Drives the **real** homepage `InputDock`, the real Additional Inputs dialog, the real custom-material dialog, `.osi` save/load and the backend headlessly (off-screen Qt), runs 31 designs (34 in the Linux run) and applies 12 automatic consistency checks (C01-C12) to every design run. See "Automated suite" below. |
-| `osi/` | Test input files for **File > Load Input**: TC00 baseline, TC01 custom materials, TC02 edited Additional Inputs, and 11 invalid files used to test Load Input validation. |
+| `osi/` | Test input files for **File > Load Input**: TC00 baseline, TC01 custom materials, TC02 edited Additional Inputs, and 11 invalid files for a manual check of Load Input validation (the suite writes its own set of 13 in case U6). |
 | `fixtures/` | The exact input dictionaries the GUI produced in the two manual runs (used by the suite's self-test). |
 | `gui_runs/` | Evidence of the manual GUI runs on Windows 11 (`run_logged.py` output + generated design reports). |
 | `suite_runs/` | Output of the automated suite (`SUMMARY.md`, `checks.csv`, `runs.csv`, and per-case input/output/log files): the full Windows run `20261116_011421`, the Linux cross-check `headless_linux_2026-11-15`, and the reruns with each fix applied (`fix_118_ui_tests_2026-11-21`, `fix_112_tests_2026-11-21`). |
 | `issues/` | The issue texts as posted to Nidhikhare12/OsdagBridge. |
 | `report/` | The PDF report (`report.pdf`) and its LaTeX source, the figures taken from the recorded session, and the script that builds the report tables from `suite_runs/`. |
-| `notes/` | Test plan, environment setup, and the script of the recorded video. |
+| `notes/` | Test plan, environment setup, and a timestamped list of what the video shows (`video_timeline.md`). |
 
 ## Test environment
 
@@ -40,7 +40,7 @@ conda activate osdagbridge-env
 cd OsdagBridge\src
 :: GUI with logging: one folder per session under OsdagBridge-Testing-Winter2026\runs
 python ..\..\OsdagBridge-Testing-Winter2026\scripts\run_logged.py MY_LABEL
-:: automated suite (about 20 minutes): results under OsdagBridge-Testing-Winter2026\suite_runs
+:: automated suite (about 25 minutes): results under OsdagBridge-Testing-Winter2026\suite_runs
 python ..\..\OsdagBridge-Testing-Winter2026\scripts\run_test_suite.py
 python ..\..\OsdagBridge-Testing-Winter2026\scripts\run_test_suite.py --list      # list the cases
 python ..\..\OsdagBridge-Testing-Winter2026\scripts\run_test_suite.py --ui-only   # 2-minute subset

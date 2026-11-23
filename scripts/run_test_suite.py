@@ -16,15 +16,16 @@ Input, update_cad_from_inputs) are mirrored line-for-line in class GuiSim and
 the source line each one mirrors is noted next to it.
 
 For every Design run it saves the input dict, the full output dict (gzipped),
-the console log, and ~15 automatic consistency checks (girder count, girder
-spacing, self-weight density, slab density, SW moment vs wL^2/8, deflection
+the console log, and 12 automatic consistency checks C01-C12 (girder count,
+girder spacing, steel density, deck density, SW moment vs wL^2/8, deflection
 consistency, thermal load case, end-diaphragm design, cross-bracing spacing,
-section-area consistency, ...). Multi-run sequences are diffed run-to-run.
+section-area consistency, fy used, self-weight lines). Multi-run sequences are
+diffed run-to-run.
 "UI logic" tests (U*) need no design run and finish in seconds.
 
 Usage (Anaconda Prompt, osdagbridge-env active):
-    cd C:\\Users\\Aditya\\Projects\\OsdagBridge\\src
-    python C:\\Users\\Aditya\\Projects\\OsdagBridge-Testing-Winter2026\\scripts\\run_test_suite.py
+    cd OsdagBridge\\src
+    python ..\\..\\OsdagBridge-Testing-Winter2026\\scripts\\run_test_suite.py
 Options:
     --list            list the test cases and exit
     --only U1,S03     run only these case ids (comma separated)
@@ -827,7 +828,7 @@ class Suite:
         WRITE_JSON(self.case_dir() / "U5_validation_table.json", rows)
 
     def U6_osi_validation(self):
-        """Load Input validation for hand-edited .osi files."""
+        """Load Input validation: TC00 saved as .osi with one value changed per file."""
         C = self.ctx.C
         custom_bad = {C.KEY_GIRDER: "custom_steel_5000_6000", C.KEY_MATERIAL_GIRDER_FY: "5000",
                       C.KEY_MATERIAL_GIRDER_FU: "6000"}

@@ -20,8 +20,8 @@ Every test case below has a pass/fail result in `suite_runs/<run>/checks.csv` an
 | U3 | Additional Inputs persistence | edit 6 Additional Inputs, then change span / Save Input / Load Input | edits kept |
 | U4 | Custom materials after Save/Load | save custom materials, load in a new session, Design, use the (i) button, re-select | values kept, dialog opens |
 | U5 | Homepage validation | span 19.9/45.1/0/-5/abc/20/45, cw 4.2/23.7/4.25/23.6, skew +/-16, +/-15 | invalid rejected, boundaries accepted |
-| U6 | Load Input validation | 14 hand-edited .osi files (`osi/invalid_*.osi`) | invalid files rejected |
-| U7 | Custom-material dialog validation | fu < fy, density 130, E 50, G inconsistent with E and nu | invalid entries rejected |
+| U6 | Load Input validation | TC00 saved as .osi with one value changed per file: 13 invalid files + the valid TC00 (written to `suite_runs/<run>/U6_osi_validation/`; `osi/invalid_*.osi` are 11 of them for a manual File > Load Input) | invalid files rejected, TC00 loads |
+| U7 | Custom-material dialog validation | valid 410/540, fu < fy (450/400), density 130, E 50, G inconsistent with E and nu | invalid entries rejected, valid entry accepted |
 | U8 | Backend validation | span 100, cw 40, skew 60, fy 5000 passed straight to the backend | rejected |
 | S01 | Repeatability | TC00 x 3 (Design, unlock, Design, unlock, Design) | identical outputs |
 | S02 | Stale state | A -> B -> A, B in a fresh session, B after a typo | A repeats; B independent of history |

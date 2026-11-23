@@ -1,4 +1,7 @@
-# Comments to post on existing issues
+# Comments posted on existing issues
+
+The four comments below add new evidence to issues opened by others (#71, #19, #43, #96). Two follow-up replies
+on my own issues (#118, #113) are at the end.
 
 ---
 ## Comment on #71 (Save Input overwrites deck / wearing-course thickness)
@@ -52,3 +55,14 @@ Confirmed on Windows 11 at `d74f56d`, with the effect on the **design** added. H
 | span abc / 19.9 / 100, skew 30, girders 1, spacing 0, deck 20 mm, design mode Foo | rejected (correct) | - |
 
 The unknown-grade case is worth including in the fix: the grade string itself is never checked against the material database, not only the numeric sub-keys. Evidence (every `.osi` used, the loader's verdicts, and the fy = 5000 design input/output): [U6_osi_validation](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/tree/main/suite_runs/20261116_011421/U6_osi_validation) and [S09_osi_bad_material](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/tree/main/suite_runs/20261116_011421/S09_osi_bad_material).
+
+---
+## Follow-up replies on my own issues (21 Nov)
+
+### #118: reply to another tester who wrote that the dialog already rejects fu < fy
+
+Thanks for checking. One correction so this isn't read as half-fixed: at `d74f56d` the dialog does **not** reject fu < fy. `_validate_and_save()` ([material_properties.py#L319-L355](https://github.com/Nidhikhare12/OsdagBridge/blob/d74f56dd7f22925fb8148cabf5740ed8d1e39ff3/src/osdagbridge/desktop/ui/dialogs/material_properties.py#L319-L355)) only runs the per-field range check, and `validate_material_inputs` has no fu/fy rule; fu only has to be within 100–1500 MPa ([validator.py#L98-L103](https://github.com/Nidhikhare12/OsdagBridge/blob/d74f56dd7f22925fb8148cabf5740ed8d1e39ff3/src/osdagbridge/core/bridge_types/plate_girder/validator.py#L98-L103)). fy 450 / fu 400 is saved as `custom_steel_450_400` (suite case U7 in [checks.csv](https://github.com/AdityaChauhanX07/OsdagBridge-Testing-Winter2026/blob/main/suite_runs/20261116_011421/checks.csv)). If you saw it rejected, it may have been on your patched branch. The G vs E/ν check is the second part of this issue, so both parts are still open.
+
+### #113: cross-reference to an open pull request
+
+Cross-reference: PR #160 appears to address this (it designs only the physical girder lines; its description reports the same 4-girder bridge being checked as 6 lines at 0° skew). The desktop Steel Design dialog already treats the outer lines as dummy edge beams ([steel_design.py#L749-L766](https://github.com/Nidhikhare12/OsdagBridge/blob/d74f56dd7f22925fb8148cabf5740ed8d1e39ff3/src/osdagbridge/desktop/ui/dialogs/steel_design.py#L749-L766)), which matches the expected behaviour described here.

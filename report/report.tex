@@ -168,7 +168,7 @@ All valid boundary values were also designed end to end in a fresh session (span
 \paragraph{Invalid values outside the homepage.} The backend's own validation only checks span $>0$, girders $\ge 2$ and spacing $>0$ (U8: span 100~m, carriageway 40~m, skew $60^\circ$ and $f_y=5000$~MPa are accepted; already reported for span in \gh{69}). Load Input rejects bad geometry but no material value at all (Table~\ref{tab:osi}; reported by another applicant as \gh{96}, my design-run evidence added as a comment).
 
 \begin{table}[H]\centering\small
-\caption{Load Input validation of hand-edited \code{.osi} files (U6).}\label{tab:osi}
+\caption{Load Input validation (U6): the TC00 \code{.osi} file with one value changed per file.}\label{tab:osi}
 \input{generated/u6_table.tex}
 \end{table}
 
@@ -311,7 +311,7 @@ PR & Change and tests & Suite before $\to$ after\\
 
 \appendix
 \section{Reproducing the results}\label{app:repro}
-\noindent From \code{OsdagBridge\src}, with the conda environment from \code{environment.yml} active:
+\noindent In an Anaconda Prompt, after \code{conda activate osdagbridge-env}, from \texttt{OsdagBridge\textbackslash src}. Here \code{<testing-repo>} is this repository, i.e.\ \texttt{..\textbackslash..\textbackslash OsdagBridge-Testing-Winter2026} when it is cloned next to OsdagBridge:
 \begin{verbatim}
 python <testing-repo>\scripts\run_logged.py TC00_baseline
 python <testing-repo>\scripts\run_test_suite.py
